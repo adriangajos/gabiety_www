@@ -387,7 +387,7 @@
     const booking    = data.bookingLink || '';
     const badge      = initials(data.name);
 
-    const nameHtml = tenant
+    const nameHtml = (tenant && tenant !== data.name)
       ? `${name} <span style="color:var(--ink-2);font-size:18px;">· ${tenant}</span>`
       : name;
 
