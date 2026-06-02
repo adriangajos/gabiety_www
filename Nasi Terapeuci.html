@@ -10,6 +10,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <style>
   :root {
     --paper: #f5ece6;
@@ -39,7 +42,7 @@
   .serif { font-family: "Instrument Serif", "Times New Roman", serif; font-weight: 400; letter-spacing: -0.01em; }
   .wrap { width: min(1100px, 92vw); margin: 0 auto; }
 
-  /* NAV — reused from main page */
+  /* NAV */
   .nav {
     position: sticky; top: 0; z-index: 40;
     backdrop-filter: saturate(1.2) blur(10px);
@@ -112,12 +115,6 @@
     transform: translateY(-2px);
     background: color-mix(in oklab, var(--accent) 6%, var(--paper));
   }
-  .t-card .num {
-    font-family: "Instrument Serif", serif;
-    font-size: 14px; font-style: italic;
-    color: var(--accent-deep);
-    letter-spacing: 0.04em;
-  }
   .t-card h3 {
     font-family: "Instrument Serif", serif;
     font-weight: 400;
@@ -139,18 +136,6 @@
     font-size: 15.5px; line-height: 1.6;
     max-width: 65ch;
   }
-  .t-card .meta {
-    margin-top: 14px;
-    display: flex; gap: 18px; flex-wrap: wrap;
-    font-size: 12px; color: var(--ink-2); letter-spacing: 0.04em;
-  }
-  .t-card .meta a {
-    color: var(--accent-deep);
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 1px;
-  }
-  .t-card .meta a:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .t-card .meta .nip { color: color-mix(in oklab, var(--ink-2) 70%, transparent); }
 
   .t-card .book {
     margin-top: 18px;
@@ -166,7 +151,6 @@
   }
   .t-card .book:hover { background: var(--accent-deep); transform: translateY(-1px); }
   .t-card .book .ico { width: 14px; height: 14px; }
-  .t-card .book.is-zl::after { content: "Znany Lekarz"; font-size: 11px; opacity: .75; margin-left: 4px; padding-left: 8px; border-left: 1px solid color-mix(in oklab, var(--paper) 40%, transparent); }
 
   .t-card .contacts {
     margin-top: 14px;
@@ -190,10 +174,15 @@
     letter-spacing: 0.06em; text-transform: uppercase;
     align-self: center;
   }
-  .t-card .contacts .crow .v {
-    color: var(--ink); font-family: 'Inter', sans-serif;
-  }
+  .t-card .contacts .crow .v { color: var(--ink); }
   .t-card .contacts .crow .v.empty { color: color-mix(in oklab, var(--ink-2) 50%, transparent); font-style: italic; }
+  .t-card .contacts .crow .v a { color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  .t-card .contacts .crow .v a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  .t-card .meta {
+    margin-top: 14px;
+    font-size: 12px; color: var(--ink-2); letter-spacing: 0.04em;
+  }
 
   .t-card .badge {
     width: 72px; height: 72px;
@@ -205,6 +194,20 @@
     font-size: 28px; letter-spacing: 0.02em;
     border: 1px solid var(--accent);
     flex: none;
+  }
+
+  /* Loading state */
+  .t-loading {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--ink-2);
+    font-size: 15px;
+  }
+  .t-empty {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--ink-2);
+    font-size: 15px;
   }
 
   /* FOOTER */
@@ -219,6 +222,32 @@
   }
   footer .foot a { color: color-mix(in oklab, var(--paper) 75%, transparent); }
   footer .foot a:hover { color: var(--paper); }
+
+  /* Cookie banner */
+  #cookie {
+    position: fixed; left: 20px; right: 20px; bottom: 20px;
+    max-width: 720px; margin: 0 auto;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -20px rgba(31, 42, 34, 0.25);
+    padding: 22px 26px; z-index: 150;
+    display: none; font-size: 14px; line-height: 1.55;
+  }
+  #cookie.on { display: flex; flex-direction: column; gap: 14px; }
+  #cookie .ck-t { color: var(--ink); }
+  #cookie .ck-t strong { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 19px; display: block; margin-bottom: 4px; color: var(--accent-deep); }
+  #cookie .ck-t a { color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  #cookie .ck-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  #cookie .ck-btn { padding: 10px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; border: 1px solid transparent; cursor: pointer; transition: background .2s, color .2s; }
+  #cookie .ck-btn.primary { background: var(--accent); color: var(--paper); }
+  #cookie .ck-btn.primary:hover { background: var(--accent-deep); }
+  #cookie .ck-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  #cookie .ck-btn.ghost:hover { background: var(--paper-2); }
+  @media (max-width: 600px) {
+    #cookie { left: 10px; right: 10px; bottom: 10px; padding: 18px; }
+    #cookie .ck-actions { justify-content: stretch; }
+    #cookie .ck-actions .ck-btn { flex: 1; }
+  }
 
   /* MOBILE */
   @media (max-width: 880px) {
@@ -237,10 +266,7 @@
     gap: 22px; padding: 40px;
   }
   .mobile-sheet.on { display: flex; }
-  .mobile-sheet a {
-    font-family: "Instrument Serif", serif; font-size: 32px;
-    color: var(--ink);
-  }
+  .mobile-sheet a { font-family: "Instrument Serif", serif; font-size: 32px; color: var(--ink); }
   .mobile-sheet .close {
     position: absolute; top: 22px; right: 22px;
     width: 44px; height: 44px; border-radius: 50%;
@@ -293,356 +319,12 @@
   </div>
 </section>
 
-<!-- CARDS -->
+<!-- CARDS — populated by JS -->
 <section>
-  <div class="wrap therapists">
-
-    <article class="t-card">
-      <div>
-                <h3>Agnieszka Majewska</h3>
-        <span class="tag">Psychoterapia</span>
-        <p>Psychoterapeutka prowadząca praktykę w Centrum Płaszowska 25. Pracuje z osobami dorosłymi w obszarze trudności emocjonalnych, relacji i kryzysów życiowych.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Agnieszka%20Majewska" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">AM</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Kamila Dobrzańska</h3>
-        <span class="tag">Psychoterapia</span>
-        <p>Specjalistka prowadząca konsultacje i psychoterapię w Centrum Płaszowska 25. Wspiera klientów w pracy nad samoświadomością, regulacją emocji i budowaniem relacji.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Kamila%20Dobrza%C5%84ska" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">KD</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Jakub Futyma</h3>
-        <span class="tag">Psychoterapia</span>
-        <p>Psychoterapeuta przyjmujący w Centrum Płaszowska 25. Prowadzi konsultacje i psychoterapię indywidualną dla młodzieży oraz osób dorosłych.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Jakub%20Futyma" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">JF</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Małgorzata Kudzia <span style="color: var(--ink-2); font-size: 18px;">· Gabinet Pomocy Psychologicznej</span></h3>
-        <span class="tag">Psychoterapia psychodynamiczna</span>
-        <p>Psychoterapeutka pracująca w nurcie psychodynamicznym. Prowadzi własny Gabinet Pomocy Psychologicznej w Centrum Płaszowska 25. Specjalizuje się w pracy z osobami dorosłymi.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Ma%C5%82gorzata%20Kudzia" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">MK</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Dorota Mucha</h3>
-        <span class="tag">Psychoterapia</span>
-        <p>Specjalistka prowadząca własną praktykę w Centrum Płaszowska 25. Oferuje konsultacje i psychoterapię w atmosferze dyskrecji i wzajemnego zaufania.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Dorota%20Mucha" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">DM</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Sylwia Kita</h3>
-        <span class="tag">Psychoterapia</span>
-        <p>Terapeutka przyjmująca w Centrum Płaszowska 25. Prowadzi pracę indywidualną z osobami dorosłymi szukającymi wsparcia w kryzysach życiowych i emocjonalnych.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Sylwia%20Kita" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">SK</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Beata Szcześniak <span style="color: var(--ink-2); font-size: 18px;">· Psychoterapia</span></h3>
-        <span class="tag">Psychologia i psychoterapia</span>
-        <p>Psychoterapeutka prowadząca własną praktykę w zakresie psychologii i psychoterapii. Wspiera dorosłych klientów w długoterminowej pracy nad sobą.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Beata%20Szcze%C5%9Bniak" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">BS</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Katarzyna Jopa <span style="color: var(--ink-2); font-size: 18px;">· Gabinet Psychoterapii</span></h3>
-        <span class="tag">Psycholog · Psychoterapeuta</span>
-        <p>Psycholog, pedagog, psychoterapeutka w trakcie całościowego szkolenia w Krakowskiej Fundacji Rozwoju Psychoterapii im. prof. Marii Orwid (atestowanego przez PTP). W pracy łączy podejście systemowe z psychodynamicznym. Pracuje z dziećmi, młodzieżą, młodymi dorosłymi oraz parami i małżeństwami.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Katarzyna%20Jopa" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-          <a href="https://www.znanylekarz.pl/katarzyna-jopa/psychoterapeuta-psycholog-psycholog-dzieciecy/krakow" target="_blank" rel="noopener">Profil ZnanyLekarz →</a>
-        </div>
-      </div>
-      <div class="badge">KJ</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Anna Majewska <span style="color: var(--ink-2); font-size: 18px;">· Indywidualna Praktyka Lekarska</span></h3>
-        <span class="tag">Lekarz</span>
-        <p>Lekarz prowadzący indywidualną praktykę lekarską w Centrum Płaszowska 25. Konsultacje specjalistyczne w gabinetach centrum.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Anna%20Majewska" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">AM</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Marta Lutak <span style="color: var(--ink-2); font-size: 18px;">· Akademia Odżywiania</span></h3>
-        <span class="tag">Dietetyka · poradnictwo żywieniowe</span>
-        <p>Dietetyczka prowadząca konsultacje i programy żywieniowe pod marką Akademia Odżywiania. Wspiera klientów w budowaniu zdrowych nawyków, pracy z relacją z jedzeniem i osiąganiu celów zdrowotnych.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Marta%20Lutak" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">ML</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>BM Wanat sp. z o.o.</h3>
-        <span class="tag">Praktyka specjalistyczna</span>
-        <p>Spółka prowadząca działalność specjalistyczną w gabinetach Centrum Płaszowska 25. Szczegółowe informacje dostępne bezpośrednio u specjalistki.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20BM%20Wanat%20sp.%20z%20o.o." target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">BM</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Katarzyna Gładysz <span style="color: var(--ink-2); font-size: 18px;">· Praktyka Psychologiczna</span></h3>
-        <span class="tag">Psychologia · psychoterapia</span>
-        <p>Psycholog prowadząca własną Praktykę Psychologiczną w Centrum Płaszowska 25. Konsultacje psychologiczne, wsparcie w kryzysach i pracy nad rozwojem osobistym.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Katarzyna%20G%C5%82adysz" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">KG</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Monika Hytroś <span style="color: var(--ink-2); font-size: 18px;">· Mentorium</span></h3>
-        <span class="tag">Mentoring · rozwój osobisty</span>
-        <p>Pod marką Mentorium prowadzi konsultacje rozwojowe i mentoring. Pracuje z osobami chcącymi rozwijać siebie zawodowo i osobiście.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Monika%20Hytro%C5%9B" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">MH</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Wojciech Czarnecki</h3>
-        <span class="tag">Praktyka specjalistyczna</span>
-        <p>Specjalista prowadzący indywidualną praktykę w Centrum Płaszowska 25. Szczegóły oferty dostępne bezpośrednio po umówieniu konsultacji.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Wojciech%20Czarnecki" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">WC</div>
-    </article>
-
-    <article class="t-card">
-      <div>
-                <h3>Barbara Górska</h3>
-        <span class="tag">Praktyka specjalistyczna</span>
-        <p>Specjalistka przyjmująca w Centrum Płaszowska 25. Konsultacje i wsparcie indywidualne — szczegóły bezpośrednio u specjalistki.</p>
-          <a class="book" href="mailto:?subject=Um%C3%B3wienie%20wizyty%20%E2%80%94%20Barbara%20G%C3%B3rska" target="_blank" rel="noopener">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Umów wizytę
-          </a>
-          
-        <div class="contacts">
-          <div class="ctitle">Dane kontaktowe</div>
-          <div class="crow"><span class="k">www</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">email</span><span class="v empty">—</span></div>
-          <div class="crow"><span class="k">tel</span><span class="v empty">—</span></div>
-        </div>
-        <div class="meta">
-          <span>Płaszowska 25, Kraków</span>
-        </div>
-      </div>
-      <div class="badge">BG</div>
-    </article>
-
+  <div class="wrap">
+    <div class="therapists" id="therapistsList">
+      <div class="t-loading">Ładowanie…</div>
+    </div>
   </div>
 </section>
 
@@ -654,55 +336,7 @@
   </div>
 </footer>
 
-<script>
-  const burger = document.getElementById('burger');
-  const sheet = document.getElementById('sheet');
-  const closeSheet = document.getElementById('closeSheet');
-  burger.addEventListener('click', () => sheet.classList.add('on'));
-  closeSheet.addEventListener('click', () => sheet.classList.remove('on'));
-  sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', () => sheet.classList.remove('on')));
-</script>
-
-
-<!-- ============ COOKIE BANNER ============ -->
-<style>
-  #cookie {
-    position: fixed; left: 20px; right: 20px; bottom: 20px;
-    max-width: 720px;
-    margin: 0 auto;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    box-shadow: 0 20px 50px -20px rgba(31, 42, 34, 0.25);
-    padding: 22px 26px;
-    z-index: 150;
-    display: none;
-    font-size: 14px;
-    line-height: 1.55;
-  }
-  #cookie.on { display: flex; flex-direction: column; gap: 14px; }
-  #cookie .ck-t { color: var(--ink); }
-  #cookie .ck-t strong { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 19px; display: block; margin-bottom: 4px; color: var(--accent-deep); }
-  #cookie .ck-t a { color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
-  #cookie .ck-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
-  #cookie .ck-btn {
-    padding: 10px 20px; border-radius: 999px;
-    font-size: 13px; font-weight: 500;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background .2s, color .2s;
-  }
-  #cookie .ck-btn.primary { background: var(--accent); color: var(--paper); }
-  #cookie .ck-btn.primary:hover { background: var(--accent-deep); }
-  #cookie .ck-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-  #cookie .ck-btn.ghost:hover { background: var(--paper-2); }
-  @media (max-width: 600px) {
-    #cookie { left: 10px; right: 10px; bottom: 10px; padding: 18px; }
-    #cookie .ck-actions { justify-content: stretch; }
-    #cookie .ck-actions .ck-btn { flex: 1; }
-  }
-</style>
-
+<!-- COOKIE BANNER -->
 <div id="cookie" role="dialog" aria-label="Zgoda na cookies">
   <div class="ck-t">
     <strong>Cookies i prywatność</strong>
@@ -715,40 +349,130 @@
 </div>
 
 <script>
+  // Mobile nav
+  const burger = document.getElementById('burger');
+  const sheet = document.getElementById('sheet');
+  const closeSheet = document.getElementById('closeSheet');
+  burger.addEventListener('click', () => sheet.classList.add('on'));
+  closeSheet.addEventListener('click', () => sheet.classList.remove('on'));
+  sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', () => sheet.classList.remove('on')));
+
+  // Cookie banner
   (function() {
     const KEY = 'p25_cookie_consent';
     const banner = document.getElementById('cookie');
     const saved = localStorage.getItem(KEY);
-    if (!saved) {
-      setTimeout(() => banner.classList.add('on'), 800);
-    } else if (saved === 'accept') {
-      loadGA();
-    }
-    document.getElementById('ckAccept').onclick = () => {
-      localStorage.setItem(KEY, 'accept');
-      banner.classList.remove('on');
-      loadGA();
-    };
-    document.getElementById('ckDecline').onclick = () => {
-      localStorage.setItem(KEY, 'decline');
-      banner.classList.remove('on');
-    };
-    function loadGA() {
-      const GA_ID = 'G-XXXXXXXXXX';
-      if (GA_ID === 'G-XXXXXXXXXX') return;
-      const s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-      document.head.appendChild(s);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', GA_ID, { anonymize_ip: true });
-    }
+    if (!saved) setTimeout(() => banner.classList.add('on'), 800);
+    document.getElementById('ckAccept').onclick = () => { localStorage.setItem(KEY, 'accept'); banner.classList.remove('on'); };
+    document.getElementById('ckDecline').onclick = () => { localStorage.setItem(KEY, 'decline'); banner.classList.remove('on'); };
   })();
-</script>
 
+  // Initials from name
+  function initials(name) {
+    return (name || '').split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+  }
+
+  const BOOK_ICON = `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
+
+  function escape(str) {
+    return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function buildCard(data) {
+    const name       = escape(data.name || '');
+    const tenant     = escape(data.tenantName || '');
+    const spec       = escape(data.specialization || '');
+    const bio        = escape(data.bio || '');
+    const www        = data.www || '';
+    const email      = data.email || '';
+    const phone      = data.phone || '';
+    const booking    = data.bookingLink || '';
+    const badge      = initials(data.name);
+
+    const nameHtml = tenant
+      ? `${name} <span style="color:var(--ink-2);font-size:18px;">· ${tenant}</span>`
+      : name;
+
+    const tagHtml = spec
+      ? `<span class="tag">${spec}</span>`
+      : '';
+
+    const bioHtml = bio
+      ? `<p>${bio}</p>`
+      : '';
+
+    const bookHtml = booking
+      ? `<a class="book" href="${escape(booking)}" target="_blank" rel="noopener">${BOOK_ICON} Umów wizytę</a>`
+      : '';
+
+    function contactRow(label, val, isLink) {
+      if (!val) return `<div class="crow"><span class="k">${label}</span><span class="v empty">—</span></div>`;
+      const display = isLink === 'www'
+        ? `<a href="${escape(val)}" target="_blank" rel="noopener">${escape(val)}</a>`
+        : isLink === 'email'
+        ? `<a href="mailto:${escape(val)}">${escape(val)}</a>`
+        : isLink === 'tel'
+        ? `<a href="tel:${escape(val)}">${escape(val)}</a>`
+        : escape(val);
+      return `<div class="crow"><span class="k">${label}</span><span class="v">${display}</span></div>`;
+    }
+
+    return `
+      <article class="t-card">
+        <div>
+          <h3>${nameHtml}</h3>
+          ${tagHtml}
+          ${bioHtml}
+          ${bookHtml}
+          <div class="contacts">
+            <div class="ctitle">Dane kontaktowe</div>
+            ${contactRow('www', www, 'www')}
+            ${contactRow('email', email, 'email')}
+            ${contactRow('tel', phone, 'tel')}
+          </div>
+          <div class="meta">Płaszowska 25, Kraków</div>
+        </div>
+        <div class="badge">${escape(badge)}</div>
+      </article>`;
+  }
+
+  // Firebase — wait for SDK
+  function initFirebase() {
+    if (typeof firebase === 'undefined' || !firebase.firestore) {
+      setTimeout(initFirebase, 100);
+      return;
+    }
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp({
+        apiKey: 'AIzaSyAiiRA2GjCuOd7_CezBu6HDqBQCp01qMNo',
+        authDomain: 'gabinety-plaszowska.firebaseapp.com',
+        projectId: 'gabinety-plaszowska',
+        storageBucket: 'gabinety-plaszowska.firebasestorage.app',
+        messagingSenderId: '383190262104',
+        appId: '1:383190262104:web:a13ce66ab5c3cabd17052d'
+      });
+    }
+
+    const db = firebase.firestore();
+    const list = document.getElementById('therapistsList');
+
+    db.collection('artifacts/gabinety-plaszowska/users/shared/clients')
+      .where('publishOnWeb', '==', true)
+      .onSnapshot(snapshot => {
+        if (snapshot.empty) {
+          list.innerHTML = '<div class="t-empty">Brak opublikowanych profili.</div>';
+          return;
+        }
+        list.innerHTML = snapshot.docs.map(doc => buildCard(doc.data())).join('');
+      }, err => {
+        console.warn('Therapists fetch error:', err);
+        list.innerHTML = '<div class="t-empty">Nie udało się załadować profili.</div>';
+      });
+  }
+
+  initFirebase();
+</script>
 
 </body>
 </html>
