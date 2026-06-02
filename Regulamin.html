@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regulamin — Centrum Płaszowska 25, Kraków</title>
+<meta name="description" content="Regulamin świadczenia usług najmu gabinetów terapeutycznych przez Centrum Płaszowska 25 w Krakowie." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f5ece6;
+    --paper-2: #ecdfd6;
+    --ink: #1f2a22;
+    --ink-2: #566159;
+    --line: #e3cdc3;
+    --accent: #e89a94;
+    --accent-deep: #d97a72;
+    --accent-soft: #f1bdb8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", -apple-system, system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+  .wrap { width: min(820px, 92vw); margin: 0 auto; }
+  .wrap.wide { width: min(1200px, 92vw); }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 40;
+    backdrop-filter: saturate(1.2) blur(10px);
+    background: color-mix(in oklab, var(--paper) 85%, transparent);
+    border-bottom: 1px solid color-mix(in oklab, var(--line) 50%, transparent);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark img { height: 44px; width: auto; max-width: none; display: block; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 14px; color: var(--ink-2); transition: color .2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 500;
+    transition: transform .2s, background .2s, color .2s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: var(--paper); }
+  .btn-primary:hover { background: var(--accent-deep); }
+  .btn-ghost { color: var(--ink); border: 1px solid var(--line); background: transparent; }
+  .nav-burger { display: none; }
+
+  /* PAGE HEAD */
+  .page-head { padding: 70px 0 10px; }
+  .page-head .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .page-head .eyebrow::before {
+    content: ""; width: 26px; height: 1px; background: var(--ink-2);
+  }
+  .page-head h1 {
+    font-family: "Instrument Serif", serif; font-weight: 400;
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.05; letter-spacing: -0.02em;
+    margin: 16px 0 14px;
+  }
+  .page-head h1 em { font-style: italic; color: var(--accent); }
+  .page-head .updated {
+    font-size: 13px; color: var(--ink-2);
+    border-top: 1px solid var(--line);
+    padding-top: 18px; margin-top: 18px;
+  }
+
+  /* CONTENT */
+  article { padding: 10px 0 90px; }
+  article h2 {
+    font-family: "Instrument Serif", serif;
+    font-weight: 400;
+    font-size: 28px;
+    margin: 50px 0 14px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    scroll-margin-top: 100px;
+  }
+  article h2::before {
+    content: counter(sec) ".";
+    counter-increment: sec;
+    color: var(--accent-deep);
+    font-style: italic;
+    margin-right: 14px;
+  }
+  article { counter-reset: sec; }
+  article h3 {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 28px 0 8px;
+    color: var(--ink);
+  }
+  article p { margin: 12px 0; color: color-mix(in oklab, var(--ink) 85%, transparent); }
+  article ul, article ol { margin: 12px 0; padding-left: 22px; }
+  article li { margin: 6px 0; color: color-mix(in oklab, var(--ink) 85%, transparent); }
+  article li::marker { color: var(--accent-deep); }
+  article strong { color: var(--ink); font-weight: 600; }
+
+  .legal-note {
+    margin: 22px 0 0;
+    padding: 18px 22px;
+    border-left: 3px solid var(--accent);
+    background: color-mix(in oklab, var(--accent) 8%, var(--paper));
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .legal-note strong { color: var(--accent-deep); display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .toc {
+    margin: 10px 0 10px;
+    padding: 20px 24px;
+    background: var(--paper-2);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  .toc-title {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-2); font-weight: 600; margin-bottom: 10px;
+  }
+  .toc ol { list-style: none; padding: 0; margin: 0; counter-reset: tocsec; }
+  .toc ol li { padding: 4px 0; counter-increment: tocsec; }
+  .toc ol li::before {
+    content: counter(tocsec) ". ";
+    color: var(--accent-deep);
+    font-family: "Instrument Serif", serif; font-style: italic;
+    margin-right: 6px;
+  }
+  .toc a { color: var(--ink); font-size: 14px; }
+  .toc a:hover { color: var(--accent-deep); text-decoration: underline; }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: var(--paper); padding: 50px 0 30px; }
+  footer .foot {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px;
+    font-size: 13px; color: color-mix(in oklab, var(--paper) 75%, transparent);
+  }
+  footer .foot a { color: color-mix(in oklab, var(--paper) 75%, transparent); }
+  footer .foot a:hover { color: var(--paper); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .nav-burger { display: inline-flex; }
+    .page-head { padding: 40px 0 20px; }
+    article h2 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap wide nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="assets/logo.png" alt="Centrum Terapeutyczne Płaszowska 25" /></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#o-nas">O centrum</a>
+      <a href="index.html#oferta">Oferta</a>
+      <a href="index.html#galeria">Gabinety</a>
+      <a href="index.html#cennik">Cennik</a>
+      <a href="index.html#dostepnosc">Dostępność</a>
+      <a href="Nasi Terapeuci.html">Nasi terapeuci</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+    <a href="index.html#dostepnosc" class="btn btn-primary">Zarezerwuj</a>
+  </div>
+</header>
+
+
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Dokument formalny</span>
+    <h1>Regulamin <em>wynajmu gabinetów</em></h1>
+    <p style="color: var(--ink-2); margin: 0;">Zasady korzystania z gabinetów oferowanych przez Centrum Terapeutyczne Płaszowska 25 w Krakowie.</p>
+    <div class="updated">Data aktualizacji: 15 maja 2026 r. · Wersja 1.0</div>
+  </div>
+</section>
+
+<article>
+  <div class="wrap">
+
+    <div class="toc">
+      <div class="toc-title">Spis treści</div>
+      <ol>
+        <li><a href="#ogolne">Postanowienia ogólne</a></li>
+        <li><a href="#definicje">Definicje</a></li>
+        <li><a href="#przedmiot">Przedmiot usługi i typy gabinetów</a></li>
+        <li><a href="#rezerwacja">Rezerwacja i zawarcie umowy</a></li>
+        <li><a href="#platnosci">Płatności</a></li>
+        <li><a href="#odwolanie">Wypowiedzenie umowy</a></li>
+        <li><a href="#zasady">Zasady korzystania z gabinetów</a></li>
+        <li><a href="#obowiazki">Obowiązki Najemcy</a></li>
+        <li><a href="#odpowiedzialnosc">Odpowiedzialność stron</a></li>
+        <li><a href="#reklamacje">Reklamacje</a></li>
+        <li><a href="#dane">Ochrona danych osobowych</a></li>
+        <li><a href="#koncowe">Postanowienia końcowe</a></li>
+      </ol>
+    </div>
+
+    <h2 id="ogolne">Postanowienia ogólne</h2>
+    <p>Niniejszy Regulamin określa zasady świadczenia usług najmu gabinetów terapeutycznych i biurowych świadczonych pod marką <strong>Centrum Terapeutyczne Płaszowska 25</strong> przez:</p>
+    <p style="padding: 16px 20px; background: var(--paper-2); border-radius: 8px; border: 1px solid var(--line);">
+      <strong>GS Spółka z ograniczoną odpowiedzialnością</strong><br/>
+      ul. Płaszowska 25 lok. 1, 30-713 Kraków<br/>
+      NIP: <strong>6793317716</strong> &nbsp;·&nbsp; KRS: <strong>0001144358</strong> &nbsp;·&nbsp; REGON: <strong>540426181</strong>
+    </p>
+    <p>(dalej: „Centrum").</p>
+    <p>Regulamin stanowi integralną część umowy zawieranej pomiędzy Centrum a Najemcą.</p>
+    <p>Akceptacja Regulaminu jest dobrowolna, jednak konieczna do skorzystania z usług Centrum.</p>
+
+    <h2 id="definicje">Definicje</h2>
+    <ul>
+      <li><strong>Centrum</strong> — marka handlowa, pod którą działalność najmu gabinetów prowadzi GS Spółka z ograniczoną odpowiedzialnością, ul. Płaszowska 25 lok. 1, 30-713 Kraków, NIP 6793317716, KRS 0001144358, REGON 540426181.</li>
+      <li><strong>Najemca</strong> — osoba fizyczna prowadząca działalność gospodarczą, osoba prawna lub jednostka organizacyjna, która zawarła z Centrum umowę najmu gabinetu.</li>
+      <li><strong>Gabinet</strong> — w pełni umeblowane pomieszczenie udostępniane Najemcy na cele prowadzenia praktyki terapeutycznej, psychologicznej, dietetycznej, lekarskiej lub innej dopuszczonej przez Centrum.</li>
+      <li><strong>Blok</strong> — jednostka czasu wynajmu: przedpołudniowy (6:00–15:00), popołudniowy (15:00–23:00) lub całodniowy (6:00–23:00).</li>
+      <li><strong>Rezerwacja</strong> — potwierdzone przez Centrum zamówienie najmu konkretnego gabinetu w określonym terminie.</li>
+      <li><strong>Pacjent / Klient</strong> — osoba korzystająca z usług świadczonych przez Najemcę na terenie Centrum.</li>
+    </ul>
+
+    <h2 id="przedmiot">Przedmiot usługi i typy gabinetów</h2>
+    <p>Centrum oferuje najem następujących kategorii gabinetów:</p>
+    <ul>
+      <li><strong>Mały gabinet</strong> — przeznaczony do konsultacji indywidualnych (gabinety nr 1, 3, 4, 6).</li>
+      <li><strong>Duży gabinet</strong> — przeznaczony do pracy z parą, rodziną lub grupą (gabinety nr 2, 5).</li>
+      <li><strong>Gabinet biurowy</strong> — przeznaczony do pracy administracyjnej lub konsultacji niewymagających specjalistycznego wyposażenia terapeutycznego (gabinet nr 7), rozliczany w taryfie małego gabinetu.</li>
+    </ul>
+    <p>Każdy gabinet wyposażony jest w meble, oświetlenie i podstawowe wyposażenie umożliwiające prowadzenie praktyki. Najemcy zapewniono dostęp do wspólnej poczekalni dla pacjentów oraz zaplecza socjalnego.</p>
+
+    <h2 id="rezerwacja">Rezerwacja i zawarcie umowy</h2>
+    <p>Najem gabinetu odbywa się w jednej z dwóch form:</p>
+    <ol>
+      <li><strong>Wynajem okna tygodniowego</strong> — powtarzalny blok (półdniowy lub całodniowy) w stałym dniu tygodnia, na czas określony lub nieokreślony.</li>
+      <li><strong>Stały wynajem całego gabinetu</strong> — wyłączne prawo do gabinetu w pełnym wymiarze czasowym, na podstawie odrębnej umowy.</li>
+    </ol>
+    <p>Rezerwacji można dokonać poprzez:</p>
+    <ul>
+      <li>formularz dostępny na stronie <strong>plaszowska25.pl</strong>,</li>
+      <li>kontakt telefoniczny: <strong>+48 663 433 444</strong>,</li>
+      <li>kontakt e-mailowy: <strong>gabinety@plaszowska25.pl</strong>.</li>
+    </ul>
+    <p>Umowa najmu zawierana jest w formie pisemnej lub dokumentowej (e-mail) po potwierdzeniu dostępności gabinetu i akceptacji warunków przez obie strony.</p>
+
+    <h2 id="platnosci">Płatności</h2>
+    <p>Aktualny cennik dostępny jest na stronie internetowej Centrum oraz przekazywany Najemcy przed zawarciem umowy. Wszystkie ceny są cenami brutto.</p>
+    <p>Płatność za usługę realizowana jest:</p>
+    <ul>
+      <li>miesięcznie z dołu — w przypadku najmu stałego, na podstawie wystawionej faktury VAT z 7-dniowym terminem płatności.</li>
+    </ul>
+    <p>Centrum akceptuje płatności przelewem bankowym na rachunek wskazany na fakturze. Inne formy płatności wymagają indywidualnego uzgodnienia.</p>
+    <p>W przypadku opóźnienia w zapłacie Centrum ma prawo naliczyć odsetki ustawowe za opóźnienie w transakcjach handlowych oraz zawiesić możliwość korzystania z gabinetu do czasu uregulowania należności.</p>
+
+    <h2 id="odwolanie">Wypowiedzenie umowy</h2>
+    <p>Każda ze stron może wypowiedzieć umowę najmu z zachowaniem <strong>jednomiesięcznego okresu wypowiedzenia</strong>, ze skutkiem na koniec miesiąca kalendarzowego.</p>
+    <p>Wypowiedzenie wymaga formy pisemnej lub dokumentowej (e-mail na adres <strong>gabinety@plaszowska25.pl</strong>) i jest skuteczne z chwilą doręczenia drugiej stronie.</p>
+    <p>W okresie wypowiedzenia Najemca zachowuje prawo do korzystania z zarezerwowanego bloku oraz obowiązek terminowego regulowania należności na dotychczasowych zasadach.</p>
+
+    <h2 id="zasady">Zasady korzystania z gabinetów</h2>
+    <p>Najemca zobowiązuje się do korzystania z gabinetu zgodnie z jego przeznaczeniem, w sposób niezakłócający pracy innych Najemców.</p>
+    <h3>W gabinetach obowiązuje:</h3>
+    <ul>
+      <li>zachowanie ciszy i dyskrecji,</li>
+      <li>zakaz palenia tytoniu, używania otwartego ognia i spożywania alkoholu,</li>
+      <li>zakaz wnoszenia zwierząt (z wyjątkiem psów asystujących osobom z niepełnosprawnościami),</li>
+      <li>obowiązek pozostawienia gabinetu w stanie nienaruszonym po zakończeniu pracy.</li>
+    </ul>
+    <p>Klucze, karty dostępu lub kody do gabinetu są niezbywalne i nie mogą być udostępniane osobom trzecim.</p>
+
+    <h2 id="obowiazki">Obowiązki Najemcy</h2>
+    <p>Najemca zobowiązany jest w szczególności do:</p>
+    <ul>
+      <li>posiadania uprawnień do wykonywania zawodu, w którym świadczy usługi w wynajmowanym gabinecie,</li>
+      <li>posiadania własnego ubezpieczenia odpowiedzialności cywilnej zawodowej, jeśli wymagają tego przepisy prawa lub regulacje branżowe,</li>
+      <li>samodzielnego rozliczania świadczonych usług ze swoimi pacjentami/klientami,</li>
+      <li>przestrzegania tajemnicy zawodowej i ochrony danych osobowych swoich pacjentów/klientów (Najemca jest niezależnym Administratorem danych w rozumieniu RODO w odniesieniu do swoich pacjentów),</li>
+      <li>niezwłocznego zgłaszania Centrum wszelkich usterek i uszkodzeń,</li>
+      <li>terminowego regulowania należności wynikających z umowy.</li>
+    </ul>
+
+    <h2 id="odpowiedzialnosc">Odpowiedzialność stron</h2>
+    <p>Centrum odpowiada za zapewnienie:</p>
+    <ul>
+      <li>sprawnego i wyposażonego gabinetu w uzgodnionym terminie,</li>
+      <li>dostępu do mediów (prąd, woda, ogrzewanie, internet),</li>
+      <li>czystości części wspólnych i poczekalni,</li>
+      <li>podstawowej obsługi technicznej budynku.</li>
+    </ul>
+    <p>Centrum nie ponosi odpowiedzialności za:</p>
+    <ul>
+      <li>jakość ani skutki usług świadczonych przez Najemcę na rzecz pacjentów/klientów,</li>
+      <li>rzeczy pozostawione przez Najemcę lub jego pacjentów w gabinecie i częściach wspólnych,</li>
+      <li>przerwy w dostawie mediów wynikające z przyczyn niezależnych od Centrum.</li>
+    </ul>
+    <p>Najemca ponosi pełną odpowiedzialność za szkody powstałe w gabinecie i mieniu Centrum z jego winy lub z winy osób, które wprowadził na teren obiektu.</p>
+
+    <h2 id="reklamacje">Reklamacje</h2>
+    <p>Reklamacje dotyczące świadczonych usług można składać:</p>
+    <ul>
+      <li>pisemnie na adres: <strong>GS Spółka z o.o., ul. Płaszowska 25 lok. 1, 30-713 Kraków</strong>,</li>
+      <li>drogą elektroniczną na adres: <strong>gabinety@plaszowska25.pl</strong>.</li>
+    </ul>
+    <p>Reklamacja powinna zawierać: dane Najemcy, opis przedmiotu reklamacji oraz oczekiwany sposób jej rozpatrzenia.</p>
+    <p>Centrum rozpatrzy reklamację w terminie do <strong>14 dni</strong> od dnia jej otrzymania i poinformuje Najemcę o sposobie jej rozpatrzenia.</p>
+
+    <h2 id="dane">Ochrona danych osobowych</h2>
+    <p>Zasady przetwarzania danych osobowych Najemców i osób kontaktujących się z Centrum określone są w odrębnym dokumencie — <a href="Polityka prywatnosci.html" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent);">Polityce prywatności</a>.</p>
+
+    <h2 id="koncowe">Postanowienia końcowe</h2>
+    <p>W sprawach nieuregulowanych Regulaminem zastosowanie mają przepisy prawa polskiego, w szczególności Kodeksu Cywilnego.</p>
+    <p>Wszelkie spory wynikające z umowy strony zobowiązują się rozwiązywać polubownie. W przypadku braku porozumienia właściwym do rozstrzygania sporów jest sąd powszechny właściwy dla siedziby Centrum.</p>
+    <p>Centrum zastrzega sobie prawo do zmiany Regulaminu w przypadku istotnych zmian przepisów prawa, technologii lub zakresu świadczonych usług. O zmianach Najemcy zostaną poinformowani z co najmniej 14-dniowym wyprzedzeniem za pośrednictwem poczty elektronicznej lub na stronie internetowej Centrum.</p>
+    <p>Regulamin wchodzi w życie z dniem <strong>15 maja 2026 r.</strong></p>
+
+  </div>
+</article>
+
+<footer>
+  <div class="wrap wide foot">
+    <span>© 2026 Centrum Terapeutyczne Płaszowska 25, Kraków</span>
+    <span><a href="index.html">Strona główna</a> · <a href="Polityka prywatnosci.html">Polityka prywatności</a> · <a href="Regulamin.html">Regulamin</a></span>
+  </div>
+</footer>
+
+
+<!-- ============ COOKIE BANNER ============ -->
+<style>
+  #cookie {
+    position: fixed; left: 20px; right: 20px; bottom: 20px;
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -20px rgba(31, 42, 34, 0.25);
+    padding: 22px 26px;
+    z-index: 150;
+    display: none;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  #cookie.on { display: flex; flex-direction: column; gap: 14px; }
+  #cookie .ck-t { color: var(--ink); }
+  #cookie .ck-t strong { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 19px; display: block; margin-bottom: 4px; color: var(--accent-deep); }
+  #cookie .ck-t a { color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  #cookie .ck-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  #cookie .ck-btn {
+    padding: 10px 20px; border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  #cookie .ck-btn.primary { background: var(--accent); color: var(--paper); }
+  #cookie .ck-btn.primary:hover { background: var(--accent-deep); }
+  #cookie .ck-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  #cookie .ck-btn.ghost:hover { background: var(--paper-2); }
+  @media (max-width: 600px) {
+    #cookie { left: 10px; right: 10px; bottom: 10px; padding: 18px; }
+    #cookie .ck-actions { justify-content: stretch; }
+    #cookie .ck-actions .ck-btn { flex: 1; }
+  }
+</style>
+
+<div id="cookie" role="dialog" aria-label="Zgoda na cookies">
+  <div class="ck-t">
+    <strong>Cookies i prywatność</strong>
+    Ten serwis wykorzystuje pliki cookies niezbędne do działania strony oraz — za Twoją zgodą — cookies analityczne (Google Analytics 4) do zbierania anonimowych statystyk. Szczegóły w <a href="Polityka prywatnosci.html">Polityce prywatności</a>.
+  </div>
+  <div class="ck-actions">
+    <button class="ck-btn ghost" id="ckDecline">Tylko niezbędne</button>
+    <button class="ck-btn primary" id="ckAccept">Akceptuję wszystkie</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const KEY = 'p25_cookie_consent';
+    const banner = document.getElementById('cookie');
+    const saved = localStorage.getItem(KEY);
+    if (!saved) {
+      setTimeout(() => banner.classList.add('on'), 800);
+    } else if (saved === 'accept') {
+      loadGA();
+    }
+    document.getElementById('ckAccept').onclick = () => {
+      localStorage.setItem(KEY, 'accept');
+      banner.classList.remove('on');
+      loadGA();
+    };
+    document.getElementById('ckDecline').onclick = () => {
+      localStorage.setItem(KEY, 'decline');
+      banner.classList.remove('on');
+    };
+    function loadGA() {
+      const GA_ID = 'G-XXXXXXXXXX';
+      if (GA_ID === 'G-XXXXXXXXXX') return;
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_ID, { anonymize_ip: true });
+    }
+  })();
+</script>
+
+
+</body>
+</html>

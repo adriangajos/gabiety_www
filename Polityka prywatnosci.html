@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Polityka prywatności — Centrum Płaszowska 25, Kraków</title>
+<meta name="description" content="Polityka prywatności Centrum Terapeutycznego Płaszowska 25 w Krakowie — informacje o przetwarzaniu danych osobowych zgodnie z RODO." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f5ece6;
+    --paper-2: #ecdfd6;
+    --ink: #1f2a22;
+    --ink-2: #566159;
+    --line: #e3cdc3;
+    --accent: #e89a94;
+    --accent-deep: #d97a72;
+    --accent-soft: #f1bdb8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", -apple-system, system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+  .wrap { width: min(820px, 92vw); margin: 0 auto; }
+  .wrap.wide { width: min(1200px, 92vw); }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 40;
+    backdrop-filter: saturate(1.2) blur(10px);
+    background: color-mix(in oklab, var(--paper) 85%, transparent);
+    border-bottom: 1px solid color-mix(in oklab, var(--line) 50%, transparent);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark img { height: 44px; width: auto; max-width: none; display: block; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 14px; color: var(--ink-2); transition: color .2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 500;
+    transition: transform .2s, background .2s, color .2s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: var(--paper); }
+  .btn-primary:hover { background: var(--accent-deep); }
+  .btn-ghost { color: var(--ink); border: 1px solid var(--line); background: transparent; }
+  .nav-burger { display: none; }
+
+  /* PAGE HEAD */
+  .page-head { padding: 70px 0 30px; }
+  .page-head .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .page-head .eyebrow::before {
+    content: ""; width: 26px; height: 1px; background: var(--ink-2);
+  }
+  .page-head h1 {
+    font-family: "Instrument Serif", serif; font-weight: 400;
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.05; letter-spacing: -0.02em;
+    margin: 16px 0 14px;
+  }
+  .page-head h1 em { font-style: italic; color: var(--accent); }
+  .page-head .updated {
+    font-size: 13px; color: var(--ink-2);
+    border-top: 1px solid var(--line);
+    padding-top: 18px; margin-top: 18px;
+  }
+
+  /* CONTENT */
+  article { padding: 30px 0 90px; }
+  article h2 {
+    font-family: "Instrument Serif", serif;
+    font-weight: 400;
+    font-size: 28px;
+    margin: 50px 0 14px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    scroll-margin-top: 100px;
+  }
+  article h2::before {
+    content: counter(sec) ".";
+    counter-increment: sec;
+    color: var(--accent-deep);
+    font-style: italic;
+    margin-right: 14px;
+  }
+  article { counter-reset: sec; }
+  article h3 {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 28px 0 8px;
+    color: var(--ink);
+  }
+  article p { margin: 12px 0; color: color-mix(in oklab, var(--ink) 85%, transparent); }
+  article ul, article ol { margin: 12px 0; padding-left: 22px; }
+  article li { margin: 6px 0; color: color-mix(in oklab, var(--ink) 85%, transparent); }
+  article li::marker { color: var(--accent-deep); }
+  article strong { color: var(--ink); font-weight: 600; }
+
+  .legal-note {
+    margin: 22px 0 0;
+    padding: 18px 22px;
+    border-left: 3px solid var(--accent);
+    background: color-mix(in oklab, var(--accent) 8%, var(--paper));
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .legal-note strong { color: var(--accent-deep); display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .toc {
+    margin: 30px 0 10px;
+    padding: 20px 24px;
+    background: var(--paper-2);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  .toc-title {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-2); font-weight: 600; margin-bottom: 10px;
+  }
+  .toc ol { list-style: none; padding: 0; margin: 0; counter-reset: tocsec; }
+  .toc ol li { padding: 4px 0; counter-increment: tocsec; }
+  .toc ol li::before {
+    content: counter(tocsec) ". ";
+    color: var(--accent-deep);
+    font-family: "Instrument Serif", serif; font-style: italic;
+    margin-right: 6px;
+  }
+  .toc a { color: var(--ink); font-size: 14px; }
+  .toc a:hover { color: var(--accent-deep); text-decoration: underline; }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: var(--paper); padding: 50px 0 30px; }
+  footer .foot {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px;
+    font-size: 13px; color: color-mix(in oklab, var(--paper) 75%, transparent);
+  }
+  footer .foot a { color: color-mix(in oklab, var(--paper) 75%, transparent); }
+  footer .foot a:hover { color: var(--paper); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .nav-burger { display: inline-flex; }
+    .page-head { padding: 40px 0 20px; }
+    article h2 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap wide nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><img src="assets/logo.png" alt="Centrum Terapeutyczne Płaszowska 25" /></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#o-nas">O centrum</a>
+      <a href="index.html#oferta">Oferta</a>
+      <a href="index.html#galeria">Gabinety</a>
+      <a href="index.html#cennik">Cennik</a>
+      <a href="index.html#dostepnosc">Dostępność</a>
+      <a href="Nasi Terapeuci.html">Nasi terapeuci</a>
+      <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+    <a href="index.html#dostepnosc" class="btn btn-primary">Zarezerwuj</a>
+  </div>
+</header>
+
+
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Dokument informacyjny</span>
+    <h1>Polityka <em>prywatności</em></h1>
+    <p style="color: var(--ink-2); margin: 0;">Informacja dotycząca przetwarzania danych osobowych zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO).</p>
+    <div class="updated">Data aktualizacji: 15 maja 2026 r. · Wersja 1.0</div>
+  </div>
+</section>
+
+<article>
+  <div class="wrap">
+
+    <div class="toc">
+      <div class="toc-title">Spis treści</div>
+      <ol>
+        <li><a href="#admin">Administrator danych osobowych</a></li>
+        <li><a href="#zakres">Zakres przetwarzanych danych</a></li>
+        <li><a href="#cele">Cele i podstawy prawne przetwarzania</a></li>
+        <li><a href="#okres">Okres przechowywania danych</a></li>
+        <li><a href="#odbiorcy">Odbiorcy danych</a></li>
+        <li><a href="#prawa">Prawa osoby, której dane dotyczą</a></li>
+        <li><a href="#cookies">Pliki cookies i technologie śledzące</a></li>
+        <li><a href="#bezpieczenstwo">Bezpieczeństwo danych</a></li>
+        <li><a href="#zmiany">Zmiany w Polityce prywatności</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ol>
+    </div>
+
+    <h2 id="admin">Administrator danych osobowych</h2>
+    <p>Administratorem Państwa danych osobowych jest:</p>
+    <p style="padding: 16px 20px; background: var(--paper-2); border-radius: 8px; border: 1px solid var(--line);">
+      <strong>GS Spółka z ograniczoną odpowiedzialnością</strong><br/>
+      ul. Płaszowska 25 lok. 1, 30-713 Kraków<br/>
+      NIP: <strong>6793317716</strong> &nbsp;·&nbsp; KRS: <strong>0001144358</strong> &nbsp;·&nbsp; REGON: <strong>540426181</strong><br/>
+      Marka handlowa: <strong>Centrum Terapeutyczne Płaszowska 25</strong>
+    </p>
+    <p>Kontakt z Administratorem we wszystkich sprawach dotyczących przetwarzania danych osobowych możliwy jest pod adresem: <strong>gabinety@plaszowska25.pl</strong> lub telefonicznie pod numerem <strong>+48 663 433 444</strong>.</p>
+
+    <h2 id="zakres">Zakres przetwarzanych danych</h2>
+    <p>W zależności od relacji łączącej Państwa z Administratorem, możemy przetwarzać następujące kategorie danych osobowych:</p>
+    <h3>Najemcy gabinetów (terapeuci, specjaliści)</h3>
+    <ul>
+      <li>imię i nazwisko, nazwa działalności gospodarczej,</li>
+      <li>NIP, REGON, adres prowadzenia działalności,</li>
+      <li>dane kontaktowe: adres e-mail, numer telefonu,</li>
+      <li>dane do rozliczeń (numer rachunku bankowego, dane do faktury),</li>
+      <li>dane dotyczące świadczonych usług (kwalifikacje zawodowe — wyłącznie w niezbędnym zakresie).</li>
+    </ul>
+    <h3>Osoby kontaktujące się przez formularz lub e-mail</h3>
+    <ul>
+      <li>imię i nazwisko,</li>
+      <li>adres e-mail i/lub numer telefonu,</li>
+      <li>treść korespondencji.</li>
+    </ul>
+    <h3>Użytkownicy serwisu internetowego</h3>
+    <ul>
+      <li>adres IP, dane techniczne urządzenia i przeglądarki,</li>
+      <li>dane statystyczne dotyczące korzystania z serwisu (w zakresie wynikającym z plików cookies).</li>
+    </ul>
+    <p><strong>Centrum nie przetwarza danych pacjentów</strong> korzystających z usług terapeutycznych świadczonych przez najemców gabinetów. Administratorem danych pacjenta jest właściwy terapeuta prowadzący praktykę w wynajmowanym gabinecie.</p>
+
+    <h2 id="cele">Cele i podstawy prawne przetwarzania</h2>
+    <p>Dane osobowe przetwarzane są w następujących celach:</p>
+    <ol>
+      <li><strong>Zawarcie i wykonanie umowy najmu gabinetu</strong> — podstawa prawna: art. 6 ust. 1 lit. b RODO (niezbędność do wykonania umowy).</li>
+      <li><strong>Wystawianie faktur i prowadzenie rozliczeń</strong> — art. 6 ust. 1 lit. c RODO (obowiązek prawny wynikający z przepisów podatkowych i rachunkowych).</li>
+      <li><strong>Odpowiedź na zapytania kierowane przez formularz kontaktowy lub e-mail</strong> — art. 6 ust. 1 lit. f RODO (uzasadniony interes Administratora polegający na obsłudze korespondencji).</li>
+      <li><strong>Marketing własnych usług — newsletter i komunikacja e-mail</strong> — art. 6 ust. 1 lit. a RODO (zgoda) w połączeniu z art. 10 ustawy o świadczeniu usług drogą elektroniczną oraz art. 172 ustawy Prawo telekomunikacyjne. Newsletter wysyłany jest za pośrednictwem usługi Mailchimp wyłącznie do osób, które wyraziły na to wyraźną i dobrowolną zgodę (zapis przez formularz lub oświadczenie). Zgodę można w każdej chwili wycofać, klikając link „Anuluj subskrypcję” w stopce każdej wiadomości lub pisząc na adres <strong>gabinety@plaszowska25.pl</strong>.</li>
+      <li><strong>Marketing pozostały</strong> — art. 6 ust. 1 lit. f RODO (uzasadniony interes Administratora), wyłącznie wobec osób, które wyraziły zainteresowanie ofertą.</li>
+      <li><strong>Ustalenie, dochodzenie lub obrona roszczeń</strong> — art. 6 ust. 1 lit. f RODO.</li>
+      <li><strong>Prowadzenie statystyk i poprawa funkcjonowania serwisu</strong> — art. 6 ust. 1 lit. f RODO oraz, w zakresie cookies analitycznych, art. 6 ust. 1 lit. a RODO (zgoda).</li>
+    </ol>
+
+    <h2 id="okres">Okres przechowywania danych</h2>
+    <p>Dane osobowe przechowywane są przez okres:</p>
+    <ul>
+      <li><strong>Dane najemców</strong> — przez czas trwania umowy oraz przez okres wymagany przepisami prawa (m.in. 5 lat dla dokumentacji księgowej, zgodnie z Ordynacją podatkową).</li>
+      <li><strong>Dane z korespondencji</strong> — przez okres niezbędny do udzielenia odpowiedzi, nie dłużej niż 24 miesiące, chyba że nawiązana zostanie dalsza współpraca.</li>
+      <li><strong>Dane marketingowe</strong> — do czasu wycofania zgody lub zgłoszenia sprzeciwu wobec przetwarzania.</li>
+      <li><strong>Dane techniczne (cookies)</strong> — przez okres określony w polityce cookies danego narzędzia, maksymalnie do 24 miesięcy.</li>
+    </ul>
+
+    <h2 id="odbiorcy">Odbiorcy danych</h2>
+    <p>Państwa dane osobowe mogą być udostępniane następującym kategoriom odbiorców:</p>
+    <ul>
+      <li>podmiotom świadczącym usługi księgowe, prawne i doradcze na rzecz Administratora,</li>
+      <li>dostawcom usług IT, hostingu, poczty elektronicznej, narzędzi do rezerwacji i zarządzania kalendarzem — w szczególności:
+        <ul>
+          <li><strong>Google Ireland Limited</strong> (Gordon House, Barrow Street, Dublin 4, Irlandia) — usługi <strong>Firebase</strong> (Firestore, Authentication, Cloud Functions, Hosting), z których korzysta wewnętrzny system zarządzania rezerwacjami (CRM) Centrum, oraz <strong>Google Analytics 4</strong> wykorzystywane do zbierania anonimowych statystyk dotyczących korzystania z serwisu (wyłącznie po wyrażeniu zgody przez Użytkownika za pośrednictwem banera cookies). Dane mogą być przetwarzane w centrach danych Google na terenie Europejskiego Obszaru Gospodarczego oraz, w niezbędnym zakresie, w Stanach Zjednoczonych Ameryki na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską (Decyzja wykonawcza KE 2021/914) oraz mechanizmu Data Privacy Framework.</li>
+          <li><strong>Intuit Inc. / The Rocket Science Group LLC d/b/a Mailchimp</strong> (675 Ponce de Leon Ave NE, Suite 5000, Atlanta, GA 30308, USA) — usługa <strong>Mailchimp</strong> wykorzystywana do wysyłki korespondencji marketingowej i newsletterów do osób, które wyraziły na to zgodę. Przekazywanie danych odbywa się na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską oraz mechanizmu Data Privacy Framework, w którym Mailchimp jest podmiotem zarejestrowanym.</li>
+        </ul>
+      </li>
+      <li>operatorom płatności (w przypadku rozliczeń online),</li>
+      <li>organom publicznym uprawnionym do żądania udostępnienia danych na podstawie przepisów prawa.</li>
+    </ul>
+    <p>Przekazywanie danych do państw trzecich poza Europejskim Obszarem Gospodarczym (w szczególności do USA w ramach usług Firebase) odbywa się wyłącznie z zachowaniem zabezpieczeń wymaganych przez RODO — na podstawie standardowych klauzul umownych oraz dodatkowych środków technicznych i organizacyjnych zapewnianych przez Google.</p>
+
+    <h2 id="prawa">Prawa osoby, której dane dotyczą</h2>
+    <p>Przysługują Państwu następujące prawa wynikające z RODO:</p>
+    <ul>
+      <li>prawo dostępu do danych oraz uzyskania ich kopii (art. 15 RODO),</li>
+      <li>prawo do sprostowania danych (art. 16 RODO),</li>
+      <li>prawo do usunięcia danych — „prawo do bycia zapomnianym" (art. 17 RODO),</li>
+      <li>prawo do ograniczenia przetwarzania (art. 18 RODO),</li>
+      <li>prawo do przenoszenia danych (art. 20 RODO),</li>
+      <li>prawo do wniesienia sprzeciwu wobec przetwarzania (art. 21 RODO),</li>
+      <li>prawo do cofnięcia zgody w dowolnym momencie — bez wpływu na zgodność z prawem przetwarzania dokonanego przed jej cofnięciem,</li>
+      <li>prawo do wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa).</li>
+    </ul>
+    <p>W celu realizacji powyższych praw prosimy o kontakt pod adresem <strong>gabinety@plaszowska25.pl</strong>.</p>
+
+    <h2 id="cookies">Pliki cookies i technologie śledzące</h2>
+    <p>Serwis internetowy <strong>plaszowska25.pl</strong> wykorzystuje pliki cookies, czyli niewielkie pliki tekstowe zapisywane w urządzeniu użytkownika.</p>
+    <h3>Rodzaje stosowanych cookies</h3>
+    <ul>
+      <li><strong>Cookies niezbędne</strong> — konieczne do prawidłowego działania serwisu (m.in. zapamiętanie zgody cookies), nie wymagają zgody.</li>
+      <li><strong>Cookies analityczne (Google Analytics 4)</strong> — służą do zbierania anonimowych statystyk korzystania z serwisu (liczba użytkowników, czas wizyty, popularne podstrony). Wymagają zgody użytkownika wyrażonej przez baner cookies. Dane zbierane przez GA4 są pseudonimizowane (z anonimizacją IP) i przetwarzane przez Google Ireland Limited.</li>
+      <li><strong>Cookies funkcjonalne</strong> — zapamiętują preferencje użytkownika.</li>
+    </ul>
+    <p>Użytkownik może w każdej chwili wycofać zgodę na pliki cookies poprzez:</p>
+    <ul>
+      <li>kliknięcie przycisku „Ustawienia cookies” na stronie internetowej,</li>
+      <li>zmianę ustawień w swojej przeglądarce internetowej (w tym całkowite zablokowanie cookies).</li>
+    </ul>
+    <p>Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem.</p>
+
+    <h2 id="bezpieczenstwo">Bezpieczeństwo danych</h2>
+    <p>Administrator stosuje odpowiednie środki techniczne i organizacyjne mające zapewnić bezpieczeństwo przetwarzanych danych osobowych, w szczególności zabezpieczające je przed ich udostępnieniem osobom nieupoważnionym, utratą, zniszczeniem lub uszkodzeniem.</p>
+    <p>W szczególności stosujemy:</p>
+    <ul>
+      <li>szyfrowanie połączenia z serwerem (protokół SSL/TLS),</li>
+      <li>szyfrowanie danych w spoczynku w bazie danych <strong>Firebase Firestore</strong> (AES-256),</li>
+      <li>uwierzytelnianie wieloskładnikowe dla osób mających dostęp do systemu CRM,</li>
+      <li>regularne kopie zapasowe danych operacyjnych,</li>
+      <li>kontrolę dostępu na zasadzie najmniejszych uprawnień (least privilege).</li>
+    </ul>
+
+    <h2 id="zmiany">Zmiany w Polityce prywatności</h2>
+    <p>Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce prywatności w przypadku zmiany przepisów prawa, technologii lub zakresu prowadzonej działalności. Aktualna wersja dokumentu jest każdorazowo dostępna pod adresem <strong>plaszowska25.pl/polityka-prywatnosci</strong>.</p>
+
+    <h2 id="kontakt">Kontakt</h2>
+    <p>We wszystkich sprawach związanych z przetwarzaniem danych osobowych prosimy o kontakt:</p>
+    <ul>
+      <li>e-mail: <strong>gabinety@plaszowska25.pl</strong></li>
+      <li>telefon: <strong>+48 663 433 444</strong></li>
+      <li>adres: <strong>GS Spółka z ograniczoną odpowiedzialnością, ul. Płaszowska 25 lok. 1, 30-713 Kraków</strong></li>
+    </ul>
+
+  </div>
+</article>
+
+<footer>
+  <div class="wrap wide foot">
+    <span>© 2026 Centrum Terapeutyczne Płaszowska 25, Kraków</span>
+    <span><a href="index.html">Strona główna</a> · <a href="Polityka prywatnosci.html">Polityka prywatności</a> · <a href="Regulamin.html">Regulamin</a></span>
+  </div>
+</footer>
+
+
+<!-- ============ COOKIE BANNER ============ -->
+<style>
+  #cookie {
+    position: fixed; left: 20px; right: 20px; bottom: 20px;
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -20px rgba(31, 42, 34, 0.25);
+    padding: 22px 26px;
+    z-index: 150;
+    display: none;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  #cookie.on { display: flex; flex-direction: column; gap: 14px; }
+  #cookie .ck-t { color: var(--ink); }
+  #cookie .ck-t strong { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 19px; display: block; margin-bottom: 4px; color: var(--accent-deep); }
+  #cookie .ck-t a { color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  #cookie .ck-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  #cookie .ck-btn {
+    padding: 10px 20px; border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  #cookie .ck-btn.primary { background: var(--accent); color: var(--paper); }
+  #cookie .ck-btn.primary:hover { background: var(--accent-deep); }
+  #cookie .ck-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  #cookie .ck-btn.ghost:hover { background: var(--paper-2); }
+  @media (max-width: 600px) {
+    #cookie { left: 10px; right: 10px; bottom: 10px; padding: 18px; }
+    #cookie .ck-actions { justify-content: stretch; }
+    #cookie .ck-actions .ck-btn { flex: 1; }
+  }
+</style>
+
+<div id="cookie" role="dialog" aria-label="Zgoda na cookies">
+  <div class="ck-t">
+    <strong>Cookies i prywatność</strong>
+    Ten serwis wykorzystuje pliki cookies niezbędne do działania strony oraz — za Twoją zgodą — cookies analityczne (Google Analytics 4) do zbierania anonimowych statystyk. Szczegóły w <a href="Polityka prywatnosci.html">Polityce prywatności</a>.
+  </div>
+  <div class="ck-actions">
+    <button class="ck-btn ghost" id="ckDecline">Tylko niezbędne</button>
+    <button class="ck-btn primary" id="ckAccept">Akceptuję wszystkie</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const KEY = 'p25_cookie_consent';
+    const banner = document.getElementById('cookie');
+    const saved = localStorage.getItem(KEY);
+    if (!saved) {
+      setTimeout(() => banner.classList.add('on'), 800);
+    } else if (saved === 'accept') {
+      loadGA();
+    }
+    document.getElementById('ckAccept').onclick = () => {
+      localStorage.setItem(KEY, 'accept');
+      banner.classList.remove('on');
+      loadGA();
+    };
+    document.getElementById('ckDecline').onclick = () => {
+      localStorage.setItem(KEY, 'decline');
+      banner.classList.remove('on');
+    };
+    function loadGA() {
+      const GA_ID = 'G-XXXXXXXXXX';
+      if (GA_ID === 'G-XXXXXXXXXX') return;
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_ID, { anonymize_ip: true });
+    }
+  })();
+</script>
+
+
+</body>
+</html>

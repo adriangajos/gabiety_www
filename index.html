@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Centrum Terapeutyczne Płaszowska 25 — Kraków</title>
+<meta name="description" content="Nowoczesne gabinety terapeutyczne do wynajęcia w Krakowie. Komfort, dyskrecja, elastyczne warunki dla psychologów i terapeutów." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link rel="stylesheet" href="assets/css/main.css">
+
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/main.js"></script>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="assets/logo.png" alt="Centrum Terapeutyczne Płaszowska 25" />
+      </span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#o-nas">O centrum</a>
+      <a href="#oferta">Oferta</a>
+      <a href="#galeria">Gabinety</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#dostepnosc">Dostępność</a>
+      <a href="Nasi Terapeuci.html">Nasi terapeuci</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <div style="display:flex; gap: 10px; align-items:center;">
+      <a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu" class="btn btn-primary" style="display:inline-flex;" data-hide-mobile>Zarezerwuj gabinet</a>
+      <button class="btn btn-ghost nav-burger" id="burger" aria-label="Menu">≡ Menu</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-sheet" id="sheet">
+  <button class="close" id="closeSheet" aria-label="Zamknij">✕</button>
+  <a href="#o-nas">O centrum</a>
+  <a href="#oferta">Oferta</a>
+  <a href="#galeria">Gabinety</a>
+  <a href="#cennik">Cennik</a>
+  <a href="#dostepnosc">Dostępność</a>
+  <a href="Nasi Terapeuci.html">Nasi terapeuci</a>
+  <a href="#kontakt">Kontakt</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-tw="heroEyebrow">Kraków · Płaszów</span>
+        <h1 data-tw="heroTitle" data-tw-html>Przestrzeń, w&nbsp;której praca <em>terapeutyczna</em> ma komfort, jakiego potrzebuje.</h1>
+        <p class="hero-lead" data-tw="heroLead">
+          Nowoczesne, w pełni wyposażone gabinety do wynajęcia dla psychologów,
+          psychoterapeutów i specjalistów wspierających zdrowie psychiczne.
+        </p>
+        <div class="hero-cta">
+          <a href="#dostepnosc" class="btn btn-primary" data-tw="heroCtaPrimary">Sprawdź dostępność →</a>
+          <a href="#galeria" class="btn btn-outline" data-tw="heroCtaSecondary">Zobacz gabinety</a>
+        </div>
+
+        <div class="hero-ticker">
+          <span><span class="dot"></span> Elastyczne godziny wynajmu</span>
+          <span><span class="dot"></span> Piękna poczekalnia dla pacjentów</span>
+          <span><span class="dot"></span> Dyskrecja i cisza</span>
+        </div>
+      </div>
+
+      <div class="hero-visual"><img src="assets/photos/p01.jpg" alt="Gabinet terapeutyczny — Płaszowska 25" loading="eager"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O CENTRUM ============ -->
+<section class="about" id="o-nas">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">O centrum</span>
+      <h2>Miejsce stworzone z&nbsp;myślą o&nbsp;pracy ze&nbsp;słuchaniem.</h2>
+    </div>
+
+    <div class="about-grid">
+      <p class="about-lead">
+        Cisza, światło dzienne i przestrzeń, w której pacjent i&nbsp;terapeuta
+        mogą skupić się wyłącznie na tym, co najważniejsze — rozmowie.
+      </p>
+      <div class="about-body">
+        <p>
+          Płaszowska 25 to kameralne centrum w dobrze skomunikowanej części
+          Krakowa. Udostępniamy gabinety specjalistom, którym zależy na
+          profesjonalnej, komfortowej przestrzeni — bez kompromisów w&nbsp;kwestii
+          akustyki, wyposażenia i atmosfery.
+        </p>
+        <p>
+          Wynajem jest elastyczny: bloki półdniowe, całe dni lub stały najem. Troszczymy się
+          o poczekalnię, czystość i zaplecze, żebyś mógł/mogła skupić się
+          na&nbsp;swojej pracy.
+        </p>
+
+        <div class="about-stats">
+          <div class="stat"><div class="n">7</div><div class="l">gabinetów</div></div>
+          <div class="stat"><div class="n">24/7</div><div class="l">dostępność</div></div>
+          <div class="stat"><div class="n">10 min</div><div class="l">do centrum</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFERTA ============ -->
+<section id="oferta">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Oferta</span>
+      <h2>Wszystko, czego potrzebujesz do prowadzenia praktyki.</h2>
+      <p>Dwa warianty współpracy — wybierz okno w konkretnym dniu tygodnia albo
+cały gabinet na stałe.</p>
+    </div>
+
+    <div class="offer-grid">
+      <div class="card">
+        <span class="card-num">01 / okno tygodniowe</span>
+        <h3>Wynajem określonego okna w konkretnym dniu tygodnia</h3>
+        <p>Wybierz powtarzalny blok półdniowy lub całodniowy w stałym dniu tygodnia — ten sam gabinet, ten sam termin co tydzień.</p>
+        <ul>
+          <li>Bloki: 6–15, 15–23 lub 6–23</li>
+          <li>Powtarzalne okno tygodniowe</li>
+          <li>Indywidualna umowa</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="card-num">02 / stały najem</span>
+        <h3>Stały wynajem całego gabinetu</h3>
+        <p>Twój gabinet na wyłączność — dostępny 7 dni w tygodniu, urządzony pod Twoją praktykę.</p>
+        <ul>
+          <li>Pełna dostępność 24/7</li>
+          <li>Własna szafka</li>
+          <li>Wycena indywidualna</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIA ============ -->
+<section id="galeria" style="background: var(--paper-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Gabinety</span>
+      <h2>Siedem gabinetów. Każdy inny, każdy gotowy do pracy.</h2>
+      <p>Umeblowane zgodnie ze standardami pracy terapeutycznej — fotele, kozetka (w wybranych), dobre oświetlenie i akustyka.</p>
+    </div>
+
+    <div class="gallery">
+      <div class="tile t1" data-i="0"><img src="assets/photos/p02.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t2" data-i="1"><img src="assets/photos/p01.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t3" data-i="2"><img src="assets/photos/p03.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t4" data-i="3"><img src="assets/photos/p04.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t5" data-i="4"><img src="assets/photos/p05.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t6" data-i="5"><img src="assets/photos/p06.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t7" data-i="6"><img src="assets/photos/p07.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t8" data-i="7"><img src="assets/photos/p08.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t9" data-i="8"><img src="assets/photos/p09.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t10" data-i="9"><img src="assets/photos/p10.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t11" data-i="10"><img src="assets/photos/p13.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t12" data-i="11"><img src="assets/photos/p15.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t13" data-i="12"><img src="assets/photos/p18.jpg" alt="Gabinety Płaszowska"/><span class="cap">Gabinety Płaszowska</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DLA KOGO ============ -->
+<section class="for-who">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Dla kogo</span>
+      <h2>Jeśli tworzysz przestrzeń dla innych — zadbaj o&nbsp;swoją.</h2>
+      <p>Pracujemy z doświadczonymi specjalistami i osobami, które dopiero zaczynają własną praktykę.</p>
+    </div>
+
+    <div class="chips">
+      <div class="chip"><span class="serif">01</span> Psychologowie i psychoterapeuci</div>
+      <div class="chip"><span class="serif">02</span> Specjaliści terapii par i rodzin</div>
+      <div class="chip"><span class="serif">03</span> Coachowie i terapeuci uzależnień</div>
+      <div class="chip"><span class="serif">04</span> Logopedzi i neurologopedzi</div>
+      <div class="chip"><span class="serif">05</span> Seksuolodzy i terapeuci traumy</div>
+      <div class="chip"><span class="serif">06</span> Superwizorzy i prowadzący grupy</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HARMONOGRAM ============ -->
+<section id="dostepnosc" class="avail">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Rezerwacja na żywo</span>
+      <h2>Sprawdź, czy Twój termin jest dostępny.</h2>
+    </div>
+
+    <div class="avail-wrap">
+      <div class="crm-head">
+        <span class="icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </span>
+        <h3>Harmonogram Całotygodniowy</h3>
+      </div>
+
+      <div class="crm-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-day">Dzień</th>
+              <th class="col-pora">Pora</th>
+              <th>Gabinet 1<span class="gtype">Mały</span></th>
+              <th>Gabinet 2<span class="gtype gtype-l">Duży</span></th>
+              <th>Gabinet 3<span class="gtype">Mały</span></th>
+              <th>Gabinet 4<span class="gtype">Mały</span></th>
+              <th>Gabinet 5<span class="gtype gtype-l">Duży</span></th>
+              <th>Gabinet 6<span class="gtype">Mały</span></th>
+              <th>Gabinet 7<span class="gtype gtype-b">Biurowy</span></th>
+            </tr>
+          </thead>
+          <tbody id="crmBody">
+            <!-- built by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="avail-footer">
+        <span><span class="live-dot"></span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CENNIK ============ -->
+<section id="cennik">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Cennik</span>
+      <h2>Przejrzyste bloki, bez ukrytych opłat.</h2>
+      <p>Gabinety wynajmujemy w blokach. Wszystkie ceny brutto.</p>
+    </div>
+
+    <div class="price-table">
+      <div class="price-head">
+        <span>Blok</span>
+        <span>Mały gabinet <small style="font-weight:400; opacity:0.7;">+ biurowy</small></span>
+        <span>Duży gabinet</span>
+        <span></span>
+      </div>
+
+      <div class="price-row">
+        <div class="block">
+          <span class="num">01</span>
+          <div>
+            <div class="label">Przedpołudnie</div>
+            <span class="hours">6:00–15:00</span>
+          </div>
+        </div>
+        <div class="amt">250&nbsp;zł<small>brutto</small></div>
+        <div class="amt">350&nbsp;zł<small>brutto</small></div>
+        <div class="cta"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu">Rezerwuj →</a></div>
+      </div>
+
+      <div class="price-row">
+        <div class="block">
+          <span class="num">02</span>
+          <div>
+            <div class="label">Popołudnie</div>
+            <span class="hours">15:00–23:00</span>
+          </div>
+        </div>
+        <div class="amt">299&nbsp;zł<small>brutto</small></div>
+        <div class="amt">399&nbsp;zł<small>brutto</small></div>
+        <div class="cta"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu">Rezerwuj →</a></div>
+      </div>
+
+      <div class="price-row">
+        <div class="block">
+          <span class="num">03</span>
+          <div>
+            <div class="label">Cały dzień</div>
+            <span class="hours">6:00–23:00 · 17&nbsp;godz.</span>
+          </div>
+        </div>
+        <div class="amt">500&nbsp;zł<small>brutto</small></div>
+        <div class="amt">600&nbsp;zł<small>brutto</small></div>
+        <div class="cta"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu">Rezerwuj →</a></div>
+      </div>
+
+      <div class="price-row is-custom">
+        <div class="block">
+          <span class="num">04</span>
+          <div>
+            <div class="label">Wynajem miesięczny</div>
+            <span class="hours">Stały grafik, preferencyjne stawki</span>
+          </div>
+        </div>
+        <div class="amt">Wycena indywidualna</div>
+        <div class="amt">Wycena indywidualna</div>
+        <div class="cta"><a href="#kontakt">Skontaktuj się →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section id="kontakt" style="background: var(--paper-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Kontakt</span>
+      <h2>Porozmawiajmy o&nbsp;Twojej praktyce.</h2>
+      <p>Zadzwoń lub napisz — oddzwonimy w ciągu jednego dnia roboczego i&nbsp;umówimy oglądanie gabinetu.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-row">
+          <span class="k">Adres</span>
+          <span class="v" data-tw="address">Płaszowska 25, Kraków</span>
+        </div>
+        <div class="contact-row">
+          <span class="k">Telefon</span>
+          <span class="v" data-tw="phone">+48 510 574 421</span>
+        </div>
+        <div class="contact-row">
+          <span class="k">Telefon</span>
+          <span class="v">+48 663 433 444</span>
+        </div>
+        <div class="contact-row">
+          <span class="k">E-mail</span>
+          <span class="v" data-tw="email"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">gabinety@plaszowska25.pl</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="k">Godziny</span>
+          <span class="v">Pon–Pt · 8:00–15:00<br/></span>
+        </div>
+        <div class="contact-row">
+          <span class="k">Instagram</span>
+          <span class="v"><a href="https://instagram.com/plaszowska25" target="_blank" rel="noopener" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">@plaszowska25</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="k">LinkedIn</span>
+          <span class="v"><a href="https://www.linkedin.com/company/gabinety-p%C5%82aszowska" target="_blank" rel="noopener" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">Gabinety Płaszowska LinkedIn</a></span>
+        </div>
+      </div>
+
+      <div class="map-embed" id="osm-map"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4 data-tw="brandName">Płaszowska 25</h4>
+        <p style="color: color-mix(in oklab, var(--paper) 65%, transparent); max-width: 38ch; font-size: 14px;">
+          Centrum terapeutyczne w&nbsp;Krakowie. Gabinety do wynajęcia dla&nbsp;psychologów i&nbsp;terapeutów.
+        </p>
+      </div>
+      <div>
+        <h4>Nawigacja</h4>
+        <ul>
+          <li><a href="#o-nas">O centrum</a></li>
+          <li><a href="#oferta">Oferta</a></li>
+          <li><a href="#galeria">Gabinety</a></li>
+          <li><a href="#cennik">Cennik</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li data-tw="address">Płaszowska 25, Kraków</li>
+          <li data-tw="phone">+48 510 574 421</li>
+          <li>+48 663 433 444</li>
+          <li data-tw="email"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu">gabinety@plaszowska25.pl</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Social</h4>
+        <ul>
+          <li><a href="https://instagram.com/plaszowska25" target="_blank" rel="noopener">Instagram · @plaszowska25</a></li>
+          <li><a href="https://www.linkedin.com/company/gabinety-p%C5%82aszowska" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://maps.google.com/?q=Płaszowska+25+Kraków" target="_blank" rel="noopener">Google Maps</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Płaszowska 25 · Wszelkie prawa zastrzeżone</span>
+      <span><a href="Polityka prywatnosci.html">Polityka prywatności</a> · <a href="Regulamin.html">Regulamin</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ TWEAKS ============ -->
+<div id="tweaks">
+  <h5>Tweaks</h5>
+  <div class="hint">Zmień treści i kolory na żywo.</div>
+
+  <label>Nazwa</label>
+  <input data-k="brandName" />
+  <label>Podtytuł</label>
+  <input data-k="brandSubtitle" />
+
+  <label>Hero · eyebrow</label>
+  <input data-k="heroEyebrow" />
+  <label>Hero · tytuł (HTML ok)</label>
+  <textarea data-k="heroTitle" rows="3"></textarea>
+  <label>Hero · opis</label>
+  <textarea data-k="heroLead" rows="3"></textarea>
+
+  <div class="row2">
+    <div><label>CTA główny</label><input data-k="heroCtaPrimary" /></div>
+    <div><label>CTA drugi</label><input data-k="heroCtaSecondary" /></div>
+  </div>
+
+  <label>Adres</label>
+  <input data-k="address" />
+  <label>Telefon</label>
+  <input data-k="phone" />
+  <label>E-mail</label>
+  <input data-k="email" />
+
+  <div class="row2">
+    <div><label>Akcent</label><input type="color" data-k="accent" /></div>
+    <div><label>Tło</label><input type="color" data-k="paper" /></div>
+  </div>
+</div>
+
+<!-- ============ COOKIE BANNER ============ -->
+<div id="cookie" role="dialog" aria-label="Zgoda na cookies">
+  <div class="ck-t">
+    <strong>Cookies i prywatność</strong>
+    Ten serwis wykorzystuje pliki cookies niezbędne do działania strony oraz — za Twoją zgodą — cookies analityczne (Google Analytics 4) do zbierania anonimowych statystyk. Szczegóły w <a href="Polityka prywatnosci.html">Polityce prywatności</a>.
+  </div>
+  <div class="ck-actions">
+    <button class="ck-btn ghost" id="ckDecline">Tylko niezbędne</button>
+    <button class="ck-btn primary" id="ckAccept">Akceptuję wszystkie</button>
+  </div>
+</div>
+
+<!-- ============ LIGHTBOX ============ -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Galeria zdjęć">
+  <button class="lb-close" aria-label="Zamknij">✕</button>
+  <button class="lb-btn lb-prev" aria-label="Poprzednie">‹</button>
+  <img class="lb-img" alt="" />
+  <button class="lb-btn lb-next" aria-label="Następne">›</button>
+  <div class="lb-counter"><span id="lbI">1</span> / <span id="lbN">1</span></div>
+</div>
+
+</body>
+</html>
