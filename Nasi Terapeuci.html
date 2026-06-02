@@ -10,8 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <style>
   :root {
@@ -436,42 +434,63 @@
       </article>`;
   }
 
-  // Firebase — wait for SDK
-  function initFirebase() {
-    if (typeof firebase === 'undefined' || !firebase.firestore) {
-      setTimeout(initFirebase, 100);
-      return;
-    }
+  // Load therapists via Firestore REST API (no SDK needed)
+  const FIRESTORE_URL =
+    'https://firestore.googleapis.com/v1/projects/gabinety-plaszowska' +
+    '/databases/(default)/documents/artifacts/gabinety-plaszowska/users/shared:runQuery';
 
-    if (!firebase.apps.length) {
-      firebase.initializeApp({
-        apiKey: 'AIzaSyAiiRA2GjCuOd7_CezBu6HDqBQCp01qMNo',
-        authDomain: 'gabinety-plaszowska.firebaseapp.com',
-        projectId: 'gabinety-plaszowska',
-        storageBucket: 'gabinety-plaszowska.firebasestorage.app',
-        messagingSenderId: '383190262104',
-        appId: '1:383190262104:web:a13ce66ab5c3cabd17052d'
-      });
-    }
-
-    const db = firebase.firestore();
-    const list = document.getElementById('therapistsList');
-
-    db.collection('artifacts/gabinety-plaszowska/users/shared/clients')
-      .where('publishOnWeb', '==', true)
-      .onSnapshot(snapshot => {
-        if (snapshot.empty) {
-          list.innerHTML = '<div class="t-empty">Brak opublikowanych profili.</div>';
-          return;
+  const QUERY = {
+    structuredQuery: {
+      from: [{ collectionId: 'clients' }],
+      where: {
+        fieldFilter: {
+          field: { fieldPath: 'publishOnWeb' },
+          op: 'EQUAL',
+          value: { booleanValue: true }
         }
-        list.innerHTML = snapshot.docs.map(doc => buildCard(doc.data())).join('');
-      }, err => {
-        console.warn('Therapists fetch error:', err);
-        list.innerHTML = '<div class="t-empty">Nie udało się załadować profili.</div>';
-      });
+      }
+    }
+  };
+
+  function extractField(fields, key) {
+    const f = fields[key];
+    if (!f) return '';
+    return f.stringValue ?? f.booleanValue ?? f.integerValue ?? '';
   }
 
-  initFirebase();
+  function docToData(doc) {
+    const f = doc.fields || {};
+    return {
+      name:           extractField(f, 'name'),
+      tenantName:     extractField(f, 'tenantName'),
+      specialization: extractField(f, 'specialization'),
+      bio:            extractField(f, 'bio'),
+      www:            extractField(f, 'www'),
+      email:          extractField(f, 'email'),
+      phone:          extractField(f, 'phone'),
+      bookingLink:    extractField(f, 'bookingLink'),
+    };
+  }
+
+  const list = document.getElementById('therapistsList');
+
+  fetch(FIRESTORE_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(QUERY)
+  })
+  .then(r => r.json())
+  .then(results => {
+    const docs = results.filter(r => r.document);
+    if (!docs.length) {
+      list.innerHTML = '<div class="t-empty">Brak opublikowanych profili.</div>';
+      return;
+    }
+    list.innerHTML = docs.map(r => buildCard(docToData(r.document))).join('');
+  })
+  .catch(() => {
+    list.innerHTML = '<div class="t-empty">Nie udało się załadować profili.</div>';
+  });
 </script>
 
 </body>
