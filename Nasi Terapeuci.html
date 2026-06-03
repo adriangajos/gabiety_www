@@ -478,10 +478,11 @@
 
   Promise.all([queryCollection('clients'), queryCollection('therapists')])
     .then(([clients, therapists]) => {
-      const cards = [
-        ...clients.map(r => buildCard(docToData(r.document, true))),
-        ...therapists.map(r => buildCard(docToData(r.document, false))),
-      ];
+      const allData = [
+        ...clients.map(r => docToData(r.document, true)),
+        ...therapists.map(r => docToData(r.document, false)),
+      ].sort((a, b) => a.name.localeCompare(b.name, 'pl'));
+      const cards = allData.map(buildCard);
       if (!cards.length) {
         list.innerHTML = '<div class="t-empty">Brak opublikowanych profili.</div>';
         return;
