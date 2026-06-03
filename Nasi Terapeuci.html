@@ -387,9 +387,7 @@
     const booking    = data.bookingLink || '';
     const badge      = initials(data.name);
 
-    const nameHtml = (tenant && tenant !== data.name)
-      ? `${name} <span style="color:var(--ink-2);font-size:18px;">· ${tenant}</span>`
-      : name;
+    const nameHtml = name;
 
     const tagHtml = spec
       ? `<span class="tag">${spec}</span>`
@@ -408,7 +406,7 @@
       const display = isLink === 'www'
         ? `<a href="${escape(val)}" target="_blank" rel="noopener">${escape(val)}</a>`
         : isLink === 'email'
-        ? `<a href="mailto:${escape(val)}">${escape(val)}</a>`
+        ? `<a href="mailto:${escape(val)}">${name} · email</a>`
         : isLink === 'tel'
         ? `<a href="tel:${escape(val)}">${escape(val)}</a>`
         : escape(val);
