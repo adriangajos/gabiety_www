@@ -432,21 +432,15 @@
       </article>`;
   }
 
-  // Load therapists via Firestore REST API (no SDK needed)
-  const FIRESTORE_URL =
+  const BASE_URL =
     'https://firestore.googleapis.com/v1/projects/gabinety-plaszowska' +
     '/databases/(default)/documents/artifacts/gabinety-plaszowska/users/shared:runQuery';
 
-  const QUERY = {
-    structuredQuery: {
-      from: [{ collectionId: 'therapists' }],
-      where: {
-        fieldFilter: {
-          field: { fieldPath: 'publishOnWeb' },
-          op: 'EQUAL',
-          value: { booleanValue: true }
-        }
-      }
+  const PUBLISHED_FILTER = {
+    fieldFilter: {
+      field: { fieldPath: 'publishOnWeb' },
+      op: 'EQUAL',
+      value: { booleanValue: true }
     }
   };
 
@@ -456,10 +450,13 @@
     return f.stringValue ?? f.booleanValue ?? f.integerValue ?? '';
   }
 
-  function docToData(doc) {
+  function docToData(doc, isClient) {
     const f = doc.fields || {};
+    const name = isClient
+      ? (extractField(f, 'webDisplayName') || extractField(f, 'tenantName') || extractField(f, 'name'))
+      : extractField(f, 'webDisplayName');
     return {
-      name:           extractField(f, 'webDisplayName'),
+      name,
       specialization: extractField(f, 'specialization'),
       bio:            extractField(f, 'bio'),
       www:            extractField(f, 'www'),
@@ -469,25 +466,31 @@
     };
   }
 
+  function queryCollection(collectionId) {
+    return fetch(BASE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ structuredQuery: { from: [{ collectionId }], where: PUBLISHED_FILTER } })
+    }).then(r => r.json()).then(results => results.filter(r => r.document));
+  }
+
   const list = document.getElementById('therapistsList');
 
-  fetch(FIRESTORE_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(QUERY)
-  })
-  .then(r => r.json())
-  .then(results => {
-    const docs = results.filter(r => r.document);
-    if (!docs.length) {
-      list.innerHTML = '<div class="t-empty">Brak opublikowanych profili.</div>';
-      return;
-    }
-    list.innerHTML = docs.map(r => buildCard(docToData(r.document))).join('');
-  })
-  .catch(() => {
-    list.innerHTML = '<div class="t-empty">Nie udało się załadować profili.</div>';
-  });
+  Promise.all([queryCollection('clients'), queryCollection('therapists')])
+    .then(([clients, therapists]) => {
+      const cards = [
+        ...clients.map(r => buildCard(docToData(r.document, true))),
+        ...therapists.map(r => buildCard(docToData(r.document, false))),
+      ];
+      if (!cards.length) {
+        list.innerHTML = '<div class="t-empty">Brak opublikowanych profili.</div>';
+        return;
+      }
+      list.innerHTML = cards.join('');
+    })
+    .catch(() => {
+      list.innerHTML = '<div class="t-empty">Nie udało się załadować profili.</div>';
+    });
 </script>
 
 </body>
