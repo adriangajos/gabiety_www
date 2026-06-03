@@ -439,7 +439,7 @@
 
   const QUERY = {
     structuredQuery: {
-      from: [{ collectionId: 'clients' }],
+      from: [{ collectionId: 'therapists' }],
       where: {
         fieldFilter: {
           field: { fieldPath: 'publishOnWeb' },
@@ -459,8 +459,7 @@
   function docToData(doc) {
     const f = doc.fields || {};
     return {
-      name:           extractField(f, 'name'),
-      tenantName:     extractField(f, 'tenantName'),
+      name:           extractField(f, 'webDisplayName'),
       specialization: extractField(f, 'specialization'),
       bio:            extractField(f, 'bio'),
       www:            extractField(f, 'www'),
