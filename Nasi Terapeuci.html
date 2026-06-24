@@ -476,12 +476,15 @@
 
   const list = document.getElementById('therapistsList');
 
-  Promise.all([queryCollection('clients'), queryCollection('therapists')])
-    .then(([clients, therapists]) => {
-      const allData = [
-        ...clients.map(r => docToData(r.document, true)),
-        ...therapists.map(r => docToData(r.document, false)),
-      ].sort((a, b) => a.name.localeCompare(b.name, 'pl'));
+  // Źródło prawdy to kolekcja `therapists` zarządzana przez CRM (zakładka „Terapeuci WWW”).
+  // Każdy najemca ma tam dokument primary o ID = clientId; widoczność steruje wyłącznie
+  // pole publishOnWeb tego dokumentu. Starej kolekcji `clients` celowo NIE czytamy —
+  // CRM jej publishOnWeb nie zmienia, więc dorzucała profile, których nie dało się ukryć.
+  queryCollection('therapists')
+    .then(therapists => {
+      const allData = therapists
+        .map(r => docToData(r.document, false))
+        .sort((a, b) => a.name.localeCompare(b.name, 'pl'));
       const cards = allData.map(buildCard);
       if (!cards.length) {
         list.innerHTML = '<div class="t-empty">Brak opublikowanych profili.</div>';
