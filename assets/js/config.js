@@ -16,3 +16,7 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
   "paper": "#f5ece6",
   "ink": "#1f2a22"
 }/*EDITMODE-END*/;
+
+// Klucz Web3Forms (forms→email) dla gabinety@plaszowska25.pl.
+// Klucz publiczny — może być w kodzie po stronie klienta.
+const WEB3FORMS_KEY = 'fa2f9863-d6f6-44e1-a591-eabd50496ecb';

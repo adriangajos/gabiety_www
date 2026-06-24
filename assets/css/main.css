@@ -714,3 +714,147 @@ footer ul li { padding: 6px 0; }
 .mobile-sheet.on { display: flex; }
 .mobile-sheet a { font-family: "Instrument Serif", serif; font-size: 34px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .mobile-sheet .close { position: absolute; top: 22px; right: 22px; font-size: 22px; }
+
+/* ---------- Formularz zapytania rezerwacyjnego (popup) ---------- */
+#bk {
+  position: fixed; inset: 0; z-index: 210;
+  display: none;
+  /* przezroczyste tło bez backdrop-blur — dużo lżejsze przy scrollu (brak laga) */
+  background: color-mix(in oklab, var(--ink) 62%, transparent);
+}
+#bk.on { display: block; }
+/* 5% góra/dół, 20% lewo/prawo */
+#bk .bk-panel {
+  position: absolute; inset: 5% 20%;
+  background: var(--paper);
+  border-radius: 16px;
+  box-shadow: 0 30px 90px rgba(0,0,0,.40);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  /* izolacja malowania — scroll wnętrza nie przemalowuje reszty strony */
+  contain: layout paint;
+}
+#bk .bk-scroll { will-change: scroll-position; }
+#bk .bk-close {
+  position: absolute; top: 14px; right: 16px; z-index: 2;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: color-mix(in oklab, var(--ink) 6%, var(--paper));
+  color: var(--ink); display: grid; place-items: center; font-size: 16px;
+  transition: background .2s, color .2s;
+}
+#bk .bk-close:hover { background: var(--accent); color: var(--paper); }
+#bk .bk-scroll { overflow: auto; padding: 38px 42px; }
+
+.bk-head { margin-bottom: 18px; max-width: 60ch; }
+.bk-head h3 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 30px; margin: 6px 0 8px; }
+.bk-head p { color: var(--ink-2); font-size: 15px; margin: 0; }
+
+.bk-banner {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px;
+  background: color-mix(in oklab, var(--accent) 14%, var(--paper));
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, var(--paper));
+  border-radius: 10px; padding: 12px 16px; margin-bottom: 24px;
+  font-size: 14px;
+}
+.bk-banner-t { font-weight: 600; color: var(--accent-deep); }
+.bk-banner-row { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.bk-banner-row a { color: var(--ink); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+.bk-banner-row a:hover { color: var(--accent-deep); }
+.bk-banner-addr { color: var(--ink-2); width: 100%; font-size: 13px; }
+
+.bk-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; margin-bottom: 26px; }
+.bk-field-full { grid-column: 1 / -1; }
+.bk-field label { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 6px; }
+.bk-field label small { text-transform: none; letter-spacing: 0; opacity: .7; }
+.bk-form input, .bk-form textarea {
+  width: 100%; padding: 11px 13px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--paper);
+  font: inherit; color: inherit;
+}
+.bk-form input:focus, .bk-form textarea:focus { outline: 0; border-color: var(--accent); }
+.bk-form textarea { resize: vertical; }
+
+.bk-cal { margin-bottom: 24px; }
+.bk-cal-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.bk-cal-head h4 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 21px; margin: 0; }
+.bk-legend { font-size: 12px; color: var(--ink-2); display: flex; align-items: center; gap: 6px; }
+.bk-legend .lg { width: 12px; height: 12px; border-radius: 4px; display: inline-block; margin-left: 10px; vertical-align: -2px; }
+.bk-legend .lg-free { background: color-mix(in oklab, var(--accent) 26%, var(--paper)); border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--paper)); }
+.bk-legend .lg-sel { background: color-mix(in oklab, var(--accent-deep) 85%, black); }
+.bk-legend .lg-busy { background: #5a4842; }
+
+.bk-cal-wrap { overflow-x: auto; }
+.bk-grid { width: 90%; margin: 0 auto; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
+.bk-grid th, .bk-grid td { border: 1px solid var(--line); text-align: center; padding: 3px; }
+.bk-grid thead th {
+  background: color-mix(in oklab, var(--paper-2) 60%, var(--paper));
+  font-weight: 600; font-size: 11px; white-space: nowrap; padding: 6px 6px;
+}
+/* lewe kolumny stałe, 7 kolumn gabinetów dzieli resztę równo */
+.bk-grid thead th:nth-child(1) { width: 96px; }
+.bk-grid thead th:nth-child(2) { width: 60px; }
+.bk-grid thead th span { display: block; font-weight: 400; font-size: 10px; color: var(--ink-2); }
+.bk-grid .bk-gc { background: var(--paper); }
+.bk-gday { font-weight: 600; white-space: nowrap; background: color-mix(in oklab, var(--paper-2) 40%, var(--paper)); padding: 3px 8px; }
+.bk-gpora { color: var(--ink-2); white-space: nowrap; padding: 3px 8px; }
+.bk-cell {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 24px;
+  border-radius: 5px; line-height: 1; font-size: 11px;
+}
+/* Wolne — jasnoróżowe */
+.bk-cell.free {
+  background: color-mix(in oklab, var(--accent) 26%, var(--paper));
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--paper));
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.bk-cell.free:hover { background: color-mix(in oklab, var(--accent) 42%, var(--paper)); border-color: var(--accent); }
+/* Wybrane — ciemnoróżowe */
+.bk-cell.free.sel {
+  background: color-mix(in oklab, var(--accent-deep) 85%, black);
+  border-color: color-mix(in oklab, var(--accent-deep) 70%, black);
+  position: relative;
+}
+.bk-cell.free.sel::after { content: "✓"; color: var(--paper); font-weight: 700; }
+/* Zajęte — ciemnozielone */
+.bk-cell.busy {
+  background: #5a4842;
+  color: color-mix(in oklab, var(--paper) 88%, transparent);
+  cursor: not-allowed;
+}
+
+.bk-quote {
+  background: var(--paper-2); border-radius: 10px; padding: 16px 18px; margin-bottom: 22px;
+}
+.bk-quote h4 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 20px; margin: 0 0 10px; }
+.bk-quote-empty { color: var(--ink-2); font-size: 14px; }
+.bk-quote-list { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+.bk-quote-list li { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+.bk-quote-list .bk-price { font-weight: 600; white-space: nowrap; }
+.bk-quote-total { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; font-size: 17px; font-weight: 600; }
+.bk-quote-total span:last-child { color: var(--accent-deep); }
+.bk-quote-note { font-size: 12px; color: var(--ink-2); margin: 10px 0 0; }
+
+.bk-error { color: var(--accent-deep); font-size: 14px; margin: 0 0 14px; font-weight: 500; }
+.bk-submit { width: 100%; justify-content: center; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; }
+.bk-submit:disabled { opacity: .6; cursor: default; transform: none; }
+
+.bk-success { padding: 60px 42px; text-align: center; margin: auto; max-width: 46ch; }
+.bk-success-mark {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 18px;
+  background: var(--accent); color: var(--paper);
+  display: grid; place-items: center; font-size: 32px;
+}
+.bk-success h3 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 28px; margin: 0 0 10px; }
+.bk-success p { color: var(--ink-2); font-size: 15px; margin: 0 0 22px; }
+
+@media (max-width: 1024px) {
+  #bk .bk-panel { inset: 5% 6%; }
+}
+@media (max-width: 640px) {
+  #bk .bk-panel { inset: 0; border-radius: 0; }
+  #bk .bk-scroll { padding: 26px 18px; }
+  .bk-fields { grid-template-columns: 1fr; }
+  .bk-head h3 { font-size: 25px; }
+}

@@ -41,7 +41,7 @@
     </nav>
 
     <div style="display:flex; gap: 10px; align-items:center;">
-      <a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu" class="btn btn-primary" style="display:inline-flex;" data-hide-mobile>Zarezerwuj gabinet</a>
+      <a href="#dostepnosc" class="btn btn-primary js-open-booking" style="display:inline-flex;" data-hide-mobile>Zarezerwuj gabinet</a>
       <button class="btn btn-ghost nav-burger" id="burger" aria-label="Menu">≡ Menu</button>
     </div>
   </div>
@@ -281,7 +281,7 @@ cały gabinet na stałe.</p>
         </div>
         <div class="amt">250&nbsp;zł<small>brutto</small></div>
         <div class="amt">350&nbsp;zł<small>brutto</small></div>
-        <div class="cta"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu">Rezerwuj →</a></div>
+        <div class="cta"><a href="#dostepnosc" class="js-open-booking">Rezerwuj →</a></div>
       </div>
 
       <div class="price-row">
@@ -294,7 +294,7 @@ cały gabinet na stałe.</p>
         </div>
         <div class="amt">299&nbsp;zł<small>brutto</small></div>
         <div class="amt">399&nbsp;zł<small>brutto</small></div>
-        <div class="cta"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu">Rezerwuj →</a></div>
+        <div class="cta"><a href="#dostepnosc" class="js-open-booking">Rezerwuj →</a></div>
       </div>
 
       <div class="price-row">
@@ -307,7 +307,7 @@ cały gabinet na stałe.</p>
         </div>
         <div class="amt">500&nbsp;zł<small>brutto</small></div>
         <div class="amt">600&nbsp;zł<small>brutto</small></div>
-        <div class="cta"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu">Rezerwuj →</a></div>
+        <div class="cta"><a href="#dostepnosc" class="js-open-booking">Rezerwuj →</a></div>
       </div>
 
       <div class="price-row is-custom">
@@ -460,6 +460,75 @@ cały gabinet na stałe.</p>
   <div class="ck-actions">
     <button class="ck-btn ghost" id="ckDecline">Tylko niezbędne</button>
     <button class="ck-btn primary" id="ckAccept">Akceptuję wszystkie</button>
+  </div>
+</div>
+
+<!-- ============ FORMULARZ ZAPYTANIA REZERWACYJNEGO ============ -->
+<div id="bk" role="dialog" aria-modal="true" aria-label="Formularz zapytania rezerwacyjnego">
+  <div class="bk-panel">
+    <button class="bk-close" id="bkClose" aria-label="Zamknij">✕</button>
+
+    <div class="bk-scroll">
+      <header class="bk-head">
+        <span class="eyebrow">Rezerwacja na żywo</span>
+        <h3>Formularz zapytania rezerwacyjnego</h3>
+        <p>Zaznacz na różowo interesujące Cię wolne terminy — przygotujemy wstępną
+           wycenę i odezwiemy się z potwierdzeniem dostępności.</p>
+      </header>
+
+      <div class="bk-banner" id="bkBanner"><!-- baner kontaktowy — JS --></div>
+
+      <form id="bkForm" class="bk-form" novalidate>
+        <div class="bk-fields">
+          <div class="bk-field">
+            <label for="bkName">Imię i nazwisko *</label>
+            <input id="bkName" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="bk-field">
+            <label for="bkEmail">E-mail *</label>
+            <input id="bkEmail" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="bk-field">
+            <label for="bkPhone">Telefon *</label>
+            <input id="bkPhone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+          <div class="bk-field">
+            <label for="bkSpec">Specjalizacja <small>(opcjonalnie)</small></label>
+            <input id="bkSpec" name="specialization" type="text" />
+          </div>
+          <div class="bk-field bk-field-full">
+            <label for="bkMsg">Wiadomość <small>(opcjonalnie)</small></label>
+            <textarea id="bkMsg" name="note" rows="2"></textarea>
+          </div>
+        </div>
+
+        <div class="bk-cal">
+          <div class="bk-cal-head">
+            <h4>Wybierz terminy najmu</h4>
+            <span class="bk-legend">
+              <span class="lg lg-free"></span> wolne
+              <span class="lg lg-sel"></span> wybrane
+              <span class="lg lg-busy"></span> zajęte
+            </span>
+          </div>
+          <div class="bk-cal-wrap" id="bkCal"><!-- mikro-terminarz — JS --></div>
+        </div>
+
+        <div class="bk-quote" id="bkQuote"><!-- wycena — JS --></div>
+
+        <p class="bk-error" id="bkError" hidden>Zaznacz co najmniej jeden termin, aby wysłać zapytanie.</p>
+
+        <button type="submit" class="btn btn-primary bk-submit" id="bkSubmit">Wyślij zapytanie</button>
+      </form>
+    </div>
+
+    <div class="bk-success" id="bkSuccess" hidden>
+      <div class="bk-success-mark" aria-hidden="true">✓</div>
+      <h3>Dziękujemy za zapytanie!</h3>
+      <p>Otrzymaliśmy Twoje zgłoszenie i&nbsp;skontaktujemy się z&nbsp;Tobą tak szybko,
+         jak to&nbsp;możliwe — zwykle w&nbsp;ciągu jednego dnia roboczego.</p>
+      <button type="button" class="btn btn-outline" id="bkDone">Zamknij</button>
+    </div>
   </div>
 </div>
 
