@@ -2,8 +2,8 @@
   "name": "Centrum Terapeutyczne Płaszowska 25",
   "short_name": "Płaszowska 25",
   "icons": [
-    { "src": "/assets/favicon/icon-192.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "/assets/favicon/icon-512.png", "type": "image/png", "sizes": "512x512" }
+    { "src": "assets/favicon/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "assets/favicon/icon-512.png", "type": "image/png", "sizes": "512x512" }
   ],
   "theme_color": "#DE7D7D",
   "background_color": "#ffffff",
