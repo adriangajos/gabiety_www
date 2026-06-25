@@ -483,8 +483,6 @@ cały gabinet na stałe.</p>
            wycenę i odezwiemy się z potwierdzeniem dostępności.</p>
       </header>
 
-      <div class="bk-banner" id="bkBanner"><!-- baner kontaktowy — JS --></div>
-
       <form id="bkForm" class="bk-form" novalidate>
         <div class="bk-fields">
           <div class="bk-field">
@@ -523,6 +521,8 @@ cały gabinet na stałe.</p>
 
         <div class="bk-quote" id="bkQuote"><!-- wycena — JS --></div>
 
+        <div class="bk-banner" id="bkBanner"><!-- baner kontaktowy — JS --></div>
+
         <p class="bk-error" id="bkError" hidden>Zaznacz co najmniej jeden termin, aby wysłać zapytanie.</p>
 
         <button type="submit" class="btn btn-primary bk-submit" id="bkSubmit">Wyślij zapytanie</button>
@@ -536,6 +536,17 @@ cały gabinet na stałe.</p>
          jak to&nbsp;możliwe — zwykle w&nbsp;ciągu jednego dnia roboczego.</p>
       <button type="button" class="btn btn-outline" id="bkDone">Zamknij</button>
     </div>
+  </div>
+</div>
+
+<!-- ============ POPUP PROMOCYJNY (z CRM) ============ -->
+<div id="promo" role="dialog" aria-modal="true" aria-label="Aktualna promocja">
+  <div class="promo-card">
+    <button class="promo-close" id="promoClose" aria-label="Zamknij">✕</button>
+    <span class="eyebrow">Promocja</span>
+    <h3 class="promo-header" id="promoHeader"><!-- header — JS --></h3>
+    <p class="promo-text" id="promoText"><!-- treść — JS --></p>
+    <button type="button" class="btn btn-primary promo-ok" id="promoOk">OK</button>
   </div>
 </div>
 

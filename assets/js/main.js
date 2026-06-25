@@ -331,6 +331,42 @@ mq.addEventListener('change', applyMq); applyMq();
     }, err => {
       console.warn('Schedule fetch error:', err);
     });
+
+    // Popup promocyjny — dokument zarządzany w CRM („Aktualna promocja").
+    db.doc('artifacts/gabinety-plaszowska/users/shared/settings/promotion')
+      .get()
+      .then(doc => { if (doc.exists) showPromo(doc.data()); })
+      .catch(err => console.warn('Promo fetch error:', err));
+  }
+
+  function showPromo(p) {
+    if (!p || p.publishAsPopup !== true) return;
+    const header = (p.header || '').trim();
+    const text   = (p.text || '').trim();
+    if (!header && !text) return;
+
+    // Nie naprzykrzaj się: pokaż raz na sesję; nowa promocja (zmiana updatedAt)
+    // pokaże się ponownie.
+    const sig = 'promo:' + (p.updatedAt || header + '|' + text);
+    try { if (sessionStorage.getItem(sig) === 'seen') return; } catch (e) {}
+
+    const wrap = document.getElementById('promo');
+    if (!wrap) return;
+    document.getElementById('promoHeader').textContent = header;
+    document.getElementById('promoText').textContent = text;
+
+    const close = () => {
+      wrap.classList.remove('on');
+      try { sessionStorage.setItem(sig, 'seen'); } catch (e) {}
+    };
+    document.getElementById('promoClose').addEventListener('click', close);
+    document.getElementById('promoOk').addEventListener('click', close);
+    wrap.addEventListener('click', e => { if (e.target === wrap) close(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && wrap.classList.contains('on')) close();
+    });
+
+    wrap.classList.add('on');
   }
 
   initFirebase();
