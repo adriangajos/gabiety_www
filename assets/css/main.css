@@ -96,6 +96,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   text-wrap: balance;
 }
 .hero h1 em { font-style: italic; color: var(--accent); }
+.hero h1 .h1-nowrap { white-space: nowrap; }
+@media (max-width: 640px) { .hero h1 .h1-nowrap { white-space: normal; } }
 .hero-lead {
   font-size: 18px; color: var(--ink-2); max-width: 52ch;
   margin: 0 0 36px;
