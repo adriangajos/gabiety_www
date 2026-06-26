@@ -5,6 +5,8 @@ function applyTweaks(t) {
     if (t[k] == null) return;
     if (k === 'email') {
       el.innerHTML = '<a href="mailto:' + t[k] + '?subject=Rezerwacja%20Gabinetu">' + t[k] + '</a>';
+    } else if (k === 'phone') {
+      el.innerHTML = '<a href="tel:' + t[k].replace(/[^+\d]/g, '') + '">' + t[k] + '</a>';
     } else if (el.hasAttribute('data-tw-html')) {
       el.innerHTML = t[k];
     } else {
@@ -69,6 +71,10 @@ mq.addEventListener('change', applyMq); applyMq();
 
   const tbody = document.getElementById('crmBody');
   let occupied = new Set();
+  // Czy dotarł już pierwszy snapshot z Firestore. Dopóki false, nie pokazujemy
+  // slotów jako „Wolne" (bo pusty `occupied` = wszystko wolne), tylko placeholder
+  // ładowania — inaczej przy zimnym wejściu widać fałszywie all-free.
+  let loaded = false;
 
   // Firestore key format: {roomNumber}-{dayIndex}-{AM|PM} (room 1–7, day 0=Pon…6=Nd)
   function buildKey(roomIdx, dayIdx, slot) {
@@ -83,10 +89,14 @@ mq.addEventListener('change', applyMq); applyMq();
         if (si === 0) html += `<td class="col-day" rowspan="2">${dayName}</td>`;
         html += `<td class="col-pora"><span class="pora-label">${label}</span><span class="pora-hours">${hours}</span></td>`;
         for (let r = 0; r < ROOMS; r++) {
+          const title = `${dayName} · Gabinet ${r+1} · ${hours.replace(/ /g,'')}`;
+          if (!loaded) {
+            html += `<td class="col-slot"><span class="pill loading" data-title="${title}" aria-label="Ładowanie grafiku">···</span></td>`;
+            continue;
+          }
           const isBusy = occupied.has(buildKey(r, di, slot));
           const cls = isBusy ? 'busy' : 'free';
           const txt = isBusy ? 'Zajęte' : 'Wolne';
-          const title = `${dayName} · Gabinet ${r+1} · ${hours.replace(/ /g,'')}`;
           const data = isBusy ? '' : ` data-r="${r}" data-d="${di}" data-s="${slot}"`;
           html += `<td class="col-slot"><span class="pill ${cls}" data-title="${title}"${data}>${txt}</span></td>`;
         }
@@ -327,9 +337,13 @@ mq.addEventListener('change', applyMq); applyMq();
 
     scheduleRef.onSnapshot(snapshot => {
       occupied = new Set(snapshot.docs.map(d => d.id));
+      loaded = true;
       render();
     }, err => {
       console.warn('Schedule fetch error:', err);
+      // Awaria odczytu — zdejmij placeholder, żeby nie utknąć na „ładowaniu".
+      loaded = true;
+      render();
     });
 
     // Popup promocyjny — dokument zarządzany w CRM („Aktualna promocja").

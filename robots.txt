@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://plaszowska25.pl/sitemap.xml

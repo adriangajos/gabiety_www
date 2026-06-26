@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Regulamin — Centrum Płaszowska 25, Kraków</title>
 
+<!-- Indeksacja: noindex na wersji staging (github.io), produkcja indeksowana -->
+<script>
+  if (/github\.io$/i.test(location.hostname)) {
+    var m = document.createElement('meta');
+    m.name = 'robots';
+    m.content = 'noindex, nofollow';
+    document.head.appendChild(m);
+  }
+</script>
+
+<link rel="canonical" href="https://plaszowska25.pl/regulamin.html" />
+
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
@@ -188,7 +200,7 @@
       <a href="index.html#galeria">Gabinety</a>
       <a href="index.html#cennik">Cennik</a>
       <a href="index.html#dostepnosc">Dostępność</a>
-      <a href="Nasi Terapeuci.html">Nasi terapeuci</a>
+      <a href="nasi-terapeuci.html">Nasi terapeuci</a>
       <a href="index.html#kontakt">Kontakt</a>
     </nav>
     <a href="index.html#dostepnosc" class="btn btn-primary">Zarezerwuj</a>
@@ -332,7 +344,7 @@
     <p>Centrum rozpatrzy reklamację w terminie do <strong>14 dni</strong> od dnia jej otrzymania i poinformuje Najemcę o sposobie jej rozpatrzenia.</p>
 
     <h2 id="dane">Ochrona danych osobowych</h2>
-    <p>Zasady przetwarzania danych osobowych Najemców i osób kontaktujących się z Centrum określone są w odrębnym dokumencie — <a href="Polityka prywatnosci.html" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent);">Polityce prywatności</a>.</p>
+    <p>Zasady przetwarzania danych osobowych Najemców i osób kontaktujących się z Centrum określone są w odrębnym dokumencie — <a href="polityka-prywatnosci.html" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent);">Polityce prywatności</a>.</p>
 
     <h2 id="koncowe">Postanowienia końcowe</h2>
     <p>W sprawach nieuregulowanych Regulaminem zastosowanie mają przepisy prawa polskiego, w szczególności Kodeksu Cywilnego.</p>
@@ -346,7 +358,7 @@
 <footer>
   <div class="wrap wide foot">
     <span>© 2026 Centrum Terapeutyczne Płaszowska 25, Kraków</span>
-    <span><a href="index.html">Strona główna</a> · <a href="Polityka prywatnosci.html">Polityka prywatności</a> · <a href="Regulamin.html">Regulamin</a></span>
+    <span><a href="index.html">Strona główna</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="regulamin.html">Regulamin</a></span>
   </div>
 </footer>
 
@@ -393,7 +405,7 @@
 <div id="cookie" role="dialog" aria-label="Zgoda na cookies">
   <div class="ck-t">
     <strong>Cookies i prywatność</strong>
-    Ten serwis wykorzystuje pliki cookies niezbędne do działania strony oraz — za Twoją zgodą — cookies analityczne (Google Analytics 4) do zbierania anonimowych statystyk. Szczegóły w <a href="Polityka prywatnosci.html">Polityce prywatności</a>.
+    Ten serwis wykorzystuje pliki cookies niezbędne do działania strony oraz — za Twoją zgodą — cookies analityczne (Google Analytics 4) do zbierania anonimowych statystyk. Szczegóły w <a href="polityka-prywatnosci.html">Polityce prywatności</a>.
   </div>
   <div class="ck-actions">
     <button class="ck-btn ghost" id="ckDecline">Tylko niezbędne</button>

@@ -361,6 +361,20 @@ section { padding: 100px 0; }
   background: color-mix(in oklab, var(--ink) 3%, var(--paper));
   color: color-mix(in oklab, var(--ink-2) 60%, transparent);
 }
+.pill.loading {
+  background: color-mix(in oklab, var(--ink) 4%, var(--paper));
+  color: color-mix(in oklab, var(--ink-2) 35%, transparent);
+  cursor: default;
+  letter-spacing: 0.18em;
+  animation: pillPulse 1.2s ease-in-out infinite;
+}
+@keyframes pillPulse {
+  0%, 100% { opacity: .5; }
+  50%      { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pill.loading { animation: none; }
+}
 
 /* Calendar header */
 .crm-head {

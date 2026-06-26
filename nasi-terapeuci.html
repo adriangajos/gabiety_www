@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Nasi Terapeuci — Centrum Płaszowska 25, Kraków</title>
 
+<!-- Indeksacja: noindex na wersji staging (github.io), produkcja indeksowana -->
+<script>
+  if (/github\.io$/i.test(location.hostname)) {
+    var m = document.createElement('meta');
+    m.name = 'robots';
+    m.content = 'noindex, nofollow';
+    document.head.appendChild(m);
+  }
+</script>
+
+<link rel="canonical" href="https://plaszowska25.pl/nasi-terapeuci.html" />
+
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
@@ -294,7 +306,7 @@
       <a href="index.html#galeria">Gabinety</a>
       <a href="index.html#cennik">Cennik</a>
       <a href="index.html#dostepnosc">Dostępność</a>
-      <a href="Nasi Terapeuci.html" class="is-active">Nasi terapeuci</a>
+      <a href="nasi-terapeuci.html" class="is-active">Nasi terapeuci</a>
       <a href="index.html#kontakt">Kontakt</a>
     </nav>
     <div style="display:flex; gap: 10px; align-items:center;">
@@ -311,7 +323,7 @@
   <a href="index.html#galeria">Gabinety</a>
   <a href="index.html#cennik">Cennik</a>
   <a href="index.html#dostepnosc">Dostępność</a>
-  <a href="Nasi Terapeuci.html">Nasi terapeuci</a>
+  <a href="nasi-terapeuci.html">Nasi terapeuci</a>
   <a href="index.html#kontakt">Kontakt</a>
 </div>
 
@@ -345,7 +357,7 @@
 <div id="cookie" role="dialog" aria-label="Zgoda na cookies">
   <div class="ck-t">
     <strong>Cookies i prywatność</strong>
-    Ten serwis wykorzystuje pliki cookies niezbędne do działania strony oraz — za Twoją zgodą — cookies analityczne (Google Analytics 4) do zbierania anonimowych statystyk. Szczegóły w <a href="Polityka prywatnosci.html">Polityce prywatności</a>.
+    Ten serwis wykorzystuje pliki cookies niezbędne do działania strony oraz — za Twoją zgodą — cookies analityczne (Google Analytics 4) do zbierania anonimowych statystyk. Szczegóły w <a href="polityka-prywatnosci.html">Polityce prywatności</a>.
   </div>
   <div class="ck-actions">
     <button class="ck-btn ghost" id="ckDecline">Tylko niezbędne</button>
