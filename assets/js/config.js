@@ -2,7 +2,7 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
   "brandName": "Płaszowska 25",
   "brandSubtitle": "Centrum Terapeutyczne",
   "heroEyebrow": "Kraków · Płaszów",
-  "heroTitle": "Przestrzeń, w której praca terapeutyczna ma komfort, jakiego potrzebuje.",
+  "heroTitle": "Gabinety terapeutyczne <em>do wynajęcia</em> w&nbsp;Krakowie. Komfort, jakiego potrzebujesz.",
   "heroLead": "Nowoczesne, w pełni wyposażone gabinety do wynajęcia dla psychologów, psychoterapeutów i specjalistów wspierających zdrowie psychiczne.",
   "heroCtaPrimary": "Sprawdź dostępność",
   "heroCtaSecondary": "Zobacz gabinety",

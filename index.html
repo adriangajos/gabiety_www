@@ -28,40 +28,80 @@
 
 <!-- Open Graph / social (kampanie FB/IG) -->
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content="Centrum Terapeutyczne Płaszowska 25" />
 <meta property="og:title" content="Wynajem gabinetów terapeutycznych w Krakowie — Płaszowska 25" />
 <meta property="og:description" content="Nowoczesne, w pełni wyposażone gabinety do wynajęcia dla psychologów i terapeutów. Elastyczne bloki, przejrzysty cennik." />
 <meta property="og:url" content="https://plaszowska25.pl/" />
-<meta property="og:image" content="https://plaszowska25.pl/assets/photos/p01.jpg" />
+<meta property="og:image" content="https://plaszowska25.pl/assets/og-cover.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Gabinet terapeutyczny do wynajęcia — Centrum Płaszowska 25, Kraków" />
 <meta property="og:locale" content="pl_PL" />
 <meta name="twitter:card" content="summary_large_image" />
 
-<!-- Dane strukturalne: lokalna firma -->
+<!-- Dane strukturalne: Organization + WebSite + LocalBusiness -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Centrum Terapeutyczne Płaszowska 25",
-  "description": "Wynajem nowoczesnych gabinetów terapeutycznych w Krakowie dla psychologów, psychoterapeutów i specjalistów.",
-  "url": "https://plaszowska25.pl/",
-  "telephone": "+48510574421",
-  "email": "gabinety@plaszowska25.pl",
-  "image": "https://plaszowska25.pl/assets/photos/p01.jpg",
-  "priceRange": "250–600 PLN",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Płaszowska 25",
-    "addressLocality": "Kraków",
-    "addressCountry": "PL"
-  },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "08:00",
-    "closes": "15:00"
-  }],
-  "sameAs": [
-    "https://instagram.com/plaszowska25",
-    "https://www.linkedin.com/company/gabinety-p%C5%82aszowska"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://plaszowska25.pl/#organization",
+      "name": "Centrum Terapeutyczne Płaszowska 25",
+      "url": "https://plaszowska25.pl/",
+      "logo": "https://plaszowska25.pl/assets/logo.png",
+      "email": "gabinety@plaszowska25.pl",
+      "telephone": "+48510574421",
+      "sameAs": [
+        "https://instagram.com/plaszowska25",
+        "https://www.linkedin.com/company/gabinety-p%C5%82aszowska"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://plaszowska25.pl/#website",
+      "name": "Centrum Terapeutyczne Płaszowska 25",
+      "url": "https://plaszowska25.pl/",
+      "inLanguage": "pl-PL",
+      "publisher": { "@id": "https://plaszowska25.pl/#organization" }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://plaszowska25.pl/#localbusiness",
+      "name": "Centrum Terapeutyczne Płaszowska 25",
+      "description": "Wynajem nowoczesnych gabinetów terapeutycznych w Krakowie dla psychologów, psychoterapeutów i specjalistów.",
+      "url": "https://plaszowska25.pl/",
+      "telephone": "+48510574421",
+      "email": "gabinety@plaszowska25.pl",
+      "image": "https://plaszowska25.pl/assets/photos/p01.jpg",
+      "logo": "https://plaszowska25.pl/assets/logo.png",
+      "priceRange": "250–600 PLN",
+      "currenciesAccepted": "PLN",
+      "parentOrganization": { "@id": "https://plaszowska25.pl/#organization" },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Płaszowska 25",
+        "addressLocality": "Kraków",
+        "postalCode": "30-713",
+        "addressCountry": "PL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "50.0395",
+        "longitude": "19.9670"
+      },
+      "areaServed": { "@type": "City", "name": "Kraków" },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "15:00"
+      }],
+      "sameAs": [
+        "https://instagram.com/plaszowska25",
+        "https://www.linkedin.com/company/gabinety-p%C5%82aszowska"
+      ]
+    }
   ]
 }
 </script>
@@ -124,7 +164,7 @@
     <div class="hero-grid">
       <div>
         <span class="eyebrow" data-tw="heroEyebrow">Kraków · Płaszów</span>
-        <h1 data-tw="heroTitle" data-tw-html>Przestrzeń, w&nbsp;której praca <em>terapeutyczna</em> ma komfort, jakiego potrzebuje.</h1>
+        <h1 data-tw="heroTitle" data-tw-html>Gabinety terapeutyczne <em>do wynajęcia</em> w&nbsp;Krakowie. Komfort, jakiego potrzebujesz.</h1>
         <p class="hero-lead" data-tw="heroLead">
           Nowoczesne, w pełni wyposażone gabinety do wynajęcia dla psychologów,
           psychoterapeutów i specjalistów wspierających zdrowie psychiczne.
@@ -141,7 +181,7 @@
         </div>
       </div>
 
-      <div class="hero-visual"><img src="assets/photos/p01.jpg" width="1920" height="1277" alt="Gabinet terapeutyczny z fotelem i biurkiem przy oknie na ogród — Centrum Płaszowska 25, Kraków" loading="eager"/></div>
+      <div class="hero-visual"><picture><source type="image/webp" srcset="assets/photos/p01.webp" /><img src="assets/photos/p01.jpg" width="1920" height="1277" alt="Gabinet terapeutyczny z fotelem i biurkiem przy oknie na ogród — Centrum Płaszowska 25, Kraków" loading="eager" /></picture></div>
     </div>
   </div>
 </section>
@@ -228,19 +268,19 @@ cały gabinet na stałe.</p>
     </div>
 
     <div class="gallery">
-      <div class="tile t1" data-i="0"><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów — Centrum Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t2" data-i="1"><img src="assets/photos/p01.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z szarym fotelem uszakiem i biurkiem przy oknie na ogród — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t3" data-i="2"><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą, żółtym fotelem i stołem — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t4" data-i="3"><img src="assets/photos/p04.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z żółtym fotelem uszakiem i sofą, wyjście na ogród — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t5" data-i="4"><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami i różową komodą przy oknie — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t6" data-i="5"><img src="assets/photos/p06.jpg" width="1920" height="1277" loading="lazy" alt="Korytarz z garderobą i wieszakami przy gabinetach — Centrum Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t7" data-i="6"><img src="assets/photos/p07.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z sofą i fotelem w pepitkę — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t8" data-i="7"><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą, fotelem uszakiem i różową szafą — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t9" data-i="8"><img src="assets/photos/p09.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z beżowym fotelem, biurkiem i miejscem do pracy — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t10" data-i="9"><img src="assets/photos/p10.jpg" width="1920" height="1277" loading="lazy" alt="Przejście między gabinetami z sofą i widokiem na poczekalnię — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t11" data-i="10"><img src="assets/photos/p13.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z biurkiem i sofą w pepitkę — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t12" data-i="11"><img src="assets/photos/p15.jpg" width="1920" height="1277" loading="lazy" alt="Przestronna łazienka dostępna dla osób z niepełnosprawnością — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t13" data-i="12"><img src="assets/photos/p18.jpg" width="1920" height="1277" loading="lazy" alt="Słoneczny gabinet z żółtym fotelem i biurkiem, dwa okna na ogród — Płaszowska 25, Kraków"/><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t1" data-i="0"><picture><source type="image/webp" srcset="assets/photos/p02.webp" /><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów — Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t2" data-i="1"><picture><source type="image/webp" srcset="assets/photos/p01.webp" /><img src="assets/photos/p01.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z szarym fotelem uszakiem i biurkiem przy oknie na ogród — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t3" data-i="2"><picture><source type="image/webp" srcset="assets/photos/p03.webp" /><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą, żółtym fotelem i stołem — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t4" data-i="3"><picture><source type="image/webp" srcset="assets/photos/p04.webp" /><img src="assets/photos/p04.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z żółtym fotelem uszakiem i sofą, wyjście na ogród — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t5" data-i="4"><picture><source type="image/webp" srcset="assets/photos/p05.webp" /><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami i różową komodą przy oknie — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t6" data-i="5"><picture><source type="image/webp" srcset="assets/photos/p06.webp" /><img src="assets/photos/p06.jpg" width="1920" height="1277" loading="lazy" alt="Korytarz z garderobą i wieszakami przy gabinetach — Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t7" data-i="6"><picture><source type="image/webp" srcset="assets/photos/p07.webp" /><img src="assets/photos/p07.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z sofą i fotelem w pepitkę — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t8" data-i="7"><picture><source type="image/webp" srcset="assets/photos/p08.webp" /><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą, fotelem uszakiem i różową szafą — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t9" data-i="8"><picture><source type="image/webp" srcset="assets/photos/p09.webp" /><img src="assets/photos/p09.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z beżowym fotelem, biurkiem i miejscem do pracy — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t10" data-i="9"><picture><source type="image/webp" srcset="assets/photos/p10.webp" /><img src="assets/photos/p10.jpg" width="1920" height="1277" loading="lazy" alt="Przejście między gabinetami z sofą i widokiem na poczekalnię — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t11" data-i="10"><picture><source type="image/webp" srcset="assets/photos/p13.webp" /><img src="assets/photos/p13.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z biurkiem i sofą w pepitkę — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t12" data-i="11"><picture><source type="image/webp" srcset="assets/photos/p15.webp" /><img src="assets/photos/p15.jpg" width="1920" height="1277" loading="lazy" alt="Przestronna łazienka dostępna dla osób z niepełnosprawnością — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t13" data-i="12"><picture><source type="image/webp" srcset="assets/photos/p18.webp" /><img src="assets/photos/p18.jpg" width="1920" height="1277" loading="lazy" alt="Słoneczny gabinet z żółtym fotelem i biurkiem, dwa okna na ogród — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
     </div>
   </div>
 </section>
@@ -383,6 +423,10 @@ cały gabinet na stałe.</p>
         <div class="cta"><a href="#kontakt">Skontaktuj się →</a></div>
       </div>
     </div>
+
+    <p style="text-align:center; margin-top: 30px; color: var(--ink-2);">
+      Masz pytania o&nbsp;wynajem? Zobacz <a href="faq.html" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">najczęściej zadawane pytania →</a>
+    </p>
   </div>
 </section>
 
@@ -449,6 +493,7 @@ cały gabinet na stałe.</p>
           <li><a href="#oferta">Oferta</a></li>
           <li><a href="#galeria">Gabinety</a></li>
           <li><a href="#cennik">Cennik</a></li>
+          <li><a href="faq.html">FAQ</a></li>
         </ul>
       </div>
       <div>

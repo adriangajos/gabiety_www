@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nasi Terapeuci — Centrum Płaszowska 25, Kraków</title>
+<title>FAQ — wynajem gabinetów terapeutycznych Kraków, Płaszowska 25</title>
 
 <!-- Indeksacja: noindex na wersji staging (github.io), produkcja indeksowana -->
 <script>
@@ -15,7 +15,7 @@
   }
 </script>
 
-<link rel="canonical" href="https://plaszowska25.pl/nasi-terapeuci.html" />
+<link rel="canonical" href="https://plaszowska25.pl/faq.html" />
 
 <!-- Dane strukturalne: okruszki nawigacyjne -->
 <script type="application/ld+json">
@@ -24,7 +24,47 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://plaszowska25.pl/" },
-    { "@type": "ListItem", "position": 2, "name": "Nasi terapeuci", "item": "https://plaszowska25.pl/nasi-terapeuci.html" }
+    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://plaszowska25.pl/faq.html" }
+  ]
+}
+</script>
+
+<!-- Dane strukturalne: najczęściej zadawane pytania -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Dla kogo są gabinety na Płaszowskiej 25?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Dla psychologów, psychoterapeutów, terapeutów par i rodzin, logopedów i neurologopedów, seksuologów, coachów i terapeutów uzależnień, a także superwizorów i osób prowadzących grupy. Współpracujemy zarówno z doświadczonymi specjalistami, jak i osobami rozpoczynającymi własną praktykę." }
+    },
+    {
+      "@type": "Question",
+      "name": "Jakie są formy wynajmu gabinetu?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Dwie. Możesz wynająć powtarzalne okno w konkretnym dniu tygodnia (blok półdniowy lub całodniowy — ten sam gabinet i termin co tydzień) albo cały gabinet na wyłączność w ramach stałego najmu, dostępny 7 dni w tygodniu." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ile kosztuje wynajem gabinetu terapeutycznego w Krakowie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Wynajmujemy w blokach (ceny brutto): przedpołudnie 6:00–15:00 — od 250 zł (mały gabinet) / 350 zł (duży); popołudnie 15:00–23:00 — od 299 zł / 399 zł; cały dzień 6:00–23:00 — od 500 zł / 600 zł. Wynajem miesięczny wyceniamy indywidualnie, z preferencyjnymi stawkami." }
+    },
+    {
+      "@type": "Question",
+      "name": "Co jest wliczone w cenę wynajmu?",
+      "acceptedAnswer": { "@type": "Answer", "text": "W pełni wyposażony gabinet (fotele, w wybranych kozetka), dobre oświetlenie i akustyka, wspólna poczekalnia dla pacjentów oraz sprzątanie i zaplecze. Bez ukrytych opłat." }
+    },
+    {
+      "@type": "Question",
+      "name": "Gdzie znajduje się centrum i jak dojechać?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Płaszowska 25, 30-713 Kraków (Płaszów) — kameralne centrum w dobrze skomunikowanej części miasta, około 10 minut od ścisłego centrum." }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak zarezerwować gabinet?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sprawdź dostępność w grafiku na żywo i wyślij zapytanie przez formularz rezerwacyjny albo zadzwoń: +48 510 574 421. Oddzwaniamy zwykle w ciągu jednego dnia roboczego i umawiamy oglądanie gabinetu." }
+    }
   ]
 }
 </script>
@@ -35,7 +75,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
 <link rel="manifest" href="site.webmanifest" />
 <meta name="theme-color" content="#DE7D7D" />
-<meta name="description" content="Specjaliści przyjmujący w Centrum Terapeutycznym Płaszowska 25 w Krakowie — psychoterapeuci, psycholodzy, lekarze i dietetycy." />
+<meta name="description" content="Odpowiedzi na najczęstsze pytania o wynajem gabinetów terapeutycznych na Płaszowskiej 25 w Krakowie — ceny, formy najmu, wyposażenie, lokalizacja i rezerwacja." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,7 +139,7 @@
 
   /* PAGE HEAD */
   .page-head {
-    padding: 80px 0 50px;
+    padding: 80px 0 40px;
     text-align: center;
   }
   .eyebrow {
@@ -123,121 +163,28 @@
     text-wrap: pretty;
   }
 
-  /* THERAPIST CARDS */
-  .therapists {
-    display: flex; flex-direction: column; gap: 22px;
-    padding: 20px 0 100px;
+  /* FAQ */
+  .faq-wrap { padding: 10px 0 90px; }
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq-item { border-top: 1px solid var(--line); }
+  .faq-item:last-child { border-bottom: 1px solid var(--line); }
+  .faq-item summary {
+    list-style: none; cursor: pointer; position: relative;
+    padding: 24px 46px 24px 0;
+    font-family: "Instrument Serif", serif; font-size: 23px; line-height: 1.3; color: var(--ink);
   }
-  .t-card {
-    border: 2px solid var(--accent);
-    border-radius: 14px;
-    background: var(--paper);
-    padding: 34px 38px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 28px;
-    align-items: start;
-    transition: box-shadow .25s, transform .25s, background .25s;
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+"; position: absolute; right: 6px; top: 24px;
+    font-size: 26px; line-height: 1; color: var(--accent-deep);
   }
-  .t-card:hover {
-    box-shadow: 0 14px 40px -22px rgba(217, 122, 114, 0.55);
-    transform: translateY(-2px);
-    background: color-mix(in oklab, var(--accent) 6%, var(--paper));
-  }
-  .t-card h3 {
-    font-family: "Instrument Serif", serif;
-    font-weight: 400;
-    font-size: 30px; line-height: 1.1;
-    margin: 4px 0 8px;
-    letter-spacing: -0.01em;
-  }
-  .t-card .tag {
-    display: inline-block;
-    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--accent-deep);
-    border: 1px solid var(--accent);
-    padding: 4px 10px; border-radius: 999px;
-    margin-bottom: 14px;
-  }
-  .t-card p {
-    margin: 0;
-    color: var(--ink-2);
-    font-size: 15.5px; line-height: 1.6;
-    max-width: 65ch;
-  }
-
-  .t-card .book {
-    margin-top: 18px;
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 11px 22px;
-    background: var(--accent);
-    color: var(--paper);
-    border-radius: 999px;
-    font-size: 14px; font-weight: 500;
-    letter-spacing: 0.01em;
-    transition: background .2s, transform .2s;
-    border: none;
-  }
-  .t-card .book:hover { background: var(--accent-deep); transform: translateY(-1px); }
-  .t-card .book .ico { width: 14px; height: 14px; }
-
-  .t-card .contacts {
-    margin-top: 14px;
-    padding: 14px 16px;
-    background: color-mix(in oklab, var(--accent) 8%, var(--paper));
-    border-radius: 10px;
-    border: 1px dashed var(--accent);
-  }
-  .t-card .contacts .ctitle {
-    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--accent-deep); font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .t-card .contacts .crow {
-    display: grid; grid-template-columns: 60px 1fr; gap: 10px;
-    font-size: 14px; padding: 3px 0;
-    color: var(--ink-2);
-  }
-  .t-card .contacts .crow .k {
-    color: var(--ink-2); font-size: 12px;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    align-self: center;
-  }
-  .t-card .contacts .crow .v { color: var(--ink); }
-  .t-card .contacts .crow .v.empty { color: color-mix(in oklab, var(--ink-2) 50%, transparent); font-style: italic; }
-  .t-card .contacts .crow .v a { color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
-  .t-card .contacts .crow .v a:hover { color: var(--ink); border-bottom-color: var(--ink); }
-
-  .t-card .meta {
-    margin-top: 14px;
-    font-size: 12px; color: var(--ink-2); letter-spacing: 0.04em;
-  }
-
-  .t-card .badge {
-    width: 72px; height: 72px;
-    border-radius: 14px;
-    background: color-mix(in oklab, var(--accent) 18%, var(--paper));
-    color: var(--accent-deep);
-    display: grid; place-items: center;
-    font-family: "Instrument Serif", serif;
-    font-size: 28px; letter-spacing: 0.02em;
-    border: 1px solid var(--accent);
-    flex: none;
-  }
-
-  /* Loading state */
-  .t-loading {
-    text-align: center;
-    padding: 60px 0;
-    color: var(--ink-2);
-    font-size: 15px;
-  }
-  .t-empty {
-    text-align: center;
-    padding: 60px 0;
-    color: var(--ink-2);
-    font-size: 15px;
-  }
+  .faq-item[open] summary::after { content: "−"; }
+  .faq-item summary:hover { color: var(--accent-deep); }
+  .faq-a { padding: 0 0 24px; color: var(--ink-2); font-size: 16px; line-height: 1.65; }
+  .faq-a p { margin: 0; }
+  .faq-cta { text-align: center; margin: 44px auto 0; max-width: 760px; color: var(--ink-2); }
+  .faq-cta a { color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  .faq-cta a:hover { color: var(--ink); border-bottom-color: var(--ink); }
 
   /* FOOTER */
   footer {
@@ -282,10 +229,8 @@
   @media (max-width: 880px) {
     .nav-links { display: none; }
     .nav-burger { display: inline-flex; }
-    .page-head { padding: 50px 0 30px; }
-    .t-card { grid-template-columns: 1fr; padding: 26px 24px; gap: 16px; }
-    .t-card .badge { width: 56px; height: 56px; font-size: 22px; order: -1; }
-    .t-card h3 { font-size: 24px; }
+    .page-head { padding: 50px 0 24px; }
+    .faq-item summary { font-size: 20px; padding-right: 40px; }
   }
 
   .mobile-sheet {
@@ -318,7 +263,7 @@
       <a href="index.html#galeria">Gabinety</a>
       <a href="index.html#cennik">Cennik</a>
       <a href="index.html#dostepnosc">Dostępność</a>
-      <a href="nasi-terapeuci.html" class="is-active">Nasi terapeuci</a>
+      <a href="nasi-terapeuci.html">Nasi terapeuci</a>
       <a href="index.html#kontakt">Kontakt</a>
     </nav>
     <div style="display:flex; gap: 10px; align-items:center;">
@@ -342,18 +287,48 @@
 <!-- PAGE HEAD -->
 <section class="page-head">
   <div class="wrap">
-    <span class="eyebrow">Zespół Płaszowska 25</span>
-    <h1>Nasi <em>terapeuci</em></h1>
-    <p>Centrum Płaszowska 25 to przestrzeń, w której pracują doświadczeni specjaliści z różnych nurtów. Poznaj osoby, które prowadzą swoją praktykę w naszych gabinetach.</p>
+    <span class="eyebrow">FAQ</span>
+    <h1>Najczęstsze <em>pytania</em></h1>
+    <p>Wszystko, co warto wiedzieć o wynajmie gabinetów terapeutycznych na Płaszowskiej 25 w Krakowie — ceny, formy najmu, wyposażenie i rezerwacja.</p>
   </div>
 </section>
 
-<!-- CARDS — populated by JS -->
-<section>
+<!-- FAQ -->
+<section class="faq-wrap">
   <div class="wrap">
-    <div class="therapists" id="therapistsList">
-      <div class="t-loading">Ładowanie…</div>
+    <div class="faq">
+      <details class="faq-item" open>
+        <summary>Dla kogo są gabinety na Płaszowskiej 25?</summary>
+        <div class="faq-a"><p>Dla psychologów, psychoterapeutów, terapeutów par i&nbsp;rodzin, logopedów i&nbsp;neurologopedów, seksuologów, coachów i&nbsp;terapeutów uzależnień, a&nbsp;także superwizorów i&nbsp;osób prowadzących grupy. Współpracujemy zarówno z&nbsp;doświadczonymi specjalistami, jak i&nbsp;osobami rozpoczynającymi własną praktykę.</p></div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Jakie są formy wynajmu gabinetu?</summary>
+        <div class="faq-a"><p>Dwie. Możesz wynająć powtarzalne okno w&nbsp;konkretnym dniu tygodnia (blok półdniowy lub całodniowy — ten sam gabinet i&nbsp;termin co tydzień) albo cały gabinet na&nbsp;wyłączność w&nbsp;ramach stałego najmu, dostępny 7&nbsp;dni w&nbsp;tygodniu.</p></div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Ile kosztuje wynajem gabinetu terapeutycznego w&nbsp;Krakowie?</summary>
+        <div class="faq-a"><p>Wynajmujemy w&nbsp;blokach (ceny brutto): przedpołudnie 6:00–15:00 — od&nbsp;250&nbsp;zł (mały gabinet) / 350&nbsp;zł (duży); popołudnie 15:00–23:00 — od&nbsp;299&nbsp;zł / 399&nbsp;zł; cały dzień 6:00–23:00 — od&nbsp;500&nbsp;zł / 600&nbsp;zł. Wynajem miesięczny wyceniamy indywidualnie, z&nbsp;preferencyjnymi stawkami.</p></div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Co jest wliczone w&nbsp;cenę wynajmu?</summary>
+        <div class="faq-a"><p>W&nbsp;pełni wyposażony gabinet (fotele, w&nbsp;wybranych kozetka), dobre oświetlenie i&nbsp;akustyka, wspólna poczekalnia dla pacjentów oraz sprzątanie i&nbsp;zaplecze. Bez ukrytych opłat.</p></div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Gdzie znajduje się centrum i&nbsp;jak dojechać?</summary>
+        <div class="faq-a"><p>Płaszowska 25, 30-713 Kraków (Płaszów) — kameralne centrum w&nbsp;dobrze skomunikowanej części miasta, około 10&nbsp;minut od&nbsp;ścisłego centrum.</p></div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Jak zarezerwować gabinet?</summary>
+        <div class="faq-a"><p>Sprawdź dostępność w&nbsp;grafiku na&nbsp;żywo i&nbsp;wyślij zapytanie przez formularz rezerwacyjny albo zadzwoń: <a href="tel:+48510574421">+48&nbsp;510&nbsp;574&nbsp;421</a>. Oddzwaniamy zwykle w&nbsp;ciągu jednego dnia roboczego i&nbsp;umawiamy oglądanie gabinetu.</p></div>
+      </details>
     </div>
+
+    <p class="faq-cta">Nie znalazłeś odpowiedzi? <a href="index.html#kontakt">Skontaktuj się z&nbsp;nami →</a></p>
   </div>
 </section>
 
@@ -395,137 +370,6 @@
     document.getElementById('ckAccept').onclick = () => { localStorage.setItem(KEY, 'accept'); banner.classList.remove('on'); };
     document.getElementById('ckDecline').onclick = () => { localStorage.setItem(KEY, 'decline'); banner.classList.remove('on'); };
   })();
-
-  // Initials from name
-  function initials(name) {
-    return (name || '').split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
-  }
-
-  const BOOK_ICON = `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
-
-  function escape(str) {
-    return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function buildCard(data) {
-    const name       = escape(data.name || '');
-    const tenant     = escape(data.tenantName || '');
-    const spec       = escape(data.specialization || '');
-    const bio        = escape(data.bio || '');
-    const www        = data.www || '';
-    const email      = data.email || '';
-    const phone      = data.phone || '';
-    const booking    = data.bookingLink || '';
-    const badge      = initials(data.name);
-
-    const nameHtml = name;
-
-    const tagHtml = spec
-      ? `<span class="tag">${spec}</span>`
-      : '';
-
-    const bioHtml = bio
-      ? `<p>${bio}</p>`
-      : '';
-
-    const bookHtml = booking
-      ? `<a class="book" href="${escape(booking)}" target="_blank" rel="noopener">${BOOK_ICON} Umów wizytę</a>`
-      : '';
-
-    function contactRow(label, val, isLink) {
-      if (!val) return `<div class="crow"><span class="k">${label}</span><span class="v empty">—</span></div>`;
-      const display = isLink === 'www'
-        ? `<a href="${escape(val)}" target="_blank" rel="noopener">${escape(val)}</a>`
-        : isLink === 'email'
-        ? `<a href="mailto:${escape(val)}">${name} · email</a>`
-        : isLink === 'tel'
-        ? `<a href="tel:${escape(val)}">${escape(val)}</a>`
-        : escape(val);
-      return `<div class="crow"><span class="k">${label}</span><span class="v">${display}</span></div>`;
-    }
-
-    return `
-      <article class="t-card">
-        <div>
-          <h3>${nameHtml}</h3>
-          ${tagHtml}
-          ${bioHtml}
-          ${bookHtml}
-          <div class="contacts">
-            <div class="ctitle">Dane kontaktowe</div>
-            ${contactRow('www', www, 'www')}
-            ${contactRow('email', email, 'email')}
-            ${contactRow('tel', phone, 'tel')}
-          </div>
-          <div class="meta">Płaszowska 25, Kraków</div>
-        </div>
-        <div class="badge">${escape(badge)}</div>
-      </article>`;
-  }
-
-  const BASE_URL =
-    'https://firestore.googleapis.com/v1/projects/gabinety-plaszowska' +
-    '/databases/(default)/documents/artifacts/gabinety-plaszowska/users/shared:runQuery';
-
-  const PUBLISHED_FILTER = {
-    fieldFilter: {
-      field: { fieldPath: 'publishOnWeb' },
-      op: 'EQUAL',
-      value: { booleanValue: true }
-    }
-  };
-
-  function extractField(fields, key) {
-    const f = fields[key];
-    if (!f) return '';
-    return f.stringValue ?? f.booleanValue ?? f.integerValue ?? '';
-  }
-
-  function docToData(doc, isClient) {
-    const f = doc.fields || {};
-    const name = isClient
-      ? (extractField(f, 'webDisplayName') || extractField(f, 'tenantName') || extractField(f, 'name'))
-      : extractField(f, 'webDisplayName');
-    return {
-      name,
-      specialization: extractField(f, 'specialization'),
-      bio:            extractField(f, 'bio'),
-      www:            extractField(f, 'www'),
-      email:          extractField(f, 'email'),
-      phone:          extractField(f, 'phone'),
-      bookingLink:    extractField(f, 'bookingLink'),
-    };
-  }
-
-  function queryCollection(collectionId) {
-    return fetch(BASE_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ structuredQuery: { from: [{ collectionId }], where: PUBLISHED_FILTER } })
-    }).then(r => r.json()).then(results => results.filter(r => r.document));
-  }
-
-  const list = document.getElementById('therapistsList');
-
-  // Źródło prawdy to kolekcja `therapists` zarządzana przez CRM (zakładka „Terapeuci WWW”).
-  // Każdy najemca ma tam dokument primary o ID = clientId; widoczność steruje wyłącznie
-  // pole publishOnWeb tego dokumentu. Starej kolekcji `clients` celowo NIE czytamy —
-  // CRM jej publishOnWeb nie zmienia, więc dorzucała profile, których nie dało się ukryć.
-  queryCollection('therapists')
-    .then(therapists => {
-      const allData = therapists
-        .map(r => docToData(r.document, false))
-        .sort((a, b) => a.name.localeCompare(b.name, 'pl'));
-      const cards = allData.map(buildCard);
-      if (!cards.length) {
-        list.innerHTML = '<div class="t-empty">Brak opublikowanych profili.</div>';
-        return;
-      }
-      list.innerHTML = cards.join('');
-    })
-    .catch(() => {
-      list.innerHTML = '<div class="t-empty">Nie udało się załadować profili.</div>';
-    });
 </script>
 
 </body>

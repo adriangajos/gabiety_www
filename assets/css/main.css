@@ -200,6 +200,7 @@ section { padding: 100px 0; }
   background: var(--paper-2);
   cursor: zoom-in;
 }
+.tile picture, .hero-visual picture { display: block; width: 100%; height: 100%; }
 .tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
 .tile:hover img { transform: scale(1.04); }
 .tile .cap {
