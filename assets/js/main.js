@@ -307,6 +307,7 @@ mq.addEventListener('change', applyMq); applyMq();
     bkForm.hidden = true;
     bkSuccess.hidden = false;
     if (bkScroll) bkScroll.scrollTop = 0;
+    if (window.fbq) fbq('track', 'Lead'); // konwersja: wysłane zapytanie rezerwacyjne
   }
 
   // Stan początkowy (ładowanie)
@@ -412,11 +413,13 @@ window.addEventListener('load', () => {
     setTimeout(() => banner.classList.add('on'), 800);
   } else if (saved === 'accept') {
     loadGA();
+    loadPixel();
   }
   document.getElementById('ckAccept').onclick = () => {
     localStorage.setItem(KEY, 'accept');
     banner.classList.remove('on');
     loadGA();
+    loadPixel();
   };
   document.getElementById('ckDecline').onclick = () => {
     localStorage.setItem(KEY, 'decline');
@@ -434,6 +437,21 @@ window.addEventListener('load', () => {
     window.gtag = gtag;
     gtag('js', new Date());
     gtag('config', GA_ID, { anonymize_ip: true });
+  }
+  // ---- Meta Pixel (marketing, ładowany dopiero po zgodzie)
+  function loadPixel() {
+    if (/github\.io$/i.test(location.hostname)) return; // nie śledzimy wersji staging
+    if (window.fbq) return;
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '887690594397355');
+    fbq('track', 'PageView');
   }
 })();
 
