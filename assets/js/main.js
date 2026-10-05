@@ -196,15 +196,79 @@ const LANG_NOTE = LANG === 'pl' ? '' : `\nJęzyk strony: ${LANG === 'en' ? 'angi
       render();
     });
 
-    tbody.querySelectorAll('.pill.free').forEach(el => {
-      const go = () => booking.open(+el.dataset.r, +el.dataset.d, el.dataset.s);
-      el.addEventListener('click', go);
-      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
-    });
+    bindPills(tbody);
+    renderMobile();
 
     if (todayEl) {
       todayEl.innerHTML = !loaded ? '' : (freeToday ? T.todayFree(freeToday) : T.todayNone);
     }
+  }
+
+  // Kliknięcie / Enter na wolnym slocie otwiera formularz z tym terminem
+  function bindPills(root) {
+    root.querySelectorAll('.pill.free').forEach(el => {
+      const go = () => booking.open(+el.dataset.r, +el.dataset.d, el.dataset.s);
+      el.addEventListener('click', go);
+      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+  }
+
+  // ===== Widok na telefon: wybór gabinetu + tydzień tego gabinetu =====
+  // Szeroka tabela 7 gabinetów wymaga na telefonie przewijania w bok, którego
+  // użytkownik może nie zauważyć. Tu każdy gabinet ma swój przycisk z liczbą
+  // wolnych terminów, a grafik pokazuje tylko 2 kolumny (przedpołudnie/popołudnie).
+  const mobileEl = document.getElementById('crmMobile');
+  let mobileRoom = 0;
+
+  function renderMobile() {
+    if (!mobileEl) return;
+    const freeIn = r => {
+      let n = 0;
+      for (let d = 0; d < 7; d++) for (const s of ['AM', 'PM']) if (!occupied.has(buildKey(r, d, s))) n++;
+      return n;
+    };
+    let html = `<p class="rm-label">${T.pickRoom}:</p><div class="rm-tabs" role="tablist" aria-label="${T.pickRoom}">`;
+    for (let r = 0; r < ROOMS; r++) {
+      const sel = r === mobileRoom;
+      const freeTxt = loaded ? T.freeCount(freeIn(r)) : '';
+      const label = `${T.room} ${r + 1}, ${T.roomTypes[ROOM_TYPES[r]]}${freeTxt ? ', ' + freeTxt : ''}`;
+      html += `<button type="button" role="tab" class="rm-tab${sel ? ' on' : ''}" aria-selected="${sel}" aria-controls="rmWeek" aria-label="${label}" data-room="${r}">` +
+              `<span class="rm-num" aria-hidden="true">${r + 1}</span><span class="rm-type" aria-hidden="true">${T.roomTypes[ROOM_TYPES[r]]}</span>` +
+              (freeTxt ? `<span class="rm-free" aria-hidden="true">${freeTxt}</span>` : '') + '</button>';
+    }
+    html += '</div>';
+
+    html += `<div class="rm-week" id="rmWeek" role="tabpanel" aria-label="${T.room} ${mobileRoom + 1}">`;
+    html += `<div class="rm-row rm-head"><span></span><span>${T.am}<small>6:00–15:00</small></span><span>${T.pm}<small>15:00–23:00</small></span></div>`;
+    T.days.forEach((dayName, di) => {
+      const hide = di >= 5 && !weekendOpen ? ' hidden' : '';
+      html += `<div class="rm-row${di >= 5 ? ' wk-row' : ''}"${hide}><span class="rm-day">${dayName}</span>`;
+      ['AM', 'PM'].forEach(slot => {
+        const title = `${dayName} · ${T.room} ${mobileRoom + 1} · ${slot === 'AM' ? T.slotAM : T.slotPM}`;
+        if (!loaded) { html += `<span class="pill loading" aria-label="${T.loading}">···</span>`; return; }
+        const isBusy = occupied.has(buildKey(mobileRoom, di, slot));
+        html += isBusy
+          ? `<span class="pill busy" aria-label="${title}: ${T.busy}">${T.busy}</span>`
+          : `<span class="pill free" role="button" tabindex="0" aria-label="${title}: ${T.free}" data-r="${mobileRoom}" data-d="${di}" data-s="${slot}">${T.free}</span>`;
+      });
+      html += '</div>';
+    });
+    html += `<button type="button" class="rm-weekend" aria-expanded="${weekendOpen}">${weekendOpen ? T.weekendHide : T.weekendShow}<span class="wk-chev" aria-hidden="true">▾</span></button>`;
+    html += '</div>';
+
+    mobileEl.innerHTML = html;
+
+    mobileEl.querySelectorAll('.rm-tab').forEach(btn => btn.addEventListener('click', () => {
+      mobileRoom = +btn.dataset.room;
+      renderMobile();
+      const t = mobileEl.querySelector(`.rm-tab[data-room="${mobileRoom}"]`);
+      if (t) t.focus({ preventScroll: true });
+    }));
+    mobileEl.querySelector('.rm-weekend').addEventListener('click', () => {
+      weekendOpen = !weekendOpen;
+      render();
+    });
+    bindPills(mobileEl);
   }
 
   // ===== Formularz zapytania rezerwacyjnego (popup) =====

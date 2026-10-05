@@ -1173,3 +1173,53 @@ footer :focus-visible { outline-color: var(--accent-soft); }
   .media:hover img, .tile:hover img { transform: none; }
   .perk:hover .perk-ic { transform: none; }
 }
+
+/* ---------- Terminarz na telefonie: wybór gabinetu zamiast szerokiej tabeli ---------- */
+.crm-mobile { display: none; }
+@media (max-width: 640px) {
+  .crm-table { display: none; }
+  .crm-mobile { display: block; margin-top: 8px; }
+}
+.rm-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.rm-tab {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  min-height: 64px; padding: 9px 10px;
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--paper); color: var(--ink);
+  text-align: left; line-height: 1.2;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.rm-label { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.rm-tab .rm-num { font-family: "Instrument Serif", "Cormorant Garamond", serif; font-size: 26px; line-height: 1; }
+.rm-tab .rm-type { font-size: 11px; color: var(--ink-2); }
+.rm-tab .rm-free { font-size: 11px; font-weight: 600; color: var(--accent-deep); margin-top: auto; white-space: nowrap; }
+.rm-tab.on { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+.rm-tab.on .rm-type, .rm-tab.on .rm-free { color: #fff; }
+.rm-tab:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 2px; }
+
+.rm-week {
+  margin-top: 14px;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: var(--paper); overflow: hidden;
+}
+.rm-row {
+  display: grid; grid-template-columns: minmax(84px, 1fr) 1fr 1fr; gap: 8px;
+  align-items: center; padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.rm-row[hidden] { display: none; }
+.rm-head { background: var(--paper-2); font-size: 11px; font-weight: 600; color: var(--ink-2); text-transform: uppercase; letter-spacing: .06em; }
+.rm-head small { display: block; font-size: 10px; font-weight: 400; text-transform: none; letter-spacing: 0; }
+.rm-day { font-family: "Instrument Serif", "Cormorant Garamond", serif; font-size: 18px; line-height: 1.1; }
+.rm-row .pill { min-height: 40px; }
+.rm-weekend {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; min-height: 46px;
+  font-size: 13px; font-weight: 600; color: var(--ink-2);
+  background: color-mix(in oklab, var(--paper-2) 60%, var(--paper));
+}
+.rm-weekend[aria-expanded="true"] .wk-chev { transform: rotate(180deg); }
+@media (max-width: 360px) {
+  .rm-tabs { gap: 6px; }
+  .rm-tab { padding: 8px 7px; }
+}
