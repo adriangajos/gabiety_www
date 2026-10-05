@@ -1,2 +1,4 @@
 firebase.json
 firestore.rules
+
+__pycache__/

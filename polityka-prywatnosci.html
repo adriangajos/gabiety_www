@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Polityka prywatności — Centrum Płaszowska 25, Kraków</title>
+<title>Polityka prywatności | Centrum Płaszowska 25, Kraków</title>
 
 <!-- Indeksacja: noindex na wersji staging (github.io), produkcja indeksowana -->
 <script>
@@ -35,7 +35,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
 <link rel="manifest" href="site.webmanifest" />
 <meta name="theme-color" content="#DE7D7D" />
-<meta name="description" content="Polityka prywatności Centrum Terapeutycznego Płaszowska 25 w Krakowie — informacje o przetwarzaniu danych osobowych zgodnie z RODO." />
+<meta name="description" content="Polityka prywatności Centrum Terapeutycznego Płaszowska 25 w Krakowie: informacje o przetwarzaniu danych osobowych zgodnie z RODO." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,7 +105,7 @@
     content: ""; width: 26px; height: 1px; background: var(--ink-2);
   }
   .page-head h1 {
-    font-family: "Instrument Serif", serif; font-weight: 400;
+    font-family: "Instrument Serif", "Cormorant Garamond", serif; font-weight: 400;
     font-size: clamp(38px, 5vw, 62px);
     line-height: 1.05; letter-spacing: -0.02em;
     margin: 16px 0 14px;
@@ -120,7 +120,7 @@
   /* CONTENT */
   article { padding: 30px 0 90px; }
   article h2 {
-    font-family: "Instrument Serif", serif;
+    font-family: "Instrument Serif", "Cormorant Garamond", serif;
     font-weight: 400;
     font-size: 28px;
     margin: 50px 0 14px;
@@ -176,7 +176,7 @@
   .toc ol li::before {
     content: counter(tocsec) ". ";
     color: var(--accent-deep);
-    font-family: "Instrument Serif", serif; font-style: italic;
+    font-family: "Instrument Serif", "Cormorant Garamond", serif; font-style: italic;
     margin-right: 6px;
   }
   .toc a { color: var(--ink); font-size: 14px; }
@@ -198,6 +198,14 @@
     article h2 { font-size: 22px; }
   }
 </style>
+<link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/polityka-prywatnosci.html" />
+<link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/polityka-prywatnosci.html" />
+<link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/polityka-prywatnosci.html" />
+<link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/polityka-prywatnosci.html" />
+<link rel="stylesheet" href="assets/css/shared.css?v=20261005c">
+<script defer src="assets/js/i18n.js?v=20261005c"></script>
+<script defer src="assets/js/consent.js?v=20261005c"></script>
+<script defer src="assets/js/nav.js?v=20261005c"></script>
 </head>
 <body>
 
@@ -206,18 +214,36 @@
     <a href="index.html" class="brand">
       <span class="brand-mark"><img src="assets/logo.png" alt="Centrum Terapeutyczne Płaszowska 25" /></span>
     </a>
-    <nav class="nav-links">
-      <a href="index.html#o-nas">O centrum</a>
-      <a href="index.html#oferta">Oferta</a>
-      <a href="index.html#galeria">Gabinety</a>
-      <a href="index.html#cennik">Cennik</a>
-      <a href="index.html#dostepnosc">Dostępność</a>
-      <a href="nasi-terapeuci.html">Nasi terapeuci</a>
-      <a href="index.html#kontakt">Kontakt</a>
-    </nav>
-    <a href="index.html#dostepnosc" class="btn btn-primary">Zarezerwuj</a>
+    <div class="nav-main">
+      <nav class="nav-links">
+        <a href="index.html#o-nas">O centrum</a>
+        <a href="index.html#oferta">Oferta</a>
+        <a href="index.html#galeria">Gabinety</a>
+        <a href="index.html#cennik">Cennik</a>
+        <a href="index.html#dostepnosc">Dostępność</a>
+        <a href="nasi-terapeuci.html">Nasi terapeuci</a>
+        <a href="index.html#kontakt">Kontakt</a>
+      </nav>
+      <a href="index.html#dostepnosc" class="btn btn-primary">Zarezerwuj</a>
+    </div>
+
+    <div class="nav-end">
+      <button class="btn btn-ghost nav-burger" id="burger" aria-label="Menu" aria-expanded="false">≡</button>
+      <nav class="lang-switch" aria-label="Język / Language / Мова"><a href="polityka-prywatnosci.html" hreflang="pl" lang="pl" aria-current="true">PL</a><a href="en/polityka-prywatnosci.html" hreflang="en" lang="en">EN</a><a href="ua/polityka-prywatnosci.html" hreflang="uk" lang="uk">UKR</a></nav>
+    </div>
   </div>
 </header>
+
+<div class="mobile-sheet sheet-basic" id="sheet">
+  <button class="close" aria-label="Zamknij">✕</button>
+  <a href="index.html#o-nas">O centrum</a>
+  <a href="index.html#oferta">Oferta</a>
+  <a href="index.html#galeria">Gabinety</a>
+  <a href="index.html#cennik">Cennik</a>
+  <a href="index.html#dostepnosc">Dostępność</a>
+  <a href="nasi-terapeuci.html">Nasi terapeuci</a>
+  <a href="index.html#kontakt">Kontakt</a>
+</div>
 
 
 <section class="page-head">
@@ -225,7 +251,7 @@
     <span class="eyebrow">Dokument informacyjny</span>
     <h1>Polityka <em>prywatności</em></h1>
     <p style="color: var(--ink-2); margin: 0;">Informacja dotycząca przetwarzania danych osobowych zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO).</p>
-    <div class="updated">Data aktualizacji: 24 czerwca 2026 r. · Wersja 1.1</div>
+    <div class="updated">Data aktualizacji: 5 października 2026 r. · Wersja 1.2</div>
   </div>
 </section>
 
@@ -266,7 +292,7 @@
       <li>NIP, REGON, adres prowadzenia działalności,</li>
       <li>dane kontaktowe: adres e-mail, numer telefonu,</li>
       <li>dane do rozliczeń (numer rachunku bankowego, dane do faktury),</li>
-      <li>dane dotyczące świadczonych usług (kwalifikacje zawodowe — wyłącznie w niezbędnym zakresie).</li>
+      <li>dane dotyczące świadczonych usług (kwalifikacje zawodowe, wyłącznie w niezbędnym zakresie).</li>
     </ul>
     <h3>Osoby kontaktujące się przez formularz lub e-mail</h3>
     <ul>
@@ -284,51 +310,51 @@
     <h2 id="cele">Cele i podstawy prawne przetwarzania</h2>
     <p>Dane osobowe przetwarzane są w następujących celach:</p>
     <ol>
-      <li><strong>Zawarcie i wykonanie umowy najmu gabinetu</strong> — podstawa prawna: art. 6 ust. 1 lit. b RODO (niezbędność do wykonania umowy).</li>
-      <li><strong>Wystawianie faktur i prowadzenie rozliczeń</strong> — art. 6 ust. 1 lit. c RODO (obowiązek prawny wynikający z przepisów podatkowych i rachunkowych).</li>
-      <li><strong>Odpowiedź na zapytania kierowane przez formularz kontaktowy, formularz zapytania rezerwacyjnego lub e-mail</strong> — art. 6 ust. 1 lit. f RODO (uzasadniony interes Administratora polegający na obsłudze korespondencji). Wiadomości przesyłane za pośrednictwem formularzy w serwisie są dostarczane przy użyciu usługi Web3Forms (zob. sekcję „Odbiorcy danych”).</li>
-      <li><strong>Marketing własnych usług — newsletter i komunikacja e-mail</strong> — art. 6 ust. 1 lit. a RODO (zgoda) w połączeniu z art. 10 ustawy o świadczeniu usług drogą elektroniczną oraz art. 172 ustawy Prawo telekomunikacyjne. Newsletter wysyłany jest za pośrednictwem usługi Mailchimp wyłącznie do osób, które wyraziły na to wyraźną i dobrowolną zgodę (zapis przez formularz lub oświadczenie). Zgodę można w każdej chwili wycofać, klikając link „Anuluj subskrypcję” w stopce każdej wiadomości lub pisząc na adres <strong>gabinety@plaszowska25.pl</strong>.</li>
-      <li><strong>Marketing pozostały</strong> — art. 6 ust. 1 lit. f RODO (uzasadniony interes Administratora), wyłącznie wobec osób, które wyraziły zainteresowanie ofertą.</li>
-      <li><strong>Ustalenie, dochodzenie lub obrona roszczeń</strong> — art. 6 ust. 1 lit. f RODO.</li>
-      <li><strong>Prowadzenie statystyk i poprawa funkcjonowania serwisu</strong> — art. 6 ust. 1 lit. f RODO oraz, w zakresie cookies analitycznych, art. 6 ust. 1 lit. a RODO (zgoda).</li>
+      <li><strong>Zawarcie i wykonanie umowy najmu gabinetu</strong>: podstawa prawna: art. 6 ust. 1 lit. b RODO (niezbędność do wykonania umowy).</li>
+      <li><strong>Wystawianie faktur i prowadzenie rozliczeń</strong>: art. 6 ust. 1 lit. c RODO (obowiązek prawny wynikający z przepisów podatkowych i rachunkowych).</li>
+      <li><strong>Odpowiedź na zapytania kierowane przez formularz kontaktowy, formularz zapytania rezerwacyjnego, formularz umówienia oglądania gabinetu lub e-mail</strong>: art. 6 ust. 1 lit. f RODO (uzasadniony interes Administratora polegający na obsłudze korespondencji). Wiadomości przesyłane za pośrednictwem formularzy w serwisie są dostarczane przy użyciu usługi Web3Forms (zob. sekcję „Odbiorcy danych”).</li>
+      <li><strong>Marketing własnych usług: newsletter i komunikacja e-mail</strong>: art. 6 ust. 1 lit. a RODO (zgoda) w połączeniu z art. 10 ustawy o świadczeniu usług drogą elektroniczną oraz art. 172 ustawy Prawo telekomunikacyjne. Newsletter wysyłany jest za pośrednictwem usługi Mailchimp wyłącznie do osób, które wyraziły na to wyraźną i dobrowolną zgodę (zapis przez formularz lub oświadczenie). Zgodę można w każdej chwili wycofać, klikając link „Anuluj subskrypcję” w stopce każdej wiadomości lub pisząc na adres <strong>gabinety@plaszowska25.pl</strong>.</li>
+      <li><strong>Marketing pozostały</strong>: art. 6 ust. 1 lit. f RODO (uzasadniony interes Administratora), wyłącznie wobec osób, które wyraziły zainteresowanie ofertą.</li>
+      <li><strong>Ustalenie, dochodzenie lub obrona roszczeń</strong>: art. 6 ust. 1 lit. f RODO.</li>
+      <li><strong>Prowadzenie statystyk i poprawa funkcjonowania serwisu</strong>: art. 6 ust. 1 lit. f RODO oraz, w zakresie cookies analitycznych, art. 6 ust. 1 lit. a RODO (zgoda).</li>
     </ol>
 
     <h2 id="okres">Okres przechowywania danych</h2>
     <p>Dane osobowe przechowywane są przez okres:</p>
     <ul>
-      <li><strong>Dane najemców</strong> — przez czas trwania umowy oraz przez okres wymagany przepisami prawa (m.in. 5 lat dla dokumentacji księgowej, zgodnie z Ordynacją podatkową).</li>
-      <li><strong>Dane z korespondencji</strong> — przez okres niezbędny do udzielenia odpowiedzi, nie dłużej niż 24 miesiące, chyba że nawiązana zostanie dalsza współpraca.</li>
-      <li><strong>Dane marketingowe</strong> — do czasu wycofania zgody lub zgłoszenia sprzeciwu wobec przetwarzania.</li>
-      <li><strong>Dane techniczne (cookies)</strong> — przez okres określony w polityce cookies danego narzędzia, maksymalnie do 24 miesięcy.</li>
+      <li><strong>Dane najemców</strong>: przez czas trwania umowy oraz przez okres wymagany przepisami prawa (m.in. 5 lat dla dokumentacji księgowej, zgodnie z Ordynacją podatkową).</li>
+      <li><strong>Dane z korespondencji</strong>: przez okres niezbędny do udzielenia odpowiedzi, nie dłużej niż 24 miesiące, chyba że nawiązana zostanie dalsza współpraca.</li>
+      <li><strong>Dane marketingowe</strong>: do czasu wycofania zgody lub zgłoszenia sprzeciwu wobec przetwarzania.</li>
+      <li><strong>Dane techniczne (cookies)</strong>: przez okres określony w polityce cookies danego narzędzia, maksymalnie do 24 miesięcy.</li>
     </ul>
 
     <h2 id="odbiorcy">Odbiorcy danych</h2>
     <p>Państwa dane osobowe mogą być udostępniane następującym kategoriom odbiorców:</p>
     <ul>
       <li>podmiotom świadczącym usługi księgowe, prawne i doradcze na rzecz Administratora,</li>
-      <li>dostawcom usług IT, hostingu, poczty elektronicznej, narzędzi do rezerwacji i zarządzania kalendarzem — w szczególności:
+      <li>dostawcom usług IT, hostingu, poczty elektronicznej, narzędzi do rezerwacji i zarządzania kalendarzem, w szczególności:
         <ul>
-          <li><strong>Google Ireland Limited</strong> (Gordon House, Barrow Street, Dublin 4, Irlandia) — usługi <strong>Firebase</strong> (Firestore, Authentication, Cloud Functions, Hosting), z których korzysta wewnętrzny system zarządzania rezerwacjami (CRM) Centrum, oraz <strong>Google Analytics 4</strong> wykorzystywane do zbierania anonimowych statystyk dotyczących korzystania z serwisu (wyłącznie po wyrażeniu zgody przez Użytkownika za pośrednictwem banera cookies). Dane mogą być przetwarzane w centrach danych Google na terenie Europejskiego Obszaru Gospodarczego oraz, w niezbędnym zakresie, w Stanach Zjednoczonych Ameryki na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską (Decyzja wykonawcza KE 2021/914) oraz mechanizmu Data Privacy Framework.</li>
-          <li><strong>Intuit Inc. / The Rocket Science Group LLC d/b/a Mailchimp</strong> (675 Ponce de Leon Ave NE, Suite 5000, Atlanta, GA 30308, USA) — usługa <strong>Mailchimp</strong> wykorzystywana do wysyłki korespondencji marketingowej i newsletterów do osób, które wyraziły na to zgodę. Przekazywanie danych odbywa się na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską oraz mechanizmu Data Privacy Framework, w którym Mailchimp jest podmiotem zarejestrowanym.</li>
-          <li><strong>Meta Platforms Ireland Limited</strong> (4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irlandia) — narzędzie <strong>Meta Pixel</strong> wykorzystywane do pomiaru skuteczności reklam na Facebooku i Instagramie oraz do remarketingu, uruchamiane wyłącznie po wyrażeniu zgody przez Użytkownika za pośrednictwem banera cookies. Dane (w tym adres IP oraz informacje o aktywności w serwisie) mogą być przekazywane do Meta Platforms, Inc. w Stanach Zjednoczonych Ameryki na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską oraz mechanizmu Data Privacy Framework, w którym Meta jest podmiotem zarejestrowanym.</li>
-          <li><strong>Web3Creative</strong> (podmiot zarejestrowany w Indiach, stan Kerala; nr rejestracji Udyam UDYAM-KL-10-0039115) — usługa <strong>Web3Forms</strong> (<a href="https://web3forms.com" target="_blank" rel="noopener" style="color: var(--accent-deep);">web3forms.com</a>) wykorzystywana do obsługi i dostarczania wiadomości przesyłanych za pośrednictwem formularzy dostępnych w serwisie (formularz kontaktowy oraz formularz zapytania rezerwacyjnego). Web3Forms <strong>nie przechowuje trwale treści przesłanych formularzy</strong> — przetwarza je i przekazuje na adres e-mail Administratora, a logi serwerowe zawierające dane są usuwane okresowo (co ok. 2 miesiące). Dane przetwarzane są na serwerach zlokalizowanych w Stanach Zjednoczonych Ameryki. Web3Forms pełni rolę wyłącznie pośrednika przekazującego treść formularza na adres e-mail Administratora. Przekazanie danych do państwa trzeciego (USA) jest niezbędne do obsługi przesłanego przez Państwa zapytania, dlatego odbywa się na podstawie art. 49 ust. 1 lit. b RODO (przekazanie niezbędne do podjęcia działań na żądanie osoby, której dane dotyczą, przed zawarciem umowy) — jako przekazanie o charakterze incydentalnym, ograniczone do danych dobrowolnie podanych przez Państwa w formularzu i nieprzechowywane trwale przez usługodawcę.</li>
+          <li><strong>Google Ireland Limited</strong> (Gordon House, Barrow Street, Dublin 4, Irlandia): usługi <strong>Firebase</strong> (Firestore, Authentication, Cloud Functions, Hosting), z których korzysta wewnętrzny system zarządzania rezerwacjami (CRM) Centrum, oraz <strong>Google Analytics 4</strong> wykorzystywane do zbierania anonimowych statystyk dotyczących korzystania z serwisu (wyłącznie po wyrażeniu zgody przez Użytkownika za pośrednictwem banera cookies). Dane mogą być przetwarzane w centrach danych Google na terenie Europejskiego Obszaru Gospodarczego oraz, w niezbędnym zakresie, w Stanach Zjednoczonych Ameryki na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską (Decyzja wykonawcza KE 2021/914) oraz mechanizmu Data Privacy Framework.</li>
+          <li><strong>Intuit Inc. / The Rocket Science Group LLC d/b/a Mailchimp</strong> (675 Ponce de Leon Ave NE, Suite 5000, Atlanta, GA 30308, USA): usługa <strong>Mailchimp</strong> wykorzystywana do wysyłki korespondencji marketingowej i newsletterów do osób, które wyraziły na to zgodę. Przekazywanie danych odbywa się na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską oraz mechanizmu Data Privacy Framework, w którym Mailchimp jest podmiotem zarejestrowanym.</li>
+          <li><strong>Meta Platforms Ireland Limited</strong> (4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irlandia): narzędzie <strong>Meta Pixel</strong> wykorzystywane do pomiaru skuteczności reklam na Facebooku i Instagramie oraz do remarketingu, uruchamiane wyłącznie po wyrażeniu zgody przez Użytkownika za pośrednictwem banera cookies. Dane (w tym adres IP oraz informacje o aktywności w serwisie) mogą być przekazywane do Meta Platforms, Inc. w Stanach Zjednoczonych Ameryki na podstawie standardowych klauzul umownych zatwierdzonych przez Komisję Europejską oraz mechanizmu Data Privacy Framework, w którym Meta jest podmiotem zarejestrowanym.</li>
+          <li><strong>Web3Creative</strong> (podmiot zarejestrowany w Indiach, stan Kerala; nr rejestracji Udyam UDYAM-KL-10-0039115): usługa <strong>Web3Forms</strong> (<a href="https://web3forms.com" target="_blank" rel="noopener" style="color: var(--accent-deep);">web3forms.com</a>) wykorzystywana do obsługi i dostarczania wiadomości przesyłanych za pośrednictwem formularzy dostępnych w serwisie (formularz kontaktowy, formularz zapytania rezerwacyjnego oraz formularz umówienia oglądania gabinetu). Web3Forms <strong>nie przechowuje trwale treści przesłanych formularzy</strong>: przetwarza je i przekazuje na adres e-mail Administratora, a logi serwerowe zawierające dane są usuwane okresowo (co ok. 2 miesiące). Dane przetwarzane są na serwerach zlokalizowanych w Stanach Zjednoczonych Ameryki. Web3Forms pełni rolę wyłącznie pośrednika przekazującego treść formularza na adres e-mail Administratora. Przekazanie danych do państwa trzeciego (USA) jest niezbędne do obsługi przesłanego przez Państwa zapytania, dlatego odbywa się na podstawie art. 49 ust. 1 lit. b RODO (przekazanie niezbędne do podjęcia działań na żądanie osoby, której dane dotyczą, przed zawarciem umowy), jako przekazanie o charakterze incydentalnym, ograniczone do danych dobrowolnie podanych przez Państwa w formularzu i nieprzechowywane trwale przez usługodawcę.</li>
         </ul>
       </li>
       <li>operatorom płatności (w przypadku rozliczeń online),</li>
       <li>organom publicznym uprawnionym do żądania udostępnienia danych na podstawie przepisów prawa.</li>
     </ul>
-    <p>Przekazywanie danych do państw trzecich poza Europejskim Obszarem Gospodarczym w ramach usług <strong>Firebase</strong>, <strong>Mailchimp</strong> i <strong>Meta Pixel</strong> (USA) odbywa się z zachowaniem zabezpieczeń wymaganych przez RODO — na podstawie standardowych klauzul umownych oraz mechanizmu Data Privacy Framework. W przypadku usługi <strong>Web3Forms</strong> (serwery w USA), wykorzystywanej do dostarczania wiadomości z formularzy, przekazanie następuje na podstawie derogacji z art. 49 ust. 1 lit. b RODO — jako przekazanie incydentalne, niezbędne do obsługi zapytania przesłanego na Państwa żądanie, ograniczone do danych podanych w formularzu i nieprzechowywane trwale przez usługodawcę.</p>
+    <p>Przekazywanie danych do państw trzecich poza Europejskim Obszarem Gospodarczym w ramach usług <strong>Firebase</strong>, <strong>Mailchimp</strong> i <strong>Meta Pixel</strong> (USA) odbywa się z zachowaniem zabezpieczeń wymaganych przez RODO, na podstawie standardowych klauzul umownych oraz mechanizmu Data Privacy Framework. W przypadku usługi <strong>Web3Forms</strong> (serwery w USA), wykorzystywanej do dostarczania wiadomości z formularzy, przekazanie następuje na podstawie derogacji z art. 49 ust. 1 lit. b RODO, jako przekazanie incydentalne, niezbędne do obsługi zapytania przesłanego na Państwa żądanie, ograniczone do danych podanych w formularzu i nieprzechowywane trwale przez usługodawcę.</p>
 
     <h2 id="prawa">Prawa osoby, której dane dotyczą</h2>
     <p>Przysługują Państwu następujące prawa wynikające z RODO:</p>
     <ul>
       <li>prawo dostępu do danych oraz uzyskania ich kopii (art. 15 RODO),</li>
       <li>prawo do sprostowania danych (art. 16 RODO),</li>
-      <li>prawo do usunięcia danych — „prawo do bycia zapomnianym" (art. 17 RODO),</li>
+      <li>prawo do usunięcia danych („prawo do bycia zapomnianym", art. 17 RODO),</li>
       <li>prawo do ograniczenia przetwarzania (art. 18 RODO),</li>
       <li>prawo do przenoszenia danych (art. 20 RODO),</li>
       <li>prawo do wniesienia sprzeciwu wobec przetwarzania (art. 21 RODO),</li>
-      <li>prawo do cofnięcia zgody w dowolnym momencie — bez wpływu na zgodność z prawem przetwarzania dokonanego przed jej cofnięciem,</li>
+      <li>prawo do cofnięcia zgody w dowolnym momencie, bez wpływu na zgodność z prawem przetwarzania dokonanego przed jej cofnięciem,</li>
       <li>prawo do wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa).</li>
     </ul>
     <p>W celu realizacji powyższych praw prosimy o kontakt pod adresem <strong>gabinety@plaszowska25.pl</strong>.</p>
@@ -337,14 +363,14 @@
     <p>Serwis internetowy <strong>plaszowska25.pl</strong> wykorzystuje pliki cookies, czyli niewielkie pliki tekstowe zapisywane w urządzeniu użytkownika.</p>
     <h3>Rodzaje stosowanych cookies</h3>
     <ul>
-      <li><strong>Cookies niezbędne</strong> — konieczne do prawidłowego działania serwisu (m.in. zapamiętanie zgody cookies), nie wymagają zgody.</li>
-      <li><strong>Cookies analityczne (Google Analytics 4)</strong> — służą do zbierania anonimowych statystyk korzystania z serwisu (liczba użytkowników, czas wizyty, popularne podstrony). Wymagają zgody użytkownika wyrażonej przez baner cookies. Dane zbierane przez GA4 są pseudonimizowane (z anonimizacją IP) i przetwarzane przez Google Ireland Limited.</li>
-      <li><strong>Cookies marketingowe (Meta Pixel / Facebook)</strong> — narzędzie <strong>Meta Pixel</strong> dostarczane przez Meta Platforms Ireland Limited służy do mierzenia skuteczności kampanii reklamowych prowadzonych na Facebooku i Instagramie oraz do kierowania reklam do osób odwiedzających serwis (remarketing). Wymagają wyraźnej zgody użytkownika wyrażonej przez baner cookies i <strong>nie są uruchamiane w przypadku jej braku</strong> ani wyboru opcji „Tylko niezbędne”. Meta Pixel może zapisywać cookies (m.in. <em>_fbp</em>) i przekazywać dane (w tym adres IP oraz informacje o aktywności w serwisie) do Meta Platforms, Inc. w Stanach Zjednoczonych.</li>
-      <li><strong>Cookies funkcjonalne</strong> — zapamiętują preferencje użytkownika.</li>
+      <li><strong>Cookies niezbędne</strong>: konieczne do prawidłowego działania serwisu (m.in. zapamiętanie zgody cookies), nie wymagają zgody.</li>
+      <li><strong>Cookies analityczne (Google Analytics 4)</strong>: służą do zbierania anonimowych statystyk korzystania z serwisu (liczba użytkowników, czas wizyty, popularne podstrony). Wymagają zgody użytkownika wyrażonej przez baner cookies. Dane zbierane przez GA4 są pseudonimizowane (z anonimizacją IP) i przetwarzane przez Google Ireland Limited.</li>
+      <li><strong>Cookies marketingowe (Meta Pixel / Facebook)</strong>: narzędzie <strong>Meta Pixel</strong> dostarczane przez Meta Platforms Ireland Limited służy do mierzenia skuteczności kampanii reklamowych prowadzonych na Facebooku i Instagramie oraz do kierowania reklam do osób odwiedzających serwis (remarketing). Wymagają wyraźnej zgody użytkownika wyrażonej przez baner cookies i <strong>nie są uruchamiane w przypadku jej braku</strong> ani wyboru opcji „Tylko niezbędne”. Meta Pixel może zapisywać cookies (m.in. <em>_fbp</em>) i przekazywać dane (w tym adres IP oraz informacje o aktywności w serwisie) do Meta Platforms, Inc. w Stanach Zjednoczonych.</li>
+      <li><strong>Cookies funkcjonalne</strong>: zapamiętują preferencje użytkownika.</li>
     </ul>
     <p>Użytkownik może w każdej chwili wycofać zgodę na pliki cookies poprzez:</p>
     <ul>
-      <li>kliknięcie przycisku „Ustawienia cookies” na stronie internetowej,</li>
+      <li>kliknięcie linku „Ustawienia cookies” w stopce każdej podstrony serwisu, który otwiera panel, w którym można w dowolnym momencie włączyć lub wyłączyć poszczególne kategorie cookies (po wycofaniu zgody usuwamy zapisane cookies analityczne i marketingowe),</li>
       <li>zmianę ustawień w swojej przeglądarce internetowej (w tym całkowite zablokowanie cookies).</li>
     </ul>
     <p>Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem.</p>
@@ -377,112 +403,13 @@
 <footer>
   <div class="wrap wide foot">
     <span>© 2026 Centrum Terapeutyczne Płaszowska 25, Kraków</span>
-    <span><a href="index.html">Strona główna</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="regulamin.html">Regulamin</a></span>
+    <span><a href="index.html">Strona główna</a> · <a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="regulamin.html">Regulamin</a> · <button type="button" class="ck-footer-link" data-cookie-settings>Ustawienia cookies</button></span>
   </div>
 </footer>
 
 
-<!-- ============ COOKIE BANNER ============ -->
-<style>
-  #cookie {
-    position: fixed; left: 20px; right: 20px; bottom: 20px;
-    max-width: 720px;
-    margin: 0 auto;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    box-shadow: 0 20px 50px -20px rgba(31, 42, 34, 0.25);
-    padding: 22px 26px;
-    z-index: 150;
-    display: none;
-    font-size: 14px;
-    line-height: 1.55;
-  }
-  #cookie.on { display: flex; flex-direction: column; gap: 14px; }
-  #cookie .ck-t { color: var(--ink); }
-  #cookie .ck-t strong { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 19px; display: block; margin-bottom: 4px; color: var(--accent-deep); }
-  #cookie .ck-t a { color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
-  #cookie .ck-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
-  #cookie .ck-btn {
-    padding: 10px 20px; border-radius: 999px;
-    font-size: 13px; font-weight: 500;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background .2s, color .2s;
-  }
-  #cookie .ck-btn.primary { background: var(--accent); color: var(--paper); }
-  #cookie .ck-btn.primary:hover { background: var(--accent-deep); }
-  #cookie .ck-btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-  #cookie .ck-btn.ghost:hover { background: var(--paper-2); }
-  @media (max-width: 600px) {
-    #cookie { left: 10px; right: 10px; bottom: 10px; padding: 18px; }
-    #cookie .ck-actions { justify-content: stretch; }
-    #cookie .ck-actions .ck-btn { flex: 1; }
-  }
-</style>
 
-<div id="cookie" role="dialog" aria-label="Zgoda na cookies">
-  <div class="ck-t">
-    <strong>Cookies i prywatność</strong>
-    Ten serwis wykorzystuje pliki cookies niezbędne do działania strony oraz — za Twoją zgodą — cookies analityczne (Google Analytics 4) i marketingowe (Meta Pixel) służące do statystyk oraz pomiaru skuteczności reklam. Wybierając „Tylko niezbędne”, nie uruchamiasz cookies analitycznych ani marketingowych. Szczegóły w <a href="polityka-prywatnosci.html">Polityce prywatności</a>.
-  </div>
-  <div class="ck-actions">
-    <button class="ck-btn ghost" id="ckDecline">Tylko niezbędne</button>
-    <button class="ck-btn primary" id="ckAccept">Akceptuję wszystkie</button>
-  </div>
-</div>
 
-<script>
-  (function() {
-    const KEY = 'p25_cookie_consent';
-    const banner = document.getElementById('cookie');
-    const saved = localStorage.getItem(KEY);
-    if (!saved) {
-      setTimeout(() => banner.classList.add('on'), 800);
-    } else if (saved === 'accept') {
-      loadGA();
-      loadPixel();
-    }
-    document.getElementById('ckAccept').onclick = () => {
-      localStorage.setItem(KEY, 'accept');
-      banner.classList.remove('on');
-      loadGA();
-      loadPixel();
-    };
-    document.getElementById('ckDecline').onclick = () => {
-      localStorage.setItem(KEY, 'decline');
-      banner.classList.remove('on');
-    };
-    function loadGA() {
-      const GA_ID = 'G-XXXXXXXXXX';
-      if (GA_ID === 'G-XXXXXXXXXX') return;
-      const s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-      document.head.appendChild(s);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', GA_ID, { anonymize_ip: true });
-    }
-    // ---- Meta Pixel (marketing, ładowany dopiero po zgodzie)
-    function loadPixel() {
-      if (/github\.io$/i.test(location.hostname)) return; // nie śledzimy wersji staging
-      if (window.fbq) return;
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '887690594397355');
-      fbq('track', 'PageView');
-    }
-  })();
-</script>
 
 
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wynajem gabinetów terapeutycznych Kraków — Płaszowska 25</title>
+<title>Wynajem gabinetów terapeutycznych Kraków | Płaszowska 25</title>
 
 <!-- Indeksacja: noindex na wersji staging (github.io), produkcja indeksowana -->
 <script>
@@ -29,13 +29,13 @@
 <!-- Open Graph / social (kampanie FB/IG) -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Centrum Terapeutyczne Płaszowska 25" />
-<meta property="og:title" content="Wynajem gabinetów terapeutycznych w Krakowie — Płaszowska 25" />
+<meta property="og:title" content="Wynajem gabinetów terapeutycznych w Krakowie | Płaszowska 25" />
 <meta property="og:description" content="Nowoczesne, w pełni wyposażone gabinety do wynajęcia dla psychologów i terapeutów. Elastyczne bloki, przejrzysty cennik." />
 <meta property="og:url" content="https://plaszowska25.pl/" />
 <meta property="og:image" content="https://plaszowska25.pl/assets/og-cover.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Gabinet terapeutyczny do wynajęcia — Centrum Płaszowska 25, Kraków" />
+<meta property="og:image:alt" content="Gabinet terapeutyczny do wynajęcia, Centrum Płaszowska 25, Kraków" />
 <meta property="og:locale" content="pl_PL" />
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -111,38 +111,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/main.css?v=20261005c">
 
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script defer src="assets/js/config.js"></script>
-<script defer src="assets/js/main.js"></script>
+<script defer src="assets/js/i18n.js?v=20261005c"></script>
+<script defer src="assets/js/config.js?v=20261005c"></script>
+<script defer src="assets/js/main.js?v=20261005c"></script>
+<script defer src="assets/js/motion.js?v=20261005c"></script>
+<link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/" />
+<link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/" />
+<link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/" />
+<link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/" />
+<link rel="stylesheet" href="assets/css/shared.css?v=20261005c">
+<script defer src="assets/js/consent.js?v=20261005c"></script>
 </head>
 <body>
 
 <!-- ============ NAV ============ -->
 <header class="nav">
   <div class="wrap nav-inner">
-    <a href="#" class="brand">
+    <a href="index.html" class="brand" aria-label="Płaszowska 25, strona główna">
       <span class="brand-mark" aria-hidden="true">
         <img src="assets/logo.png" alt="Centrum Terapeutyczne Płaszowska 25" />
       </span>
     </a>
 
-    <nav class="nav-links">
-      <a href="#o-nas">O centrum</a>
-      <a href="#oferta">Oferta</a>
-      <a href="#galeria">Gabinety</a>
-      <a href="#cennik">Cennik</a>
-      <a href="#dostepnosc">Dostępność</a>
-      <a href="nasi-terapeuci.html">Nasi terapeuci</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-
-    <div style="display:flex; gap: 10px; align-items:center;">
+    <div class="nav-main">
+      <nav class="nav-links">
+        <a href="#o-nas">O centrum</a>
+        <a href="#oferta">Oferta</a>
+        <a href="#galeria">Gabinety</a>
+        <a href="#cennik">Cennik</a>
+        <a href="#dostepnosc">Dostępność</a>
+        <a href="nasi-terapeuci.html">Nasi terapeuci</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
       <a href="#dostepnosc" class="btn btn-primary js-open-booking" style="display:inline-flex;" data-hide-mobile>Zarezerwuj gabinet</a>
-      <button class="btn btn-ghost nav-burger" id="burger" aria-label="Menu">≡ Menu</button>
+    </div>
+
+    <div class="nav-end">
+      <button class="btn btn-ghost nav-burger" id="burger" aria-label="Menu">≡<span class="burger-label"> Menu</span></button>
+      <nav class="lang-switch" aria-label="Język / Language / Мова"><a href="index.html" hreflang="pl" lang="pl" aria-current="true">PL</a><a href="en/index.html" hreflang="en" lang="en">EN</a><a href="ua/index.html" hreflang="uk" lang="uk">UKR</a></nav>
     </div>
   </div>
 </header>
@@ -156,6 +167,7 @@
   <a href="#dostepnosc">Dostępność</a>
   <a href="nasi-terapeuci.html">Nasi terapeuci</a>
   <a href="#kontakt">Kontakt</a>
+  <button type="button" class="sheet-cta js-open-viewing">Umów oglądanie gabinetu →</button>
 </div>
 
 <!-- ============ HERO ============ -->
@@ -181,7 +193,7 @@
         </div>
       </div>
 
-      <div class="hero-visual"><picture><source type="image/webp" srcset="assets/photos/p01.webp" /><img src="assets/photos/p01.jpg" width="1920" height="1277" alt="Gabinet terapeutyczny z fotelem i biurkiem przy oknie na ogród — Centrum Płaszowska 25, Kraków" loading="eager" /></picture></div>
+      <div class="hero-visual"><picture><source type="image/webp" srcset="assets/photos/p01.webp" /><img src="assets/photos/p01.jpg" width="1920" height="1277" alt="Gabinet terapeutyczny z fotelem i biurkiem przy oknie na ogród, Centrum Płaszowska 25, Kraków" loading="eager" /></picture></div>
     </div>
   </div>
 </section>
@@ -198,12 +210,12 @@
       <div class="about-body">
         <p class="about-lead">
           Cisza, światło dzienne i przestrzeń, w której pacjent i&nbsp;terapeuta
-          mogą skupić się wyłącznie na tym, co najważniejsze — rozmowie.
+          mogą skupić się wyłącznie na tym, co najważniejsze: rozmowie.
         </p>
         <p>
           Płaszowska 25 to kameralne centrum w dobrze skomunikowanej części
           Krakowa. Udostępniamy gabinety specjalistom, którym zależy na
-          profesjonalnej, komfortowej przestrzeni — bez kompromisów w&nbsp;kwestii
+          profesjonalnej, komfortowej przestrzeni, bez kompromisów w&nbsp;kwestii
           akustyki, wyposażenia i atmosfery.
         </p>
         <p>
@@ -218,7 +230,7 @@
           <div class="stat"><div class="n">10 min</div><div class="l">do centrum</div></div>
         </div>
       </div>
-      <div class="media about-photo"><picture><source type="image/webp" srcset="assets/photos/p02.webp" /><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów — Centrum Płaszowska 25, Kraków" /></picture></div>
+      <div class="media about-photo"><picture><source type="image/webp" srcset="assets/photos/p02.webp" /><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów, Centrum Płaszowska 25, Kraków" /></picture></div>
     </div>
   </div>
 </section>
@@ -229,16 +241,16 @@
     <div class="section-head">
       <span class="eyebrow">Oferta</span>
       <h2>Wszystko, czego potrzebujesz do prowadzenia praktyki.</h2>
-      <p>Dwa warianty współpracy — wybierz okno w konkretnym dniu tygodnia albo
+      <p>Dwa warianty współpracy: wybierz okno w konkretnym dniu tygodnia albo
 cały gabinet na stałe.</p>
     </div>
 
     <div class="offer-grid">
       <div class="card">
-        <div class="media card-media"><picture><source type="image/webp" srcset="assets/photos/p05.webp" /><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami do wynajęcia w wybranym dniu tygodnia — Płaszowska 25, Kraków" /></picture></div>
+        <div class="media card-media"><picture><source type="image/webp" srcset="assets/photos/p05.webp" /><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami do wynajęcia w wybranym dniu tygodnia, Płaszowska 25, Kraków" /></picture></div>
         <span class="card-num">01 / okno tygodniowe</span>
         <h3>Wynajem określonego okna w konkretnym dniu tygodnia</h3>
-        <p>Wybierz powtarzalny blok półdniowy lub całodniowy w stałym dniu tygodnia — ten sam gabinet, ten sam termin co tydzień.</p>
+        <p>Wybierz powtarzalny blok półdniowy lub całodniowy w stałym dniu tygodnia. Ten sam gabinet, ten sam termin co tydzień.</p>
         <ul>
           <li>Bloki: 6–15, 15–23 lub 6–23</li>
           <li>Powtarzalne okno tygodniowe</li>
@@ -247,10 +259,10 @@ cały gabinet na stałe.</p>
       </div>
 
       <div class="card">
-        <div class="media card-media"><picture><source type="image/webp" srcset="assets/photos/p08.webp" /><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą i fotelem uszakiem do stałego najmu — Płaszowska 25, Kraków" /></picture></div>
+        <div class="media card-media"><picture><source type="image/webp" srcset="assets/photos/p08.webp" /><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą i fotelem uszakiem do stałego najmu, Płaszowska 25, Kraków" /></picture></div>
         <span class="card-num">02 / stały najem</span>
         <h3>Stały wynajem całego gabinetu</h3>
-        <p>Twój gabinet na wyłączność — dostępny 7 dni w tygodniu, urządzony pod Twoją praktykę.</p>
+        <p>Twój gabinet na wyłączność, dostępny 7 dni w tygodniu, urządzony pod Twoją praktykę.</p>
         <ul>
           <li>Pełna dostępność 24/7</li>
           <li>Własna szafka</li>
@@ -261,30 +273,87 @@ cały gabinet na stałe.</p>
   </div>
 </section>
 
+<!-- ============ W CENIE ============ -->
+<section id="w-cenie" class="perks">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">W cenie</span>
+      <h2>Przychodzisz i&nbsp;pracujesz. Resztą zajmujemy się my.</h2>
+      <p>Każdy blok najmu obejmuje pełne zaplecze centrum, bez dodatkowych opłat.</p>
+    </div>
+
+    <div class="perks-grid">
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M5 18v2M19 18v2"/></svg></span>
+        <h3>Umeblowany gabinet</h3>
+        <p>Wygodne fotele, stolik i&nbsp;miejsce do notatek, a&nbsp;w&nbsp;wybranych gabinetach także kozetka.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        <h3>Światło dzienne</h3>
+        <p>Jasne wnętrza z&nbsp;dużymi oknami, część gabinetów z&nbsp;widokiem na ogród.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>Akustyka i&nbsp;dyskrecja</h3>
+        <p>Wyciszone gabinety, w&nbsp;których rozmowa zostaje między Tobą a&nbsp;pacjentem.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M4 18v2M20 18v2M12 4v9"/></svg></span>
+        <h3>Poczekalnia</h3>
+        <p>Przytulna poczekalnia dla pacjentów. Nikt nie czeka na korytarzu.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6 5.6 1.9-5.6 1.9L12 18l-1.9-5.6-5.6-1.9 5.6-1.9z"/><path d="M19 3v4M17 5h4M5 17v3M3.5 18.5h3"/></svg></span>
+        <h3>Sprzątanie</h3>
+        <p>Regularnie sprzątane gabinety i&nbsp;części wspólne. Przychodzisz do gotowego.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/></svg></span>
+        <h3>Dostępna łazienka</h3>
+        <p>Przestronna łazienka przystosowana dla osób z&nbsp;niepełnosprawnością.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7a2 2 0 1 1 2-2"/><path d="M12 7v2L3.4 15.9A1.2 1.2 0 0 0 4.1 18h15.8a1.2 1.2 0 0 0 .7-2.1L12 9"/></svg></span>
+        <h3>Garderoba</h3>
+        <p>Miejsce na okrycia wierzchnie dla Ciebie i&nbsp;Twoich pacjentów.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h3>Elastyczne godziny</h3>
+        <p>Bloki od 6:00 do 23:00, a&nbsp;przy stałym najmie dostęp 24/7.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ GALERIA ============ -->
-<section id="galeria" style="background: var(--paper-2);">
+<section id="galeria">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Gabinety</span>
       <h2>Siedem gabinetów. Każdy inny, każdy gotowy do pracy.</h2>
-      <p>Umeblowane zgodnie ze standardami pracy terapeutycznej — fotele, kozetka (w wybranych), dobre oświetlenie i akustyka.</p>
+      <p>Umeblowane zgodnie ze standardami pracy terapeutycznej: fotele, kozetka (w wybranych), dobre oświetlenie i akustyka.</p>
     </div>
 
     <div class="gallery">
-      <div class="tile t1" data-i="0"><picture><source type="image/webp" srcset="assets/photos/p02.webp" /><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów — Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t2" data-i="1"><picture><source type="image/webp" srcset="assets/photos/p01.webp" /><img src="assets/photos/p01.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z szarym fotelem uszakiem i biurkiem przy oknie na ogród — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t3" data-i="2"><picture><source type="image/webp" srcset="assets/photos/p03.webp" /><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą, żółtym fotelem i stołem — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t4" data-i="3"><picture><source type="image/webp" srcset="assets/photos/p04.webp" /><img src="assets/photos/p04.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z żółtym fotelem uszakiem i sofą, wyjście na ogród — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t5" data-i="4"><picture><source type="image/webp" srcset="assets/photos/p05.webp" /><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami i różową komodą przy oknie — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t6" data-i="5"><picture><source type="image/webp" srcset="assets/photos/p06.webp" /><img src="assets/photos/p06.jpg" width="1920" height="1277" loading="lazy" alt="Korytarz z garderobą i wieszakami przy gabinetach — Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t7" data-i="6"><picture><source type="image/webp" srcset="assets/photos/p07.webp" /><img src="assets/photos/p07.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z sofą i fotelem w pepitkę — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t8" data-i="7"><picture><source type="image/webp" srcset="assets/photos/p08.webp" /><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą, fotelem uszakiem i różową szafą — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t9" data-i="8"><picture><source type="image/webp" srcset="assets/photos/p09.webp" /><img src="assets/photos/p09.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z beżowym fotelem, biurkiem i miejscem do pracy — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t10" data-i="9"><picture><source type="image/webp" srcset="assets/photos/p10.webp" /><img src="assets/photos/p10.jpg" width="1920" height="1277" loading="lazy" alt="Przejście między gabinetami z sofą i widokiem na poczekalnię — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t11" data-i="10"><picture><source type="image/webp" srcset="assets/photos/p13.webp" /><img src="assets/photos/p13.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z biurkiem i sofą w pepitkę — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t12" data-i="11"><picture><source type="image/webp" srcset="assets/photos/p15.webp" /><img src="assets/photos/p15.jpg" width="1920" height="1277" loading="lazy" alt="Przestronna łazienka dostępna dla osób z niepełnosprawnością — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t13" data-i="12"><picture><source type="image/webp" srcset="assets/photos/p18.webp" /><img src="assets/photos/p18.jpg" width="1920" height="1277" loading="lazy" alt="Słoneczny gabinet z żółtym fotelem i biurkiem, dwa okna na ogród — Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t1" data-i="0"><picture><source type="image/webp" srcset="assets/photos/p02.webp" /><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów, Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t2" data-i="1"><picture><source type="image/webp" srcset="assets/photos/p01.webp" /><img src="assets/photos/p01.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z szarym fotelem uszakiem i biurkiem przy oknie na ogród, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t3" data-i="2"><picture><source type="image/webp" srcset="assets/photos/p03.webp" /><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą, żółtym fotelem i stołem, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t4" data-i="3"><picture><source type="image/webp" srcset="assets/photos/p04.webp" /><img src="assets/photos/p04.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z żółtym fotelem uszakiem i sofą, wyjście na ogród, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t5" data-i="4"><picture><source type="image/webp" srcset="assets/photos/p05.webp" /><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami i różową komodą przy oknie, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t6" data-i="5"><picture><source type="image/webp" srcset="assets/photos/p06.webp" /><img src="assets/photos/p06.jpg" width="1920" height="1277" loading="lazy" alt="Korytarz z garderobą i wieszakami przy gabinetach, Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t7" data-i="6"><picture><source type="image/webp" srcset="assets/photos/p07.webp" /><img src="assets/photos/p07.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z sofą i fotelem w pepitkę, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t8" data-i="7"><picture><source type="image/webp" srcset="assets/photos/p08.webp" /><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą, fotelem uszakiem i różową szafą, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t9" data-i="8"><picture><source type="image/webp" srcset="assets/photos/p09.webp" /><img src="assets/photos/p09.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z beżowym fotelem, biurkiem i miejscem do pracy, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t10" data-i="9"><picture><source type="image/webp" srcset="assets/photos/p10.webp" /><img src="assets/photos/p10.jpg" width="1920" height="1277" loading="lazy" alt="Przejście między gabinetami z sofą i widokiem na poczekalnię, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t11" data-i="10"><picture><source type="image/webp" srcset="assets/photos/p13.webp" /><img src="assets/photos/p13.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z biurkiem i sofą w pepitkę, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t12" data-i="11"><picture><source type="image/webp" srcset="assets/photos/p15.webp" /><img src="assets/photos/p15.jpg" width="1920" height="1277" loading="lazy" alt="Przestronna łazienka dostępna dla osób z niepełnosprawnością, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t13" data-i="12"><picture><source type="image/webp" srcset="assets/photos/p18.webp" /><img src="assets/photos/p18.jpg" width="1920" height="1277" loading="lazy" alt="Słoneczny gabinet z żółtym fotelem i biurkiem, dwa okna na ogród, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
     </div>
+
+    <p class="gallery-cta">Zdjęcia to nie wszystko. Przyjdź i&nbsp;poczuj atmosferę na miejscu.
+      <button type="button" class="link-btn js-open-viewing">Umów oglądanie gabinetu →</button></p>
   </div>
 </section>
 
@@ -292,11 +361,11 @@ cały gabinet na stałe.</p>
 <section class="for-who">
   <div class="wrap">
     <div class="for-who-grid">
-      <div class="media for-who-photo"><picture><source type="image/webp" srcset="assets/photos/p03.webp" /><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą i żółtym fotelem dla terapeutów — Płaszowska 25, Kraków" /></picture></div>
+      <div class="media for-who-photo"><picture><source type="image/webp" srcset="assets/photos/p03.webp" /><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą i żółtym fotelem dla terapeutów, Płaszowska 25, Kraków" /></picture></div>
       <div class="for-who-body">
         <div class="section-head">
           <span class="eyebrow">Dla kogo</span>
-          <h2>Jeśli tworzysz przestrzeń dla innych — zadbaj o&nbsp;swoją.</h2>
+          <h2>Jeśli tworzysz przestrzeń dla innych, zadbaj o&nbsp;swoją.</h2>
           <p>Pracujemy z doświadczonymi specjalistami i osobami, które dopiero zaczynają własną praktykę.</p>
         </div>
         <div class="chips">
@@ -355,7 +424,7 @@ cały gabinet na stałe.</p>
       </div>
 
       <div class="avail-footer">
-        <span><span class="live-dot"></span></span>
+        <span class="today-wrap"><span class="live-dot"></span><span id="todayFree" class="today-free" aria-live="polite"></span></span>
       </div>
     </div>
   </div>
@@ -443,7 +512,7 @@ cały gabinet na stałe.</p>
     <div class="section-head">
       <span class="eyebrow">Kontakt</span>
       <h2>Porozmawiajmy o&nbsp;Twojej praktyce.</h2>
-      <p>Zadzwoń lub napisz — oddzwonimy w ciągu jednego dnia roboczego i&nbsp;umówimy oglądanie gabinetu.</p>
+      <p>Zadzwoń lub napisz. Oddzwonimy w ciągu jednego dnia roboczego i&nbsp;umówimy oglądanie gabinetu.</p>
     </div>
 
     <div class="contact-grid">
@@ -476,6 +545,10 @@ cały gabinet na stałe.</p>
           <span class="k">LinkedIn</span>
           <span class="v"><a href="https://www.linkedin.com/company/gabinety-p%C5%82aszowska" target="_blank" rel="noopener" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">Gabinety Płaszowska LinkedIn</a></span>
         </div>
+        <div class="contact-actions">
+          <button type="button" class="btn btn-primary js-open-viewing">Umów oglądanie gabinetu</button>
+          <a href="#dostepnosc" class="btn btn-outline">Sprawdź wolne terminy</a>
+        </div>
       </div>
 
       <div class="map-embed" id="osm-map"></div>
@@ -483,13 +556,29 @@ cały gabinet na stałe.</p>
   </div>
 </section>
 
+<!-- ============ CTA: OGLĄDANIE ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="foot-cta">
+      <div>
+        <h3>Zobacz gabinet na&nbsp;żywo.</h3>
+        <p>Umów się na oglądanie. Oprowadzimy Cię po centrum, pokażemy wolne gabinety i&nbsp;odpowiemy na pytania.</p>
+      </div>
+      <div class="foot-cta-actions">
+        <button type="button" class="btn btn-dark js-open-viewing">Umów oglądanie</button>
+        <a href="tel:+48510574421" class="btn btn-outline">Zadzwoń: +48&nbsp;510&nbsp;574&nbsp;421</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
-<footer>
+<footer class="site-foot">
   <div class="wrap">
     <div class="foot-grid">
       <div>
         <h4 data-tw="brandName">Płaszowska 25</h4>
-        <p style="color: color-mix(in oklab, var(--paper) 65%, transparent); max-width: 38ch; font-size: 14px;">
+        <p class="foot-about">
           Centrum terapeutyczne w&nbsp;Krakowie. Gabinety do wynajęcia dla&nbsp;psychologów i&nbsp;terapeutów.
         </p>
       </div>
@@ -499,6 +588,7 @@ cały gabinet na stałe.</p>
           <li><a href="#o-nas">O centrum</a></li>
           <li><a href="#oferta">Oferta</a></li>
           <li><a href="#galeria">Gabinety</a></li>
+          <li><a href="#w-cenie">W cenie</a></li>
           <li><a href="#cennik">Cennik</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -523,7 +613,7 @@ cały gabinet na stałe.</p>
     </div>
     <div class="foot-bottom">
       <span>© 2026 Płaszowska 25 · Wszelkie prawa zastrzeżone</span>
-      <span><a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="regulamin.html">Regulamin</a></span>
+      <span><a href="polityka-prywatnosci.html">Polityka prywatności</a> · <a href="regulamin.html">Regulamin</a> · <button type="button" class="ck-footer-link" data-cookie-settings>Ustawienia cookies</button></span>
     </div>
   </div>
 </footer>
@@ -563,17 +653,6 @@ cały gabinet na stałe.</p>
   </div>
 </div>
 
-<!-- ============ COOKIE BANNER ============ -->
-<div id="cookie" role="dialog" aria-label="Zgoda na cookies">
-  <div class="ck-t">
-    <strong>Cookies i prywatność</strong>
-    Ten serwis wykorzystuje pliki cookies niezbędne do działania strony oraz — za Twoją zgodą — cookies analityczne (Google Analytics 4) i marketingowe (Meta Pixel) służące do statystyk oraz pomiaru skuteczności reklam. Wybierając „Tylko niezbędne”, nie uruchamiasz cookies analitycznych ani marketingowych. Szczegóły w <a href="polityka-prywatnosci.html">Polityce prywatności</a>.
-  </div>
-  <div class="ck-actions">
-    <button class="ck-btn ghost" id="ckDecline">Tylko niezbędne</button>
-    <button class="ck-btn primary" id="ckAccept">Akceptuję wszystkie</button>
-  </div>
-</div>
 
 <!-- ============ FORMULARZ ZAPYTANIA REZERWACYJNEGO ============ -->
 <div id="bk" role="dialog" aria-modal="true" aria-label="Formularz zapytania rezerwacyjnego">
@@ -584,7 +663,7 @@ cały gabinet na stałe.</p>
       <header class="bk-head">
         <span class="eyebrow">Rezerwacja na żywo</span>
         <h3>Formularz zapytania rezerwacyjnego</h3>
-        <p>Zaznacz na różowo interesujące Cię wolne terminy — przygotujemy wstępną
+        <p>Zaznacz na różowo interesujące Cię wolne terminy, a&nbsp;przygotujemy wstępną
            wycenę i odezwiemy się z potwierdzeniem dostępności.</p>
       </header>
 
@@ -638,11 +717,86 @@ cały gabinet na stałe.</p>
       <div class="bk-success-mark" aria-hidden="true">✓</div>
       <h3>Dziękujemy za zapytanie!</h3>
       <p>Otrzymaliśmy Twoje zgłoszenie i&nbsp;skontaktujemy się z&nbsp;Tobą tak szybko,
-         jak to&nbsp;możliwe — zwykle w&nbsp;ciągu jednego dnia roboczego.</p>
+         jak to&nbsp;możliwe, zwykle w&nbsp;ciągu jednego dnia roboczego.</p>
       <button type="button" class="btn btn-outline" id="bkDone">Zamknij</button>
     </div>
   </div>
 </div>
+
+<!-- ============ FORMULARZ: UMÓW OGLĄDANIE ============ -->
+<div id="vw" role="dialog" aria-modal="true" aria-labelledby="vwTitle">
+  <div class="bk-panel">
+    <button class="bk-close" id="vwClose" aria-label="Zamknij">✕</button>
+
+    <div class="bk-scroll">
+      <header class="bk-head">
+        <span class="eyebrow">Oglądanie gabinetu</span>
+        <h3 id="vwTitle">Umów się na oglądanie</h3>
+        <p>Wybierz dogodny dzień i&nbsp;porę. Oprowadzimy Cię po centrum, pokażemy wolne gabinety i&nbsp;odpowiemy na wszystkie pytania.</p>
+      </header>
+
+      <form id="vwForm" class="bk-form" novalidate>
+        <div class="bk-fields">
+          <div class="bk-field">
+            <label for="vwName">Imię i nazwisko *</label>
+            <input id="vwName" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="bk-field">
+            <label for="vwPhone">Telefon *</label>
+            <input id="vwPhone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+          <div class="bk-field bk-field-full">
+            <label for="vwEmail">E-mail *</label>
+            <input id="vwEmail" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="bk-field">
+            <label for="vwDate">Preferowana data *</label>
+            <input id="vwDate" name="date" type="date" required />
+          </div>
+          <div class="bk-field">
+            <label for="vwTime">Preferowana pora</label>
+            <select id="vwTime" name="time"><!-- opcje — JS --></select>
+          </div>
+          <div class="bk-field bk-field-full">
+            <label for="vwMsg">Wiadomość <small>(opcjonalnie)</small></label>
+            <textarea id="vwMsg" name="note" rows="2"></textarea>
+          </div>
+        </div>
+
+        <p class="vw-note">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+          <span>To wstępna prośba o&nbsp;termin. <strong>Odezwiemy się, aby potwierdzić termin oglądania</strong>, zwykle w&nbsp;ciągu jednego dnia roboczego.</span>
+        </p>
+
+        <div class="bk-banner" id="vwBanner"><!-- baner kontaktowy — JS --></div>
+
+        <p class="bk-error" id="vwError" hidden></p>
+
+        <button type="submit" class="btn btn-primary bk-submit" id="vwSubmit">Umów oglądanie</button>
+      </form>
+    </div>
+
+    <div class="bk-success" id="vwSuccess" hidden>
+      <div class="bk-success-mark" aria-hidden="true">✓</div>
+      <h3>Dziękujemy!</h3>
+      <p>Otrzymaliśmy Twoją prośbę o&nbsp;oglądanie. Odezwiemy się, aby potwierdzić termin oglądania, zwykle w&nbsp;ciągu jednego dnia roboczego.</p>
+      <button type="button" class="btn btn-outline" id="vwDone">Zamknij</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PASEK AKCJI (TELEFON) ============ -->
+<nav class="mbar" id="mbar" aria-label="Szybkie akcje">
+  <a href="tel:+48510574421" class="mbar-btn">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    Zadzwoń
+  </a>
+  <button type="button" class="mbar-btn js-open-viewing">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+    Oglądanie
+  </button>
+  <button type="button" class="mbar-btn primary js-open-booking">Zarezerwuj</button>
+</nav>
 
 <!-- ============ POPUP PROMOCYJNY (z CRM) ============ -->
 <div id="promo" role="dialog" aria-modal="true" aria-label="Aktualna promocja">

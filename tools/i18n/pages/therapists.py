@@ -1,0 +1,22 @@
+# Tłumaczenia „Nasi terapeuci" (PL, EN, UKR). Profile terapeutów przychodzą z CRM po polsku.
+PAIRS = [
+    ('<title>Nasi Terapeuci | Centrum Płaszowska 25, Kraków</title>',
+     '<title>Our therapists | Płaszowska 25, Kraków</title>',
+     '<title>Наші терапевти | Płaszowska 25, Краків</title>'),
+    ('content="Specjaliści przyjmujący w Centrum Terapeutycznym Płaszowska 25 w Krakowie: psychoterapeuci, psycholodzy, lekarze i dietetycy."',
+     'content="Specialists working at the Płaszowska 25 Therapy Centre in Kraków: psychotherapists, psychologists, doctors and dietitians."',
+     'content="Фахівці, які приймають у терапевтичному центрі Płaszowska 25 у Кракові: психотерапевти, психологи, лікарі та дієтологи."'),
+    ('"name": "Nasi terapeuci"', '"name": "Our therapists"', '"name": "Наші терапевти"'),
+    ('class="is-active">Nasi terapeuci</a>', 'class="is-active">Our therapists</a>', 'class="is-active">Наші терапевти</a>'),
+    ('<span class="eyebrow">Zespół Płaszowska 25</span>', '<span class="eyebrow">The Płaszowska 25 team</span>', '<span class="eyebrow">Команда Płaszowska 25</span>'),
+    ('<h1>Nasi <em>terapeuci</em></h1>', '<h1>Our <em>therapists</em></h1>', '<h1>Наші <em>терапевти</em></h1>'),
+    ('<p>Centrum Płaszowska 25 to przestrzeń, w której pracują doświadczeni specjaliści z różnych nurtów. Poznaj osoby, które prowadzą swoją praktykę w naszych gabinetach.</p>',
+     '<p>Płaszowska 25 is a space where experienced specialists from different therapeutic approaches work. Meet the people who run their practice in our rooms. Profiles are written by the therapists themselves, in Polish.</p>',
+     '<p>Płaszowska 25 це простір, у якому працюють досвідчені фахівці різних напрямів. Познайомтеся з людьми, які ведуть практику в наших кабінетах. Профілі складені самими терапевтами польською мовою.</p>'),
+    ('<div class="t-loading">Ładowanie…</div>', '<div class="t-loading">Loading…</div>', '<div class="t-loading">Завантаження…</div>'),
+    ('${BOOK_ICON} Umów wizytę</a>', '${BOOK_ICON} Book an appointment</a>', '${BOOK_ICON} Записатися на прийом</a>'),
+    ('<div class="ctitle">Dane kontaktowe</div>', '<div class="ctitle">Contact details</div>', '<div class="ctitle">Контактні дані</div>'),
+    ('<div class="meta">Płaszowska 25, Kraków</div>', '<div class="meta">Płaszowska 25, Kraków</div>', '<div class="meta">Płaszowska 25, Краків</div>'),
+    ("'<div class=\"t-empty\">Brak opublikowanych profili.</div>'", "'<div class=\"t-empty\">No published profiles yet.</div>'", "'<div class=\"t-empty\">Опублікованих профілів поки немає.</div>'"),
+    ("'<div class=\"t-empty\">Nie udało się załadować profili.</div>'", "'<div class=\"t-empty\">Could not load the profiles.</div>'", "'<div class=\"t-empty\">Не вдалося завантажити профілі.</div>'"),
+]

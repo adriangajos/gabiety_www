@@ -1,33 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://plaszowska25.pl/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/en/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/ua/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/"/>
   </url>
   <url>
     <loc>https://plaszowska25.pl/nasi-terapeuci.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/nasi-terapeuci.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/nasi-terapeuci.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/nasi-terapeuci.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/nasi-terapeuci.html"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/en/nasi-terapeuci.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/nasi-terapeuci.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/nasi-terapeuci.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/nasi-terapeuci.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/nasi-terapeuci.html"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/ua/nasi-terapeuci.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/nasi-terapeuci.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/nasi-terapeuci.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/nasi-terapeuci.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/nasi-terapeuci.html"/>
   </url>
   <url>
     <loc>https://plaszowska25.pl/faq.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/faq.html"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/en/faq.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/faq.html"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/ua/faq.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/faq.html"/>
   </url>
   <url>
     <loc>https://plaszowska25.pl/polityka-prywatnosci.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/polityka-prywatnosci.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/polityka-prywatnosci.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/polityka-prywatnosci.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/polityka-prywatnosci.html"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/en/polityka-prywatnosci.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/polityka-prywatnosci.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/polityka-prywatnosci.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/polityka-prywatnosci.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/polityka-prywatnosci.html"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/ua/polityka-prywatnosci.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/polityka-prywatnosci.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/polityka-prywatnosci.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/polityka-prywatnosci.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/polityka-prywatnosci.html"/>
   </url>
   <url>
     <loc>https://plaszowska25.pl/regulamin.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/regulamin.html"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/en/regulamin.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/regulamin.html"/>
+  </url>
+  <url>
+    <loc>https://plaszowska25.pl/ua/regulamin.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/regulamin.html"/>
   </url>
 </urlset>

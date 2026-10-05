@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Therapy rooms for rent in Kraków | Płaszowska 25</title>
+
+<!-- Indeksacja: noindex na wersji staging (github.io), produkcja indeksowana -->
+<script>
+  if (/github\.io$/i.test(location.hostname)) {
+    var m = document.createElement('meta');
+    m.name = 'robots';
+    m.content = 'noindex, nofollow';
+    document.head.appendChild(m);
+  }
+</script>
+
+<!-- Canonical (docelowa domena) -->
+<link rel="canonical" href="https://plaszowska25.pl/en/" />
+
+<link rel="icon" href="../favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="../site.webmanifest" />
+<meta name="theme-color" content="#DE7D7D" />
+<meta name="description" content="Modern therapy rooms for rent in Kraków. Comfort, discretion and flexible terms for psychologists and therapists." />
+
+<!-- Open Graph / social (kampanie FB/IG) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Centrum Terapeutyczne Płaszowska 25" />
+<meta property="og:title" content="Therapy rooms for rent in Kraków | Płaszowska 25" />
+<meta property="og:description" content="Modern, fully furnished rooms for psychologists and therapists. Flexible blocks, clear pricing." />
+<meta property="og:url" content="https://plaszowska25.pl/en/" />
+<meta property="og:image" content="https://plaszowska25.pl/assets/og-cover.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Therapy room for rent, Płaszowska 25, Kraków" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:locale:alternate" content="pl_PL" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Dane strukturalne: Organization + WebSite + LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://plaszowska25.pl/#organization",
+      "name": "Centrum Terapeutyczne Płaszowska 25",
+      "url": "https://plaszowska25.pl/",
+      "logo": "https://plaszowska25.pl/assets/logo.png",
+      "email": "gabinety@plaszowska25.pl",
+      "telephone": "+48510574421",
+      "sameAs": [
+        "https://instagram.com/plaszowska25",
+        "https://www.linkedin.com/company/gabinety-p%C5%82aszowska"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://plaszowska25.pl/#website",
+      "name": "Centrum Terapeutyczne Płaszowska 25",
+      "url": "https://plaszowska25.pl/",
+      "inLanguage": "en-GB",
+      "publisher": { "@id": "https://plaszowska25.pl/#organization" }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://plaszowska25.pl/#localbusiness",
+      "name": "Centrum Terapeutyczne Płaszowska 25",
+      "description": "Modern therapy rooms for rent in Kraków for psychologists, psychotherapists and other specialists.",
+      "url": "https://plaszowska25.pl/",
+      "telephone": "+48510574421",
+      "email": "gabinety@plaszowska25.pl",
+      "image": "https://plaszowska25.pl/assets/photos/p01.jpg",
+      "logo": "https://plaszowska25.pl/assets/logo.png",
+      "priceRange": "250–600 PLN",
+      "currenciesAccepted": "PLN",
+      "parentOrganization": { "@id": "https://plaszowska25.pl/#organization" },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Płaszowska 25",
+        "addressLocality": "Kraków",
+        "postalCode": "30-713",
+        "addressCountry": "PL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "50.0395",
+        "longitude": "19.9670"
+      },
+      "areaServed": { "@type": "City", "name": "Kraków" },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "15:00"
+      }],
+      "sameAs": [
+        "https://instagram.com/plaszowska25",
+        "https://www.linkedin.com/company/gabinety-p%C5%82aszowska"
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link rel="stylesheet" href="../assets/css/main.css?v=20261005c">
+
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script defer src="../assets/js/i18n.js?v=20261005c"></script>
+<script defer src="../assets/js/config.js?v=20261005c"></script>
+<script defer src="../assets/js/main.js?v=20261005c"></script>
+<script defer src="../assets/js/motion.js?v=20261005c"></script>
+<link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/" />
+<link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/" />
+<link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/" />
+<link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/" />
+<link rel="stylesheet" href="../assets/css/shared.css?v=20261005c">
+<script defer src="../assets/js/consent.js?v=20261005c"></script>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand" aria-label="Płaszowska 25, home">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="../assets/logo.png" alt="Płaszowska 25 Therapy Centre" />
+      </span>
+    </a>
+
+    <div class="nav-main">
+      <nav class="nav-links">
+        <a href="#o-nas">About</a>
+        <a href="#oferta">Offer</a>
+        <a href="#galeria">Rooms</a>
+        <a href="#cennik">Prices</a>
+        <a href="#dostepnosc">Availability</a>
+        <a href="nasi-terapeuci.html">Our therapists</a>
+        <a href="#kontakt">Contact</a>
+      </nav>
+      <a href="#dostepnosc" class="btn btn-primary js-open-booking" style="display:inline-flex;" data-hide-mobile>Book a room</a>
+    </div>
+
+    <div class="nav-end">
+      <button class="btn btn-ghost nav-burger" id="burger" aria-label="Menu">≡<span class="burger-label"> Menu</span></button>
+      <nav class="lang-switch" aria-label="Język / Language / Мова"><a href="../index.html" hreflang="pl" lang="pl">PL</a><a href="index.html" hreflang="en" lang="en" aria-current="true">EN</a><a href="../ua/index.html" hreflang="uk" lang="uk">UKR</a></nav>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-sheet" id="sheet">
+  <button class="close" id="closeSheet" aria-label="Close">✕</button>
+  <a href="#o-nas">About</a>
+  <a href="#oferta">Offer</a>
+  <a href="#galeria">Rooms</a>
+  <a href="#cennik">Prices</a>
+  <a href="#dostepnosc">Availability</a>
+  <a href="nasi-terapeuci.html">Our therapists</a>
+  <a href="#kontakt">Contact</a>
+  <button type="button" class="sheet-cta js-open-viewing">Book a viewing →</button>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-tw="heroEyebrow">Kraków · Płaszów</span>
+        <h1 data-tw="heroTitle" data-tw-html>Therapy rooms <span class="h1-nowrap"><em>for rent</em> in Kraków.</span> The comfort you need.</h1>
+        <p class="hero-lead" data-tw="heroLead">
+          Modern, fully furnished rooms for rent for psychologists,
+          psychotherapists and other mental health professionals.
+        </p>
+        <div class="hero-cta">
+          <a href="#dostepnosc" class="btn btn-primary" data-tw="heroCtaPrimary">Check availability →</a>
+          <a href="#galeria" class="btn btn-outline" data-tw="heroCtaSecondary">See the rooms</a>
+        </div>
+
+        <div class="hero-ticker">
+          <span><span class="dot"></span> Flexible rental hours</span>
+          <span><span class="dot"></span> A beautiful waiting room for clients</span>
+          <span><span class="dot"></span> Discretion and quiet</span>
+        </div>
+      </div>
+
+      <div class="hero-visual"><picture><source type="image/webp" srcset="../assets/photos/p01.webp" /><img src="../assets/photos/p01.jpg" width="1920" height="1277" alt="Therapy room with an armchair and a desk by a window overlooking the garden, Płaszowska 25, Kraków" loading="eager" /></picture></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O CENTRUM ============ -->
+<section class="about" id="o-nas">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">About the centre</span>
+      <h2>A place designed for the work of listening.</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-body">
+        <p class="about-lead">
+          Quiet, daylight and a space where client and therapist
+          can focus entirely on what matters most: the conversation.
+        </p>
+        <p>
+          Płaszowska 25 is an intimate centre in a well-connected part of
+          Kraków. We offer rooms to professionals who value a professional,
+          comfortable space, with no compromises on acoustics, furnishings
+          or atmosphere.
+        </p>
+        <p>
+          Rental is flexible: half-day blocks, full days or a permanent lease. We take care
+          of the waiting room, cleaning and facilities, so you can focus
+          on&nbsp;your work.
+        </p>
+
+        <div class="about-stats">
+          <div class="stat"><div class="n">7</div><div class="l">rooms</div></div>
+          <div class="stat"><div class="n">24/7</div><div class="l">access</div></div>
+          <div class="stat"><div class="n">10 min</div><div class="l">to the city centre</div></div>
+        </div>
+      </div>
+      <div class="media about-photo"><picture><source type="image/webp" srcset="../assets/photos/p02.webp" /><img src="../assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Waiting room with a pink reception desk and armchairs for clients, Płaszowska 25, Kraków" /></picture></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFERTA ============ -->
+<section id="oferta">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Offer</span>
+      <h2>Everything you need to run your practice.</h2>
+      <p>Two ways to work with us: choose a slot on a specific day of the week
+or a whole room on a permanent basis.</p>
+    </div>
+
+    <div class="offer-grid">
+      <div class="card">
+        <div class="media card-media"><picture><source type="image/webp" srcset="../assets/photos/p05.webp" /><img src="../assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Room with two beige armchairs for rent on a chosen day of the week, Płaszowska 25, Kraków" /></picture></div>
+        <span class="card-num">01 / weekly slot</span>
+        <h3>Rent a fixed slot on a specific day of the week</h3>
+        <p>Choose a recurring half-day or full-day block on a fixed weekday. Same room, same time, every week.</p>
+        <ul>
+          <li>Blocks: 6–15, 15–23 or 6–23</li>
+          <li>Recurring weekly slot</li>
+          <li>Individual agreement</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="media card-media"><picture><source type="image/webp" srcset="../assets/photos/p08.webp" /><img src="../assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Cosy room with a sofa and a wingback armchair for a permanent lease, Płaszowska 25, Kraków" /></picture></div>
+        <span class="card-num">02 / permanent lease</span>
+        <h3>Permanent lease of a whole room</h3>
+        <p>A room that is yours alone, available 7 days a week and arranged for your practice.</p>
+        <ul>
+          <li>Full 24/7 access</li>
+          <li>Your own locker</li>
+          <li>Individual pricing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ W CENIE ============ -->
+<section id="w-cenie" class="perks">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Included</span>
+      <h2>You come in and work. We take care of the rest.</h2>
+      <p>Every rental block includes full use of the centre’s facilities, with no extra fees.</p>
+    </div>
+
+    <div class="perks-grid">
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M5 18v2M19 18v2"/></svg></span>
+        <h3>Furnished room</h3>
+        <p>Comfortable armchairs, a side table and space for notes, plus a couch in selected rooms.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+        <h3>Daylight</h3>
+        <p>Bright interiors with large windows, some rooms overlooking the garden.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>Acoustics and discretion</h3>
+        <p>Soundproofed rooms where the conversation stays between you and your client.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M4 18v2M20 18v2M12 4v9"/></svg></span>
+        <h3>Waiting room</h3>
+        <p>A cosy waiting room for clients. Nobody has to wait in the corridor.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6 5.6 1.9-5.6 1.9L12 18l-1.9-5.6-5.6-1.9 5.6-1.9z"/><path d="M19 3v4M17 5h4M5 17v3M3.5 18.5h3"/></svg></span>
+        <h3>Cleaning</h3>
+        <p>Rooms and common areas are cleaned regularly. Everything is ready when you arrive.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/></svg></span>
+        <h3>Accessible bathroom</h3>
+        <p>A spacious bathroom adapted for people with disabilities.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7a2 2 0 1 1 2-2"/><path d="M12 7v2L3.4 15.9A1.2 1.2 0 0 0 4.1 18h15.8a1.2 1.2 0 0 0 .7-2.1L12 9"/></svg></span>
+        <h3>Cloakroom</h3>
+        <p>Space for coats for you and your clients.</p>
+      </div>
+      <div class="perk">
+        <span class="perk-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h3>Flexible hours</h3>
+        <p>Blocks from 6:00 to 23:00, and 24/7 access with a permanent lease.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIA ============ -->
+<section id="galeria">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Rooms</span>
+      <h2>Seven rooms. Each one different, each one ready for work.</h2>
+      <p>Furnished to therapeutic standards: armchairs, a couch (in selected rooms), good lighting and acoustics.</p>
+    </div>
+
+    <div class="gallery">
+      <div class="tile t1" data-i="0"><picture><source type="image/webp" srcset="../assets/photos/p02.webp" /><img src="../assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Waiting room with a pink reception desk and armchairs for clients, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t2" data-i="1"><picture><source type="image/webp" srcset="../assets/photos/p01.webp" /><img src="../assets/photos/p01.jpg" width="1920" height="1277" loading="lazy" alt="Therapy room with a grey wingback armchair and a desk by a garden window, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t3" data-i="2"><picture><source type="image/webp" srcset="../assets/photos/p03.webp" /><img src="../assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Bright room with a grey sofa, a yellow armchair and a table, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t4" data-i="3"><picture><source type="image/webp" srcset="../assets/photos/p04.webp" /><img src="../assets/photos/p04.jpg" width="1920" height="1277" loading="lazy" alt="Therapy room with a yellow wingback armchair and a sofa, with access to the garden, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t5" data-i="4"><picture><source type="image/webp" srcset="../assets/photos/p05.webp" /><img src="../assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Room with two beige armchairs and a pink chest of drawers by the window, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t6" data-i="5"><picture><source type="image/webp" srcset="../assets/photos/p06.webp" /><img src="../assets/photos/p06.jpg" width="1920" height="1277" loading="lazy" alt="Corridor with a cloakroom and coat hooks next to the rooms, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t7" data-i="6"><picture><source type="image/webp" srcset="../assets/photos/p07.webp" /><img src="../assets/photos/p07.jpg" width="1920" height="1277" loading="lazy" alt="Therapy room with a sofa and a houndstooth armchair, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t8" data-i="7"><picture><source type="image/webp" srcset="../assets/photos/p08.webp" /><img src="../assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Cosy room with a sofa, a wingback armchair and a pink wardrobe, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t9" data-i="8"><picture><source type="image/webp" srcset="../assets/photos/p09.webp" /><img src="../assets/photos/p09.jpg" width="1920" height="1277" loading="lazy" alt="Room with a beige armchair, a desk and a workspace, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t10" data-i="9"><picture><source type="image/webp" srcset="../assets/photos/p10.webp" /><img src="../assets/photos/p10.jpg" width="1920" height="1277" loading="lazy" alt="Passage between the rooms with a sofa and a view of the waiting room, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t11" data-i="10"><picture><source type="image/webp" srcset="../assets/photos/p13.webp" /><img src="../assets/photos/p13.jpg" width="1920" height="1277" loading="lazy" alt="Therapy room with a desk and a houndstooth sofa, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t12" data-i="11"><picture><source type="image/webp" srcset="../assets/photos/p15.webp" /><img src="../assets/photos/p15.jpg" width="1920" height="1277" loading="lazy" alt="Spacious bathroom accessible to people with disabilities, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+      <div class="tile t13" data-i="12"><picture><source type="image/webp" srcset="../assets/photos/p18.webp" /><img src="../assets/photos/p18.jpg" width="1920" height="1277" loading="lazy" alt="Sunny room with a yellow armchair and a desk, two windows overlooking the garden, Płaszowska 25, Kraków" /></picture><span class="cap">Płaszowska rooms</span></div>
+    </div>
+
+    <p class="gallery-cta">Photos are not everything. Come and feel the atmosphere in person.
+      <button type="button" class="link-btn js-open-viewing">Book a viewing →</button></p>
+  </div>
+</section>
+
+<!-- ============ DLA KOGO ============ -->
+<section class="for-who">
+  <div class="wrap">
+    <div class="for-who-grid">
+      <div class="media for-who-photo"><picture><source type="image/webp" srcset="../assets/photos/p03.webp" /><img src="../assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Bright room with a grey sofa and a yellow armchair for therapists, Płaszowska 25, Kraków" /></picture></div>
+      <div class="for-who-body">
+        <div class="section-head">
+          <span class="eyebrow">Who it is for</span>
+          <h2>If you create space for others, take care of your own.</h2>
+          <p>We work with experienced professionals and with people who are just starting their own practice.</p>
+        </div>
+        <div class="chips">
+          <div class="chip"><span class="serif">01</span> Psychologists and psychotherapists</div>
+          <div class="chip"><span class="serif">02</span> Couples and family therapists</div>
+          <div class="chip"><span class="serif">03</span> Coaches and addiction therapists</div>
+          <div class="chip"><span class="serif">04</span> Speech and neuro-speech therapists</div>
+          <div class="chip"><span class="serif">05</span> Sexologists and trauma therapists</div>
+          <div class="chip"><span class="serif">06</span> Supervisors and group facilitators</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HARMONOGRAM ============ -->
+<section id="dostepnosc" class="avail">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Live booking</span>
+      <h2>Check whether your time slot is available.</h2>
+    </div>
+
+    <div class="avail-wrap">
+      <div class="crm-head">
+        <span class="icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </span>
+        <h3>Weekly schedule</h3>
+      </div>
+
+      <div class="crm-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-day">Day</th>
+              <th class="col-pora">Time</th>
+              <th>Room 1<span class="gtype">Small</span></th>
+              <th>Room 2<span class="gtype gtype-l">Large</span></th>
+              <th>Room 3<span class="gtype">Small</span></th>
+              <th>Room 4<span class="gtype">Small</span></th>
+              <th>Room 5<span class="gtype gtype-l">Large</span></th>
+              <th>Room 6<span class="gtype">Small</span></th>
+              <th>Room 7<span class="gtype gtype-b">Office</span></th>
+            </tr>
+          </thead>
+          <tbody id="crmBody">
+            <!-- built by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="avail-footer">
+        <span class="today-wrap"><span class="live-dot"></span><span id="todayFree" class="today-free" aria-live="polite"></span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CENNIK ============ -->
+<section id="cennik">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Prices</span>
+      <h2>Clear blocks, no hidden fees.</h2>
+      <p>Rooms are rented in blocks. All prices are gross (VAT included).</p>
+    </div>
+
+    <div class="price-table">
+      <div class="price-head">
+        <span>Block</span>
+        <span>Small room <small style="font-weight:400; opacity:0.7;">+ office</small></span>
+        <span>Large room</span>
+        <span></span>
+      </div>
+
+      <div class="price-row">
+        <div class="block">
+          <span class="num">01</span>
+          <div>
+            <div class="label">Morning</div>
+            <span class="hours">6:00–15:00</span>
+          </div>
+        </div>
+        <div class="amt">250&nbsp;PLN<small>gross</small></div>
+        <div class="amt">350&nbsp;PLN<small>gross</small></div>
+        <div class="cta"><a href="#dostepnosc" class="js-open-booking">Book →</a></div>
+      </div>
+
+      <div class="price-row">
+        <div class="block">
+          <span class="num">02</span>
+          <div>
+            <div class="label">Afternoon</div>
+            <span class="hours">15:00–23:00</span>
+          </div>
+        </div>
+        <div class="amt">299&nbsp;PLN<small>gross</small></div>
+        <div class="amt">399&nbsp;PLN<small>gross</small></div>
+        <div class="cta"><a href="#dostepnosc" class="js-open-booking">Book →</a></div>
+      </div>
+
+      <div class="price-row">
+        <div class="block">
+          <span class="num">03</span>
+          <div>
+            <div class="label">Full day</div>
+            <span class="hours">6:00–23:00 · 17&nbsp;hrs</span>
+          </div>
+        </div>
+        <div class="amt">500&nbsp;PLN<small>gross</small></div>
+        <div class="amt">600&nbsp;PLN<small>gross</small></div>
+        <div class="cta"><a href="#dostepnosc" class="js-open-booking">Book →</a></div>
+      </div>
+
+      <div class="price-row is-custom">
+        <div class="block">
+          <span class="num">04</span>
+          <div>
+            <div class="label">Monthly rental</div>
+            <span class="hours">Fixed schedule, preferential rates</span>
+          </div>
+        </div>
+        <div class="amt">Individual quote</div>
+        <div class="amt">Individual quote</div>
+        <div class="cta"><a href="#kontakt">Get in touch →</a></div>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top: 30px; color: var(--ink-2);">
+      Questions about renting? See the <a href="faq.html" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">frequently asked questions →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section id="kontakt" style="background: var(--paper-2);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Contact</span>
+      <h2>Let’s talk about your practice.</h2>
+      <p>Call or write to us. We will get back to you within one working day and arrange a viewing.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-row">
+          <span class="k">Address</span>
+          <span class="v" data-tw="address">Płaszowska 25, Kraków</span>
+        </div>
+        <div class="contact-row">
+          <span class="k">Phone</span>
+          <span class="v" data-tw="phone">+48 510 574 421</span>
+        </div>
+        <div class="contact-row">
+          <span class="k">Phone</span>
+          <span class="v"><a href="tel:+48663433444" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">+48 663 433 444</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="k">E-mail</span>
+          <span class="v" data-tw="email"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">gabinety@plaszowska25.pl</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="k">Office hours</span>
+          <span class="v">Mon–Fri · 8:00–15:00<br/></span>
+        </div>
+        <div class="contact-row">
+          <span class="k">Instagram</span>
+          <span class="v"><a href="https://instagram.com/plaszowska25" target="_blank" rel="noopener" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">@plaszowska25</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="k">LinkedIn</span>
+          <span class="v"><a href="https://www.linkedin.com/company/gabinety-p%C5%82aszowska" target="_blank" rel="noopener" style="color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px;">Gabinety Płaszowska LinkedIn</a></span>
+        </div>
+        <div class="contact-actions">
+          <button type="button" class="btn btn-primary js-open-viewing">Book a viewing</button>
+          <a href="#dostepnosc" class="btn btn-outline">Check free slots</a>
+        </div>
+      </div>
+
+      <div class="map-embed" id="osm-map"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA: OGLĄDANIE ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="foot-cta">
+      <div>
+        <h3>See the room in person.</h3>
+        <p>Book a viewing. We will show you around the centre and the available rooms, and answer your questions.</p>
+      </div>
+      <div class="foot-cta-actions">
+        <button type="button" class="btn btn-dark js-open-viewing">Book a viewing</button>
+        <a href="tel:+48510574421" class="btn btn-outline">Call: +48&nbsp;510&nbsp;574&nbsp;421</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4 data-tw="brandName">Płaszowska 25</h4>
+        <p class="foot-about">
+          Therapy centre in Kraków. Rooms for rent for psychologists and therapists.
+        </p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#o-nas">About</a></li>
+          <li><a href="#oferta">Offer</a></li>
+          <li><a href="#galeria">Rooms</a></li>
+          <li><a href="#w-cenie">Included</a></li>
+          <li><a href="#cennik">Prices</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li data-tw="address">Płaszowska 25, Kraków</li>
+          <li data-tw="phone">+48 510 574 421</li>
+          <li><a href="tel:+48663433444">+48 663 433 444</a></li>
+          <li data-tw="email"><a href="mailto:gabinety@plaszowska25.pl?subject=Rezerwacja%20Gabinetu">gabinety@plaszowska25.pl</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Social</h4>
+        <ul>
+          <li><a href="https://instagram.com/plaszowska25" target="_blank" rel="noopener">Instagram · @plaszowska25</a></li>
+          <li><a href="https://www.linkedin.com/company/gabinety-p%C5%82aszowska" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://maps.google.com/?q=Płaszowska+25+Kraków" target="_blank" rel="noopener">Google Maps</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Płaszowska 25 · All rights reserved</span>
+      <span><a href="polityka-prywatnosci.html">Privacy policy</a> · <a href="regulamin.html">Terms</a> · <button type="button" class="ck-footer-link" data-cookie-settings>Cookie settings</button></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ TWEAKS ============ -->
+<div id="tweaks">
+  <h5>Tweaks</h5>
+  <div class="hint">Zmień treści i kolory na żywo.</div>
+
+  <label>Nazwa</label>
+  <input data-k="brandName" />
+  <label>Podtytuł</label>
+  <input data-k="brandSubtitle" />
+
+  <label>Hero · eyebrow</label>
+  <input data-k="heroEyebrow" />
+  <label>Hero · tytuł (HTML ok)</label>
+  <textarea data-k="heroTitle" rows="3"></textarea>
+  <label>Hero · opis</label>
+  <textarea data-k="heroLead" rows="3"></textarea>
+
+  <div class="row2">
+    <div><label>CTA główny</label><input data-k="heroCtaPrimary" /></div>
+    <div><label>CTA drugi</label><input data-k="heroCtaSecondary" /></div>
+  </div>
+
+  <label>Adres</label>
+  <input data-k="address" />
+  <label>Telefon</label>
+  <input data-k="phone" />
+  <label>E-mail</label>
+  <input data-k="email" />
+
+  <div class="row2">
+    <div><label>Akcent</label><input type="color" data-k="accent" /></div>
+    <div><label>Tło</label><input type="color" data-k="paper" /></div>
+  </div>
+</div>
+
+
+<!-- ============ FORMULARZ ZAPYTANIA REZERWACYJNEGO ============ -->
+<div id="bk" role="dialog" aria-modal="true" aria-label="Booking enquiry form">
+  <div class="bk-panel">
+    <button class="bk-close" id="bkClose" aria-label="Close">✕</button>
+
+    <div class="bk-scroll">
+      <header class="bk-head">
+        <span class="eyebrow">Live booking</span>
+        <h3>Booking enquiry form</h3>
+        <p>Mark the free slots you are interested in (they turn pink) and we will prepare
+           an estimate and get back to you to confirm availability.</p>
+      </header>
+
+      <form id="bkForm" class="bk-form" novalidate>
+        <div class="bk-fields">
+          <div class="bk-field">
+            <label for="bkName">Full name *</label>
+            <input id="bkName" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="bk-field">
+            <label for="bkEmail">Email *</label>
+            <input id="bkEmail" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="bk-field">
+            <label for="bkPhone">Phone *</label>
+            <input id="bkPhone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+          <div class="bk-field">
+            <label for="bkSpec">Specialisation <small>(optional)</small></label>
+            <input id="bkSpec" name="specialization" type="text" />
+          </div>
+          <div class="bk-field bk-field-full">
+            <label for="bkMsg">Message <small>(optional)</small></label>
+            <textarea id="bkMsg" name="note" rows="2"></textarea>
+          </div>
+        </div>
+
+        <div class="bk-cal">
+          <div class="bk-cal-head">
+            <h4>Choose rental slots</h4>
+            <span class="bk-legend">
+              <span class="lg lg-free"></span> free
+              <span class="lg lg-sel"></span> selected
+              <span class="lg lg-busy"></span> booked
+            </span>
+          </div>
+          <div class="bk-cal-wrap" id="bkCal"><!-- mikro-terminarz — JS --></div>
+        </div>
+
+        <div class="bk-quote" id="bkQuote"><!-- wycena — JS --></div>
+
+        <div class="bk-banner" id="bkBanner"><!-- baner kontaktowy — JS --></div>
+
+        <p class="bk-error" id="bkError" hidden>Select at least one time slot to send your enquiry.</p>
+
+        <button type="submit" class="btn btn-primary bk-submit" id="bkSubmit">Send enquiry</button>
+      </form>
+    </div>
+
+    <div class="bk-success" id="bkSuccess" hidden>
+      <div class="bk-success-mark" aria-hidden="true">✓</div>
+      <h3>Thank you for your enquiry!</h3>
+      <p>We have received your enquiry and will contact you as soon
+         as possible, usually within one working day.</p>
+      <button type="button" class="btn btn-outline" id="bkDone">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FORMULARZ: UMÓW OGLĄDANIE ============ -->
+<div id="vw" role="dialog" aria-modal="true" aria-labelledby="vwTitle">
+  <div class="bk-panel">
+    <button class="bk-close" id="vwClose" aria-label="Close">✕</button>
+
+    <div class="bk-scroll">
+      <header class="bk-head">
+        <span class="eyebrow">Room viewing</span>
+        <h3 id="vwTitle">Book a viewing</h3>
+        <p>Choose a convenient day and time. We will show you around the centre and the available rooms, and answer all your questions.</p>
+      </header>
+
+      <form id="vwForm" class="bk-form" novalidate>
+        <div class="bk-fields">
+          <div class="bk-field">
+            <label for="vwName">Full name *</label>
+            <input id="vwName" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="bk-field">
+            <label for="vwPhone">Phone *</label>
+            <input id="vwPhone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+          <div class="bk-field bk-field-full">
+            <label for="vwEmail">Email *</label>
+            <input id="vwEmail" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="bk-field">
+            <label for="vwDate">Preferred date *</label>
+            <input id="vwDate" name="date" type="date" required />
+          </div>
+          <div class="bk-field">
+            <label for="vwTime">Preferred time</label>
+            <select id="vwTime" name="time"><!-- opcje — JS --></select>
+          </div>
+          <div class="bk-field bk-field-full">
+            <label for="vwMsg">Message <small>(optional)</small></label>
+            <textarea id="vwMsg" name="note" rows="2"></textarea>
+          </div>
+        </div>
+
+        <p class="vw-note">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+          <span>This is a preliminary request. <strong>We will get in touch to confirm the viewing date</strong>, usually within one working day.</span>
+        </p>
+
+        <div class="bk-banner" id="vwBanner"><!-- baner kontaktowy — JS --></div>
+
+        <p class="bk-error" id="vwError" hidden></p>
+
+        <button type="submit" class="btn btn-primary bk-submit" id="vwSubmit">Book a viewing</button>
+      </form>
+    </div>
+
+    <div class="bk-success" id="vwSuccess" hidden>
+      <div class="bk-success-mark" aria-hidden="true">✓</div>
+      <h3>Thank you!</h3>
+      <p>We have received your viewing request. We will get in touch to confirm the viewing date, usually within one working day.</p>
+      <button type="button" class="btn btn-outline" id="vwDone">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PASEK AKCJI (TELEFON) ============ -->
+<nav class="mbar" id="mbar" aria-label="Quick actions">
+  <a href="tel:+48510574421" class="mbar-btn">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    Call
+  </a>
+  <button type="button" class="mbar-btn js-open-viewing">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+    Viewing
+  </button>
+  <button type="button" class="mbar-btn primary js-open-booking">Book</button>
+</nav>
+
+<!-- ============ POPUP PROMOCYJNY (z CRM) ============ -->
+<div id="promo" role="dialog" aria-modal="true" aria-label="Current offer">
+  <div class="promo-card">
+    <button class="promo-close" id="promoClose" aria-label="Close">✕</button>
+    <span class="eyebrow">Offer</span>
+    <h3 class="promo-header" id="promoHeader"><!-- header — JS --></h3>
+    <p class="promo-text" id="promoText"><!-- treść — JS --></p>
+    <button type="button" class="btn btn-primary promo-ok" id="promoOk">OK</button>
+  </div>
+</div>
+
+<!-- ============ LIGHTBOX ============ -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo gallery">
+  <button class="lb-close" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev" aria-label="Previous">‹</button>
+  <img class="lb-img" alt="" />
+  <button class="lb-btn lb-next" aria-label="Next">›</button>
+  <div class="lb-counter"><span id="lbI">1</span> / <span id="lbN">1</span></div>
+</div>
+
+</body>
+</html>

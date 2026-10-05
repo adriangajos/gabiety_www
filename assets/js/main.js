@@ -1,8 +1,16 @@
+// Teksty interfejsu w języku strony (i18n.js); treść maili do biura zawsze po polsku.
+const T  = window.P25_T;
+const PL = window.P25_PL;
+const LANG = window.P25_LANG || 'pl';
+
 // ---- apply tweak values to DOM
+// Na wersjach EN/UA podmieniamy tylko dane kontaktowe i kolory — teksty są przetłumaczone w HTML.
+const TWEAK_ANY_LANG = ['address', 'phone', 'email'];
 function applyTweaks(t) {
   document.querySelectorAll('[data-tw]').forEach(el => {
     const k = el.getAttribute('data-tw');
     if (t[k] == null) return;
+    if (LANG !== 'pl' && !TWEAK_ANY_LANG.includes(k)) return;
     if (k === 'email') {
       el.innerHTML = '<a href="mailto:' + t[k] + '?subject=Rezerwacja%20Gabinetu">' + t[k] + '</a>';
     } else if (k === 'phone') {
@@ -55,11 +63,67 @@ function applyMq() {
 }
 mq.addEventListener('change', applyMq); applyMq();
 
+// ---- Pasek akcji na telefonie: pojawia się po przewinięciu za sekcję hero
+(function(){
+  const bar = document.getElementById('mbar');
+  const hero = document.querySelector('.hero');
+  if (!bar || !hero || !('IntersectionObserver' in window)) { if (bar) bar.classList.add('on'); return; }
+  new IntersectionObserver(([entry]) => {
+    bar.classList.toggle('on', !entry.isIntersecting);
+  }, { threshold: 0 }).observe(hero);
+})();
+
+// Blokada przewijania strony pod oknem; iOS Safari wymaga ustawienia na <html> i <body>
+function lockScroll(on) {
+  document.documentElement.style.overflow = on ? 'hidden' : '';
+  document.body.style.overflow = on ? 'hidden' : '';
+}
+
+// ---- Wspólna obsługa okien dialogowych (fokus, Esc, blokada scrolla)
+function makeDialog(root, { onOpen } = {}) {
+  let lastFocus = null;
+  const scroller = root.querySelector('.bk-scroll');
+  function open(...args) {
+    lastFocus = document.activeElement;
+    if (onOpen) onOpen(...args);
+    root.classList.add('on');
+    lockScroll(true);
+    if (scroller) scroller.scrollTop = 0;
+    const first = root.querySelector('input, button.bk-close');
+    if (first) setTimeout(() => first.focus({ preventScroll: true }), 30);
+  }
+  function close() {
+    root.classList.remove('on');
+    lockScroll(false);
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+  root.addEventListener('click', e => { if (e.target === root) close(); });
+  window.addEventListener('keydown', e => { if (e.key === 'Escape' && root.classList.contains('on')) close(); });
+  return { open, close, isOpen: () => root.classList.contains('on') };
+}
+
+// Wysyłka przez Web3Forms (ten sam klucz co formularz rezerwacji)
+async function sendWeb3Forms(payload) {
+  const key = (typeof WEB3FORMS_KEY !== 'undefined') ? WEB3FORMS_KEY : '';
+  if (!key || key === 'WKLEJ-TUTAJ-ACCESS-KEY') {
+    console.warn('Brak skonfigurowanego WEB3FORMS_KEY, wiadomość nie została wysłana.', payload);
+    return true;
+  }
+  const res = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ access_key: key, ...payload })
+  });
+  const data = await res.json();
+  if (!data.success) throw new Error(data.message || 'Błąd wysyłki');
+  return true;
+}
+const LANG_NOTE = LANG === 'pl' ? '' : `\nJęzyk strony: ${LANG === 'en' ? 'angielski (EN)' : 'ukraiński (UKR)'}. Odpowiedz w tym języku lub po angielsku.\n`;
+
 // ---- Live schedule from Firebase + formularz zapytania rezerwacyjnego
 (function(){
   const ROOMS = 7;
-  const DAYS = ['Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota','Niedziela'];
-  // Typy gabinetów wg nagłówka tabeli (G1..G7)
+  // Typy gabinetów wg nagłówka tabeli (G1..G7) — klucze polskie, etykiety z i18n
   const ROOM_TYPES = ['Mały','Duży','Mały','Mały','Duży','Mały','Biurowy'];
   // Cennik brutto (zł) — biurowy rozliczany jak mały
   const PRICES = {
@@ -67,9 +131,13 @@ mq.addEventListener('change', applyMq); applyMq();
     'Duży':    { AM: 350, PM: 399, DAY: 600 },
     'Biurowy': { AM: 250, PM: 299, DAY: 500 }
   };
-  const SLOT_TEXT = { AM: 'Przedpołudnie · 6:00–15:00', PM: 'Popołudnie · 15:00–23:00' };
+  const SLOT_TEXT    = { AM: T.slotAM,  PM: T.slotPM };
+  const SLOT_TEXT_PL = { AM: PL.slotAM, PM: PL.slotPM };
+  // Koniec bloku (godzina w Krakowie) — po nim blok nie liczy się już jako „dziś wolny"
+  const SLOT_END = { AM: 15, PM: 23 };
 
   const tbody = document.getElementById('crmBody');
+  const todayEl = document.getElementById('todayFree');
   let occupied = new Set();
   // Czy dotarł już pierwszy snapshot z Firestore. Dopóki false, nie pokazujemy
   // slotów jako „Wolne" (bo pusty `occupied` = wszystko wolne), tylko placeholder
@@ -81,32 +149,45 @@ mq.addEventListener('change', applyMq); applyMq();
     return (roomIdx + 1) + '-' + dayIdx + '-' + slot.toUpperCase();
   }
 
+  // Dzień tygodnia (0=Pon) i godzina w Krakowie — niezależnie od strefy odwiedzającego
+  function krakowNow() {
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Warsaw', weekday: 'short', hour: '2-digit', hour12: false }).formatToParts(new Date());
+    const wd = parts.find(p => p.type === 'weekday').value;
+    const hour = +parts.find(p => p.type === 'hour').value % 24;
+    return { day: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].indexOf(wd), hour };
+  }
+  function isTodaySlotOpen(now, di, slot) { return di === now.day && now.hour < SLOT_END[slot]; }
+
   // Weekend (Sob–Nd) domyślnie zwinięty; stan przeżywa re-render po snapshocie
   let weekendOpen = false;
 
   function render() {
+    const now = krakowNow();
+    let freeToday = 0;
     let html = '';
-    DAYS.forEach((dayName, di) => {
-      [['AM','Przedpołudnie','6:00 – 15:00'], ['PM','Popołudnie','15:00 – 23:00']].forEach(([slot, label, hours], si) => {
+    T.days.forEach((dayName, di) => {
+      [['AM', T.am, '6:00 – 15:00'], ['PM', T.pm, '15:00 – 23:00']].forEach(([slot, label, hours], si) => {
         html += di >= 5 ? `<tr class="wk-row"${weekendOpen ? '' : ' hidden'}>` : '<tr>';
         if (si === 0) html += `<td class="col-day" rowspan="2">${dayName}</td>`;
         html += `<td class="col-pora"><span class="pora-label">${label}</span><span class="pora-hours">${hours}</span></td>`;
         for (let r = 0; r < ROOMS; r++) {
-          const title = `${dayName} · Gabinet ${r+1} · ${hours.replace(/ /g,'')}`;
+          const title = `${dayName} · ${T.room} ${r+1} · ${hours.replace(/ /g,'')}`;
           if (!loaded) {
-            html += `<td class="col-slot"><span class="pill loading" data-title="${title}" aria-label="Ładowanie grafiku">···</span></td>`;
+            html += `<td class="col-slot"><span class="pill loading" data-title="${title}" aria-label="${T.loading}">···</span></td>`;
             continue;
           }
           const isBusy = occupied.has(buildKey(r, di, slot));
+          const openToday = !isBusy && isTodaySlotOpen(now, di, slot);
+          if (openToday) freeToday++;
           const cls = isBusy ? 'busy' : 'free';
-          const txt = isBusy ? 'Zajęte' : 'Wolne';
-          const data = isBusy ? '' : ` data-r="${r}" data-d="${di}" data-s="${slot}"`;
+          const txt = isBusy ? T.busy : T.free;
+          const data = isBusy ? '' : ` data-r="${r}" data-d="${di}" data-s="${slot}" role="button" tabindex="0"`;
           html += `<td class="col-slot"><span class="pill ${cls}" data-title="${title}"${data}>${txt}</span></td>`;
         }
         html += '</tr>';
       });
     });
-    html += `<tr class="wk-toggle"><td colspan="${ROOMS + 2}"><button type="button" aria-expanded="${weekendOpen}">${weekendOpen ? 'Zwiń weekend' : 'Pokaż weekend (sobota – niedziela)'}<span class="wk-chev" aria-hidden="true">▾</span></button></td></tr>`;
+    html += `<tr class="wk-toggle"><td colspan="${ROOMS + 2}"><button type="button" aria-expanded="${weekendOpen}">${weekendOpen ? T.weekendHide : T.weekendShow}<span class="wk-chev" aria-hidden="true">▾</span></button></td></tr>`;
 
     tbody.innerHTML = html;
 
@@ -116,10 +197,14 @@ mq.addEventListener('change', applyMq); applyMq();
     });
 
     tbody.querySelectorAll('.pill.free').forEach(el => {
-      el.addEventListener('click', () => {
-        openModal(+el.dataset.r, +el.dataset.d, el.dataset.s);
-      });
+      const go = () => booking.open(+el.dataset.r, +el.dataset.d, el.dataset.s);
+      el.addEventListener('click', go);
+      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
     });
+
+    if (todayEl) {
+      todayEl.innerHTML = !loaded ? '' : (freeToday ? T.todayFree(freeToday) : T.todayNone);
+    }
   }
 
   // ===== Formularz zapytania rezerwacyjnego (popup) =====
@@ -133,11 +218,11 @@ mq.addEventListener('change', applyMq); applyMq();
   const bkSubmit = document.getElementById('bkSubmit');
   const selected = new Set(); // klucze "r-d-SLOT"
 
-  function fillBanner() {
+  function fillBanner(target) {
     const t = (typeof TWEAKS !== 'undefined') ? TWEAKS : {};
     const email = t.email || 'gabinety@plaszowska25.pl';
-    document.getElementById('bkBanner').innerHTML =
-      `<span class="bk-banner-t">Masz pytania? Jesteśmy do dyspozycji:</span>
+    target.innerHTML =
+      `<span class="bk-banner-t">${T.bannerTitle}</span>
        <span class="bk-banner-row">
          <a href="tel:${(t.phone||'').replace(/\s/g,'')}">${t.phone||''}</a>
          <a href="mailto:${email}">${email}</a>
@@ -147,21 +232,21 @@ mq.addEventListener('change', applyMq); applyMq();
   function buildCalendar() {
     let html = '<table class="bk-grid"><thead><tr><th class="bk-gc"></th><th class="bk-gc"></th>';
     for (let r = 0; r < ROOMS; r++) {
-      html += `<th>Gabinet ${r+1}<span>${ROOM_TYPES[r]}</span></th>`;
+      html += `<th>${T.room} ${r+1}<span>${T.roomTypes[ROOM_TYPES[r]]}</span></th>`;
     }
     html += '</tr></thead><tbody>';
-    DAYS.forEach((dayName, di) => {
+    T.days.forEach((dayName, di) => {
       ['AM','PM'].forEach((slot, si) => {
         html += '<tr>';
         if (si === 0) html += `<td class="bk-gday" rowspan="2">${dayName}</td>`;
-        html += `<td class="bk-gpora">${slot === 'AM' ? 'Przedp.' : 'Popoł.'}</td>`;
+        html += `<td class="bk-gpora">${slot === 'AM' ? T.amShort : T.pmShort}</td>`;
         for (let r = 0; r < ROOMS; r++) {
           const key = r + '-' + di + '-' + slot;
           if (occupied.has(buildKey(r, di, slot))) {
-            html += '<td><span class="bk-cell busy" title="Zajęte">✕</span></td>';
+            html += `<td><span class="bk-cell busy" title="${T.busy}">✕</span></td>`;
           } else {
             const sel = selected.has(key);
-            html += `<td><button type="button" class="bk-cell free${sel ? ' sel' : ''}" data-key="${key}" aria-pressed="${sel}" title="${dayName} · Gabinet ${r+1} · ${SLOT_TEXT[slot]}"></button></td>`;
+            html += `<td><button type="button" class="bk-cell free${sel ? ' sel' : ''}" data-key="${key}" aria-pressed="${sel}" title="${dayName} · ${T.room} ${r+1} · ${SLOT_TEXT[slot]}"></button></td>`;
           }
         }
         html += '</tr>';
@@ -180,6 +265,7 @@ mq.addEventListener('change', applyMq); applyMq();
     });
   }
 
+  // lines[].label — w języku strony; lines[].labelPl — do maila dla biura
   function computeQuote() {
     const groups = {};
     selected.forEach(k => {
@@ -191,14 +277,16 @@ mq.addEventListener('change', applyMq); applyMq();
     const lines = [];
     let total = 0;
     Object.values(groups).sort((a, b) => a.d - b.d || a.r - b.r).forEach(g => {
-      const p = PRICES[ROOM_TYPES[g.r]];
-      const room = `Gabinet ${g.r+1} (${ROOM_TYPES[g.r]})`;
+      const type = ROOM_TYPES[g.r];
+      const p = PRICES[type];
+      const room   = `${T.room} ${g.r+1} (${T.roomTypes[type]})`;
+      const roomPl = `Gabinet ${g.r+1} (${type})`;
       if (g.am && g.pm) {
-        lines.push({ label: `${DAYS[g.d]} · ${room} · Cały dzień 6:00–23:00`, price: p.DAY });
+        lines.push({ label: `${T.days[g.d]} · ${room} · ${T.fullDay}`, labelPl: `${PL.days[g.d]} · ${roomPl} · ${PL.fullDay}`, price: p.DAY });
         total += p.DAY;
       } else {
         const slot = g.am ? 'AM' : 'PM';
-        lines.push({ label: `${DAYS[g.d]} · ${room} · ${SLOT_TEXT[slot]}`, price: p[slot] });
+        lines.push({ label: `${T.days[g.d]} · ${room} · ${SLOT_TEXT[slot]}`, labelPl: `${PL.days[g.d]} · ${roomPl} · ${SLOT_TEXT_PL[slot]}`, price: p[slot] });
         total += p[slot];
       }
     });
@@ -208,56 +296,46 @@ mq.addEventListener('change', applyMq); applyMq();
   function updateQuote() {
     const { lines, total } = computeQuote();
     if (!lines.length) {
-      bkQuote.innerHTML = '<div class="bk-quote-empty">Zaznacz terminy powyżej, aby zobaczyć wstępną wycenę.</div>';
+      bkQuote.innerHTML = `<div class="bk-quote-empty">${T.quoteEmpty}</div>`;
       return;
     }
-    let html = '<h4>Wstępna wycena</h4><ul class="bk-quote-list">';
+    let html = `<h4>${T.quoteTitle}</h4><ul class="bk-quote-list">`;
     lines.forEach(l => {
-      html += `<li><span>${l.label}</span><span class="bk-price">${l.price} zł</span></li>`;
+      html += `<li><span>${l.label}</span><span class="bk-price">${l.price} ${T.currency}</span></li>`;
     });
-    html += `</ul><div class="bk-quote-total"><span>Razem (za tydzień najmu)</span><span>${total} zł</span></div>`;
-    html += '<p class="bk-quote-note">Ceny brutto, orientacyjne. Ostateczna stawka potwierdzana indywidualnie. Dwa bloki w jednym dniu rozliczamy jak cały dzień.</p>';
+    html += `</ul><div class="bk-quote-total"><span>${T.quoteTotal}</span><span>${total} ${T.currency}</span></div>`;
+    html += `<p class="bk-quote-note">${T.quoteNote}</p>`;
     bkQuote.innerHTML = html;
     if (lines.length) bkError.hidden = true;
   }
 
-  function openModal(preR, preD, preSlot) {
-    selected.clear();
-    if (preSlot) selected.add(preR + '-' + preD + '-' + preSlot);
-    bkForm.hidden = false;
-    bkSuccess.hidden = true;
-    bkError.hidden = true;
-    bkSubmit.disabled = false;
-    bkSubmit.textContent = 'Wyślij zapytanie';
-    fillBanner();
-    buildCalendar();
-    updateQuote();
-    bk.classList.add('on');
-    document.body.style.overflow = 'hidden';
-    if (bkScroll) bkScroll.scrollTop = 0;
-  }
+  const booking = makeDialog(bk, {
+    onOpen(preR, preD, preSlot) {
+      selected.clear();
+      if (preSlot) selected.add(preR + '-' + preD + '-' + preSlot);
+      bkForm.hidden = false;
+      bkSuccess.hidden = true;
+      bkError.hidden = true;
+      bkError.textContent = T.pickSlot;
+      bkSubmit.disabled = false;
+      bkSubmit.textContent = T.send;
+      fillBanner(document.getElementById('bkBanner'));
+      buildCalendar();
+      updateQuote();
+    }
+  });
 
-  function closeModal() {
-    bk.classList.remove('on');
-    document.body.style.overflow = '';
-  }
-
-  // wszystkie przyciski rezerwacji (nagłówek + cennik) otwierają formularz bez wstępnego terminu
+  // wszystkie przyciski rezerwacji (nagłówek, cennik, pasek mobilny) otwierają formularz bez wstępnego terminu
   document.querySelectorAll('.js-open-booking').forEach(btn => {
-    btn.addEventListener('click', e => { e.preventDefault(); openModal(); });
+    btn.addEventListener('click', e => { e.preventDefault(); booking.open(); });
   });
-
-  document.getElementById('bkClose').addEventListener('click', closeModal);
-  document.getElementById('bkDone').addEventListener('click', closeModal);
-  bk.addEventListener('click', e => { if (e.target === bk) closeModal(); });
-  window.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && bk.classList.contains('on')) closeModal();
-  });
+  document.getElementById('bkClose').addEventListener('click', booking.close);
+  document.getElementById('bkDone').addEventListener('click', booking.close);
 
   bkForm.addEventListener('submit', async e => {
     e.preventDefault();
     const { lines, total } = computeQuote();
-    if (!lines.length) { bkError.hidden = false; return; }
+    if (!lines.length) { bkError.textContent = T.pickSlot; bkError.hidden = false; return; }
     if (!bkForm.reportValidity()) return;
 
     const name  = document.getElementById('bkName').value.trim();
@@ -267,48 +345,32 @@ mq.addEventListener('change', applyMq); applyMq();
     const note  = document.getElementById('bkMsg').value.trim();
 
     const message =
-      `Nowe zapytanie rezerwacyjne — Płaszowska 25\n\n` +
+      `Nowe zapytanie rezerwacyjne | Płaszowska 25\n\n` +
       `Imię i nazwisko: ${name}\n` +
       `E-mail: ${email}\n` +
       `Telefon: ${phone}\n` +
       (spec ? `Specjalizacja: ${spec}\n` : '') +
+      LANG_NOTE +
       `\nWybrane terminy:\n` +
-      lines.map(l => `• ${l.label} — ${l.price} zł`).join('\n') +
+      lines.map(l => `• ${l.labelPl}: ${l.price} zł`).join('\n') +
       `\n\nSzacunkowa wycena (za tydzień najmu): ${total} zł\n` +
       (note ? `\nWiadomość:\n${note}\n` : '');
 
     bkSubmit.disabled = true;
-    bkSubmit.textContent = 'Wysyłanie…';
-
-    const key = (typeof WEB3FORMS_KEY !== 'undefined') ? WEB3FORMS_KEY : '';
-    if (!key || key === 'WKLEJ-TUTAJ-ACCESS-KEY') {
-      console.warn('Brak skonfigurowanego WEB3FORMS_KEY — zapytanie nie zostało wysłane.', { name, email, phone, message });
-      showSuccess();
-      return;
-    }
-
+    bkSubmit.textContent = T.sending;
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: key,
-          subject: 'Nowe zapytanie rezerwacyjne — Płaszowska 25',
-          from_name: name,
-          replyto: email,
-          name, email, phone,
-          message
-        })
+      await sendWeb3Forms({
+        subject: 'Nowe zapytanie rezerwacyjne | Płaszowska 25',
+        from_name: name, replyto: email,
+        name, email, phone, message
       });
-      const data = await res.json();
-      if (data.success) { showSuccess(); }
-      else { throw new Error(data.message || 'Błąd wysyłki'); }
+      showSuccess();
     } catch (err) {
       console.warn('Web3Forms error:', err);
       bkError.hidden = false;
-      bkError.textContent = 'Nie udało się wysłać zapytania. Napisz do nas: gabinety@plaszowska25.pl';
+      bkError.textContent = T.sendError;
       bkSubmit.disabled = false;
-      bkSubmit.textContent = 'Wyślij zapytanie';
+      bkSubmit.textContent = T.send;
     }
   });
 
@@ -319,8 +381,86 @@ mq.addEventListener('change', applyMq); applyMq();
     if (window.fbq) fbq('track', 'Lead'); // konwersja: wysłane zapytanie rezerwacyjne
   }
 
+  // ===== Formularz „Umów oglądanie gabinetu" (popup) =====
+  (function(){
+    const vw = document.getElementById('vw');
+    if (!vw) return;
+    const form    = document.getElementById('vwForm');
+    const dateIn  = document.getElementById('vwDate');
+    const timeIn  = document.getElementById('vwTime');
+    const err     = document.getElementById('vwError');
+    const submit  = document.getElementById('vwSubmit');
+    const success = document.getElementById('vwSuccess');
+
+    // opcje pory dnia z i18n
+    timeIn.innerHTML = Object.entries(T.viewTimes).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+
+    const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    function setDateBounds() {
+      const min = new Date(); min.setDate(min.getDate() + 1);
+      const max = new Date(); max.setDate(max.getDate() + 90);
+      dateIn.min = iso(min); dateIn.max = iso(max);
+    }
+
+    const viewing = makeDialog(vw, {
+      onOpen() {
+        setDateBounds();
+        form.hidden = false; success.hidden = true; err.hidden = true;
+        submit.disabled = false; submit.textContent = T.viewSend;
+        fillBanner(document.getElementById('vwBanner'));
+      }
+    });
+    document.querySelectorAll('.js-open-viewing').forEach(btn => {
+      btn.addEventListener('click', e => { e.preventDefault(); sheet.classList.remove('on'); viewing.open(); });
+    });
+    document.getElementById('vwClose').addEventListener('click', viewing.close);
+    document.getElementById('vwDone').addEventListener('click', viewing.close);
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      err.hidden = true;
+      if (!dateIn.value) { err.textContent = T.viewPickDate; err.hidden = false; dateIn.focus(); return; }
+      if (!form.reportValidity()) return;
+
+      const name  = document.getElementById('vwName').value.trim();
+      const email = document.getElementById('vwEmail').value.trim();
+      const phone = document.getElementById('vwPhone').value.trim();
+      const note  = document.getElementById('vwMsg').value.trim();
+      const [y, m, d] = dateIn.value.split('-').map(Number);
+      const datePl = new Date(y, m - 1, d).toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+      const message =
+        `Prośba o oglądanie gabinetu | Płaszowska 25\n\n` +
+        `Imię i nazwisko: ${name}\n` +
+        `E-mail: ${email}\n` +
+        `Telefon: ${phone}\n` +
+        LANG_NOTE +
+        `\nPreferowany termin oglądania: ${datePl}\n` +
+        `Preferowana pora: ${PL.viewTimes[timeIn.value]}\n` +
+        (note ? `\nWiadomość:\n${note}\n` : '') +
+        `\n(Termin wymaga potwierdzenia: odezwij się do klienta.)`;
+
+      submit.disabled = true; submit.textContent = T.sending;
+      try {
+        await sendWeb3Forms({
+          subject: `Oglądanie gabinetu: ${datePl}, ${name}`,
+          from_name: name, replyto: email,
+          name, email, phone, message
+        });
+        form.hidden = true; success.hidden = false;
+        if (window.fbq) fbq('track', 'Schedule'); // konwersja: prośba o oglądanie
+      } catch (ex) {
+        console.warn('Web3Forms error:', ex);
+        err.textContent = T.sendError; err.hidden = false;
+        submit.disabled = false; submit.textContent = T.viewSend;
+      }
+    });
+  })();
+
   // Stan początkowy (ładowanie)
   render();
+  // licznik „dziś wolnych" aktualizuje się z upływem czasu
+  setInterval(() => { if (loaded) render(); }, 5 * 60 * 1000);
 
   // Połączenie z Firebase — czekaj na SDK
   function initFirebase() {
@@ -357,10 +497,13 @@ mq.addEventListener('change', applyMq); applyMq();
     });
 
     // Popup promocyjny — dokument zarządzany w CRM („Aktualna promocja").
-    db.doc('artifacts/gabinety-plaszowska/users/shared/settings/promotion')
-      .get()
-      .then(doc => { if (doc.exists) showPromo(doc.data()); })
-      .catch(err => console.warn('Promo fetch error:', err));
+    // Treść promocji jest po polsku, więc pokazujemy ją tylko na polskiej wersji.
+    if (LANG === 'pl') {
+      db.doc('artifacts/gabinety-plaszowska/users/shared/settings/promotion')
+        .get()
+        .then(doc => { if (doc.exists) showPromo(doc.data()); })
+        .catch(err => console.warn('Promo fetch error:', err));
+    }
   }
 
   function showPromo(p) {
@@ -409,60 +552,9 @@ window.addEventListener('load', () => {
   }).addTo(map);
   const icon = L.divIcon({ className: 'pin-pulse', iconSize: [18,18], iconAnchor: [9,9] });
   L.marker([lat, lon], { icon }).addTo(map)
-    .bindPopup('<b>Płaszowska 25</b>Centrum Terapeutyczne, Kraków')
+    .bindPopup('<b>Płaszowska 25</b>' + T.mapPopup)
     .openPopup();
 });
-
-// ---- Cookie banner
-(function() {
-  const KEY = 'p25_cookie_consent';
-  const banner = document.getElementById('cookie');
-  const saved = localStorage.getItem(KEY);
-  if (!saved) {
-    setTimeout(() => banner.classList.add('on'), 800);
-  } else if (saved === 'accept') {
-    loadGA();
-    loadPixel();
-  }
-  document.getElementById('ckAccept').onclick = () => {
-    localStorage.setItem(KEY, 'accept');
-    banner.classList.remove('on');
-    loadGA();
-    loadPixel();
-  };
-  document.getElementById('ckDecline').onclick = () => {
-    localStorage.setItem(KEY, 'decline');
-    banner.classList.remove('on');
-  };
-  function loadGA() {
-    const GA_ID = 'G-XXXXXXXXXX';
-    if (GA_ID === 'G-XXXXXXXXXX') return;
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', GA_ID, { anonymize_ip: true });
-  }
-  // ---- Meta Pixel (marketing, ładowany dopiero po zgodzie)
-  function loadPixel() {
-    if (/github\.io$/i.test(location.hostname)) return; // nie śledzimy wersji staging
-    if (window.fbq) return;
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '887690594397355');
-    fbq('track', 'PageView');
-  }
-})();
 
 // ---- Lightbox
 (function(){
@@ -482,9 +574,9 @@ window.addEventListener('load', () => {
     lbImg.src = src; lbImg.alt = alt;
     lbI.textContent = idx + 1;
     lb.classList.add('on');
-    document.body.style.overflow = 'hidden';
+    lockScroll(true);
   }
-  function close() { lb.classList.remove('on'); document.body.style.overflow = ''; }
+  function close() { lb.classList.remove('on'); lockScroll(false); }
 
   tiles.forEach((t, i) => t.addEventListener('click', () => show(i)));
   lb.querySelector('.lb-prev').onclick = (e) => { e.stopPropagation(); show(idx - 1); };
