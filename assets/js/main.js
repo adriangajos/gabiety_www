@@ -233,7 +233,7 @@ const LANG_NOTE = LANG === 'pl' ? '' : `\nJęzyk strony: ${LANG === 'en' ? 'angi
       const freeTxt = loaded ? T.freeCount(freeIn(r)) : '';
       const label = `${T.room} ${r + 1}, ${T.roomTypes[ROOM_TYPES[r]]}${freeTxt ? ', ' + freeTxt : ''}`;
       html += `<button type="button" role="tab" class="rm-tab${sel ? ' on' : ''}" aria-selected="${sel}" aria-controls="rmWeek" aria-label="${label}" data-room="${r}">` +
-              `<span class="rm-num" aria-hidden="true">${r + 1}</span><span class="rm-type" aria-hidden="true">${T.roomTypes[ROOM_TYPES[r]]}</span>` +
+              `<span class="rm-num" aria-hidden="true">G${r + 1}</span><span class="rm-type" aria-hidden="true">${T.roomTypes[ROOM_TYPES[r]]}</span>` +
               (freeTxt ? `<span class="rm-free" aria-hidden="true">${freeTxt}</span>` : '') + '</button>';
     }
     html += '</div>';
