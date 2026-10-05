@@ -265,6 +265,12 @@
       "skillPath": "skills/social/SKILL.md",
       "computedHash": "0aeba6a8a0177130d6a699e670c801d04d757b5dcfa24c9b6322e68c930bda63"
     },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "7ac62d931e52dbc7c309ed8ee067101969db2454709339b02daa583e80e98d5f"
+    },
     "video": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",

@@ -81,11 +81,14 @@ mq.addEventListener('change', applyMq); applyMq();
     return (roomIdx + 1) + '-' + dayIdx + '-' + slot.toUpperCase();
   }
 
+  // Weekend (Sob–Nd) domyślnie zwinięty; stan przeżywa re-render po snapshocie
+  let weekendOpen = false;
+
   function render() {
     let html = '';
     DAYS.forEach((dayName, di) => {
       [['AM','Przedpołudnie','6:00 – 15:00'], ['PM','Popołudnie','15:00 – 23:00']].forEach(([slot, label, hours], si) => {
-        html += '<tr>';
+        html += di >= 5 ? `<tr class="wk-row"${weekendOpen ? '' : ' hidden'}>` : '<tr>';
         if (si === 0) html += `<td class="col-day" rowspan="2">${dayName}</td>`;
         html += `<td class="col-pora"><span class="pora-label">${label}</span><span class="pora-hours">${hours}</span></td>`;
         for (let r = 0; r < ROOMS; r++) {
@@ -103,8 +106,14 @@ mq.addEventListener('change', applyMq); applyMq();
         html += '</tr>';
       });
     });
+    html += `<tr class="wk-toggle"><td colspan="${ROOMS + 2}"><button type="button" aria-expanded="${weekendOpen}">${weekendOpen ? 'Zwiń weekend' : 'Pokaż weekend (sobota – niedziela)'}<span class="wk-chev" aria-hidden="true">▾</span></button></td></tr>`;
 
     tbody.innerHTML = html;
+
+    tbody.querySelector('.wk-toggle button').addEventListener('click', () => {
+      weekendOpen = !weekendOpen;
+      render();
+    });
 
     tbody.querySelectorAll('.pill.free').forEach(el => {
       el.addEventListener('click', () => {

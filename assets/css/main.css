@@ -138,11 +138,24 @@ section { padding: 100px 0; }
 }
 .section-head p { color: var(--ink-2); font-size: 18px; margin: 0; text-wrap: pretty; }
 
+/* ---------- Zdjęcia w sekcjach ---------- */
+.media {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+}
+.media picture { display: block; width: 100%; height: 100%; }
+.media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* zdjęcie w O centrum rozciąga się na wysokość kolumny tekstu */
+.about-photo { min-height: 360px; }
+.card-media { aspect-ratio: 16 / 9; margin-bottom: 8px; }
+
 /* ---------- O nas ---------- */
 .about { background: var(--paper-2); }
 .about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-  align-items: start;
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px;
+  align-items: stretch;
 }
 .about-lead {
   font-family: "Instrument Serif", serif;
@@ -151,6 +164,7 @@ section { padding: 100px 0; }
   text-wrap: pretty;
 }
 .about-body p { color: var(--ink-2); margin: 0 0 20px; }
+.about-body .about-lead { color: var(--ink); margin: 0 0 32px; }
 .about-stats {
   display: grid; grid-template-columns: 1fr 1fr 1fr;
   gap: 24px; margin-top: 40px;
@@ -244,6 +258,18 @@ section { padding: 100px 0; }
   display: flex; align-items: center; gap: 16px;
   font-size: 16px;
 }
+/* Dla kogo: zdjęcie po lewej na wysokość kolumny, tekst + lista po prawej */
+.for-who-grid {
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px;
+  align-items: stretch;
+}
+.for-who-photo {
+  min-height: 360px;
+  border-color: color-mix(in oklab, var(--paper) 25%, transparent);
+}
+.for-who-body .section-head { margin-bottom: 36px; }
+.for-who-body .chips { grid-template-columns: 1fr; gap: 10px; }
+.for-who-body .chip { padding: 16px 22px; }
 .chip .serif { color: color-mix(in oklab, var(--paper) 70%, transparent); font-size: 22px; font-style: italic; min-width: 38px; }
 
 /* ---------- Availability ---------- */
@@ -331,6 +357,21 @@ section { padding: 100px 0; }
 .crm-table .pora-label { font-weight: 600; font-size: 13px; }
 .crm-table .pora-hours { display: block; font-size: 11px; color: var(--ink-2); margin-top: 2px; font-weight: 400; }
 .crm-table td.col-slot { padding: 10px 8px; }
+
+/* Zwijany weekend */
+.crm-table .wk-toggle td { padding: 0; background: color-mix(in oklab, var(--paper-2) 60%, var(--paper)); }
+.crm-table .wk-toggle button {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%;
+  padding: 14px 12px;
+  font: inherit; font-size: 13px; font-weight: 600;
+  color: var(--ink-2);
+  background: none; border: 0; cursor: pointer;
+  transition: color .2s, background .2s;
+}
+.crm-table .wk-toggle button:hover { color: var(--accent-deep); background: color-mix(in oklab, var(--accent) 10%, transparent); }
+.crm-table .wk-chev { display: inline-block; transition: transform .2s; }
+.crm-table .wk-toggle button[aria-expanded="true"] .wk-chev { transform: rotate(180deg); }
 
 /* Pill cells */
 .pill {
@@ -437,6 +478,7 @@ section { padding: 100px 0; }
 @media (max-width: 1100px) {
   .crm-table { overflow-x: auto; }
   .crm-table table { min-width: 880px; }
+  .crm-table .wk-toggle button { justify-content: flex-start; padding-left: 20px; }
 }
 @media (max-width: 900px) {
   .avail-wrap { padding: 22px; }
@@ -703,6 +745,9 @@ footer ul li { padding: 6px 0; }
   .hero-visual { aspect-ratio: 4/3; order: -1; }
   section { padding: 70px 0; }
   .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-photo { min-height: 0; aspect-ratio: 4 / 3; }
+  .for-who-grid { grid-template-columns: 1fr; gap: 40px; }
+  .for-who-photo { min-height: 0; aspect-ratio: 4 / 3; }
   .offer-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
   .price { border-right: 0; border-bottom: 1px solid var(--line); }
