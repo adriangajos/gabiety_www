@@ -10,7 +10,9 @@ Plik roboczy (nie trafia na stronę). Dane muszą być wszędzie identyczne jak 
 - Telefon dodatkowy: +48 663 433 444
 - E-mail: gabinety@plaszowska25.pl
 - Strona: https://plaszowska25.pl/
-- Godziny biura: poniedziałek–piątek 8:00–15:00
+- Godziny otwarcia (wizytówka Google, dane strony): codziennie 6:00–23:00
+- Godziny biura/kontaktu (tylko na stronie): poniedziałek–piątek 8:00–15:00
+- Telefon główny w wizytówce: +48 510 574 421 (663 433 444 jako dodatkowy)
 - Instagram: @plaszowska25
 
 ## Wizytówka Google (Google Business Profile)
