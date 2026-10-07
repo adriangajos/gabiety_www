@@ -106,26 +106,29 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Czcionki z własnego serwera (bez Google Fonts); najważniejsze pobierane od razu -->
+<link rel="preload" href="assets/fonts/instrument-serif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-italic-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261007d">
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-<link rel="stylesheet" href="assets/css/main.css?v=20261007b">
+<link rel="stylesheet" href="assets/css/main.css?v=20261007d">
 
-<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="assets/js/i18n.js?v=20261007d"></script>
+<script defer src="assets/js/consent.js?v=20261007d"></script>
 <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script defer src="assets/js/i18n.js?v=20261007b"></script>
-<script defer src="assets/js/config.js?v=20261007b"></script>
-<script defer src="assets/js/main.js?v=20261007b"></script>
-<script defer src="assets/js/motion.js?v=20261007b"></script>
+<script defer src="assets/js/config.js?v=20261007d"></script>
+<script defer src="assets/js/main.js?v=20261007d"></script>
+<script defer src="assets/js/motion.js?v=20261007d"></script>
 <link rel="alternate" hreflang="pl" href="https://plaszowska25.pl/" />
 <link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/" />
 <link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/" />
 <link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/" />
-<link rel="stylesheet" href="assets/css/shared.css?v=20261007b">
-<script defer src="assets/js/consent.js?v=20261007b"></script>
+<link rel="stylesheet" href="assets/css/shared.css?v=20261007d">
 </head>
 <body>
 
@@ -134,7 +137,7 @@
   <div class="wrap nav-inner">
     <a href="index.html" class="brand" aria-label="Płaszowska 25, strona główna">
       <span class="brand-mark" aria-hidden="true">
-        <img src="assets/logo.png" alt="Centrum Terapeutyczne Płaszowska 25" />
+        <img src="assets/logo-nav.png" width="170" height="44" alt="Centrum Terapeutyczne Płaszowska 25" />
       </span>
     </a>
 
@@ -193,7 +196,7 @@
         </div>
       </div>
 
-      <div class="hero-visual"><picture><source type="image/webp" srcset="assets/photos/p01.webp" /><img src="assets/photos/p01.jpg" width="1920" height="1277" alt="Gabinet terapeutyczny z fotelem i biurkiem przy oknie na ogród, Centrum Płaszowska 25, Kraków" loading="eager" /></picture></div>
+      <div class="hero-visual"><picture><source type="image/webp" srcset="assets/photos/p01-640.webp 640w, assets/photos/p01-1024.webp 1024w, assets/photos/p01.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p01.jpg" width="1920" height="1277" alt="Gabinet terapeutyczny z fotelem i biurkiem przy oknie na ogród, Centrum Płaszowska 25, Kraków" loading="eager" fetchpriority="high" /></picture></div>
     </div>
   </div>
 </section>
@@ -230,7 +233,7 @@
           <div class="stat"><div class="n">10 min</div><div class="l">do centrum</div></div>
         </div>
       </div>
-      <div class="media about-photo"><picture><source type="image/webp" srcset="assets/photos/p02.webp" /><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów, Centrum Płaszowska 25, Kraków" /></picture></div>
+      <div class="media about-photo"><picture><source type="image/webp" srcset="assets/photos/p02-640.webp 640w, assets/photos/p02-1024.webp 1024w, assets/photos/p02.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów, Centrum Płaszowska 25, Kraków" /></picture></div>
     </div>
   </div>
 </section>
@@ -247,7 +250,7 @@ cały gabinet na stałe.</p>
 
     <div class="offer-grid">
       <div class="card">
-        <div class="media card-media"><picture><source type="image/webp" srcset="assets/photos/p05.webp" /><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami do wynajęcia w wybranym dniu tygodnia, Płaszowska 25, Kraków" /></picture></div>
+        <div class="media card-media"><picture><source type="image/webp" srcset="assets/photos/p05-640.webp 640w, assets/photos/p05-1024.webp 1024w, assets/photos/p05.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami do wynajęcia w wybranym dniu tygodnia, Płaszowska 25, Kraków" /></picture></div>
         <span class="card-num">01 / okno tygodniowe</span>
         <h3>Wynajem określonego okna w konkretnym dniu tygodnia</h3>
         <p>Wybierz powtarzalny blok półdniowy lub całodniowy w stałym dniu tygodnia. Ten sam gabinet, ten sam termin co tydzień.</p>
@@ -259,7 +262,7 @@ cały gabinet na stałe.</p>
       </div>
 
       <div class="card">
-        <div class="media card-media"><picture><source type="image/webp" srcset="assets/photos/p08.webp" /><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą i fotelem uszakiem do stałego najmu, Płaszowska 25, Kraków" /></picture></div>
+        <div class="media card-media"><picture><source type="image/webp" srcset="assets/photos/p08-640.webp 640w, assets/photos/p08-1024.webp 1024w, assets/photos/p08.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą i fotelem uszakiem do stałego najmu, Płaszowska 25, Kraków" /></picture></div>
         <span class="card-num">02 / stały najem</span>
         <h3>Stały wynajem całego gabinetu</h3>
         <p>Twój gabinet na wyłączność, dostępny 7 dni w tygodniu, urządzony pod Twoją praktykę.</p>
@@ -337,19 +340,19 @@ cały gabinet na stałe.</p>
     </div>
 
     <div class="gallery">
-      <div class="tile t1" data-i="0"><picture><source type="image/webp" srcset="assets/photos/p02.webp" /><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów, Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t2" data-i="1"><picture><source type="image/webp" srcset="assets/photos/p01.webp" /><img src="assets/photos/p01.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z szarym fotelem uszakiem i biurkiem przy oknie na ogród, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t3" data-i="2"><picture><source type="image/webp" srcset="assets/photos/p03.webp" /><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą, żółtym fotelem i stołem, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t4" data-i="3"><picture><source type="image/webp" srcset="assets/photos/p04.webp" /><img src="assets/photos/p04.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z żółtym fotelem uszakiem i sofą, wyjście na ogród, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t5" data-i="4"><picture><source type="image/webp" srcset="assets/photos/p05.webp" /><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami i różową komodą przy oknie, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t6" data-i="5"><picture><source type="image/webp" srcset="assets/photos/p06.webp" /><img src="assets/photos/p06.jpg" width="1920" height="1277" loading="lazy" alt="Korytarz z garderobą i wieszakami przy gabinetach, Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t7" data-i="6"><picture><source type="image/webp" srcset="assets/photos/p07.webp" /><img src="assets/photos/p07.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z sofą i fotelem w pepitkę, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t8" data-i="7"><picture><source type="image/webp" srcset="assets/photos/p08.webp" /><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą, fotelem uszakiem i różową szafą, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t9" data-i="8"><picture><source type="image/webp" srcset="assets/photos/p09.webp" /><img src="assets/photos/p09.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z beżowym fotelem, biurkiem i miejscem do pracy, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t10" data-i="9"><picture><source type="image/webp" srcset="assets/photos/p10.webp" /><img src="assets/photos/p10.jpg" width="1920" height="1277" loading="lazy" alt="Przejście między gabinetami z sofą i widokiem na poczekalnię, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t11" data-i="10"><picture><source type="image/webp" srcset="assets/photos/p13.webp" /><img src="assets/photos/p13.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z biurkiem i sofą w pepitkę, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t12" data-i="11"><picture><source type="image/webp" srcset="assets/photos/p15.webp" /><img src="assets/photos/p15.jpg" width="1920" height="1277" loading="lazy" alt="Przestronna łazienka dostępna dla osób z niepełnosprawnością, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
-      <div class="tile t13" data-i="12"><picture><source type="image/webp" srcset="assets/photos/p18.webp" /><img src="assets/photos/p18.jpg" width="1920" height="1277" loading="lazy" alt="Słoneczny gabinet z żółtym fotelem i biurkiem, dwa okna na ogród, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t1" data-i="0"><picture><source type="image/webp" srcset="assets/photos/p02-640.webp 640w, assets/photos/p02-1024.webp 1024w, assets/photos/p02.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p02.jpg" width="1920" height="1277" loading="lazy" alt="Poczekalnia z różową recepcją i fotelami dla pacjentów, Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t2" data-i="1"><picture><source type="image/webp" srcset="assets/photos/p01-640.webp 640w, assets/photos/p01-1024.webp 1024w, assets/photos/p01.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p01.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z szarym fotelem uszakiem i biurkiem przy oknie na ogród, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t3" data-i="2"><picture><source type="image/webp" srcset="assets/photos/p03-640.webp 640w, assets/photos/p03-1024.webp 1024w, assets/photos/p03.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą, żółtym fotelem i stołem, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t4" data-i="3"><picture><source type="image/webp" srcset="assets/photos/p04-640.webp 640w, assets/photos/p04-1024.webp 1024w, assets/photos/p04.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p04.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z żółtym fotelem uszakiem i sofą, wyjście na ogród, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t5" data-i="4"><picture><source type="image/webp" srcset="assets/photos/p05-640.webp 640w, assets/photos/p05-1024.webp 1024w, assets/photos/p05.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p05.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z dwoma beżowymi fotelami i różową komodą przy oknie, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t6" data-i="5"><picture><source type="image/webp" srcset="assets/photos/p06-640.webp 640w, assets/photos/p06-1024.webp 1024w, assets/photos/p06.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p06.jpg" width="1920" height="1277" loading="lazy" alt="Korytarz z garderobą i wieszakami przy gabinetach, Centrum Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t7" data-i="6"><picture><source type="image/webp" srcset="assets/photos/p07-640.webp 640w, assets/photos/p07-1024.webp 1024w, assets/photos/p07.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p07.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z sofą i fotelem w pepitkę, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t8" data-i="7"><picture><source type="image/webp" srcset="assets/photos/p08-640.webp 640w, assets/photos/p08-1024.webp 1024w, assets/photos/p08.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p08.jpg" width="1920" height="1277" loading="lazy" alt="Przytulny gabinet z sofą, fotelem uszakiem i różową szafą, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t9" data-i="8"><picture><source type="image/webp" srcset="assets/photos/p09-640.webp 640w, assets/photos/p09-1024.webp 1024w, assets/photos/p09.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p09.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet z beżowym fotelem, biurkiem i miejscem do pracy, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t10" data-i="9"><picture><source type="image/webp" srcset="assets/photos/p10-640.webp 640w, assets/photos/p10-1024.webp 1024w, assets/photos/p10.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p10.jpg" width="1920" height="1277" loading="lazy" alt="Przejście między gabinetami z sofą i widokiem na poczekalnię, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t11" data-i="10"><picture><source type="image/webp" srcset="assets/photos/p13-640.webp 640w, assets/photos/p13-1024.webp 1024w, assets/photos/p13.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p13.jpg" width="1920" height="1277" loading="lazy" alt="Gabinet terapeutyczny z biurkiem i sofą w pepitkę, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t12" data-i="11"><picture><source type="image/webp" srcset="assets/photos/p15-640.webp 640w, assets/photos/p15-1024.webp 1024w, assets/photos/p15.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p15.jpg" width="1920" height="1277" loading="lazy" alt="Przestronna łazienka dostępna dla osób z niepełnosprawnością, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
+      <div class="tile t13" data-i="12"><picture><source type="image/webp" srcset="assets/photos/p18-640.webp 640w, assets/photos/p18-1024.webp 1024w, assets/photos/p18.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p18.jpg" width="1920" height="1277" loading="lazy" alt="Słoneczny gabinet z żółtym fotelem i biurkiem, dwa okna na ogród, Płaszowska 25, Kraków" /></picture><span class="cap">Gabinety Płaszowska</span></div>
     </div>
 
     <p class="gallery-cta">Zdjęcia to nie wszystko. Przyjdź i&nbsp;poczuj atmosferę na miejscu.
@@ -361,7 +364,7 @@ cały gabinet na stałe.</p>
 <section class="for-who">
   <div class="wrap">
     <div class="for-who-grid">
-      <div class="media for-who-photo"><picture><source type="image/webp" srcset="assets/photos/p03.webp" /><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą i żółtym fotelem dla terapeutów, Płaszowska 25, Kraków" /></picture></div>
+      <div class="media for-who-photo"><picture><source type="image/webp" srcset="assets/photos/p03-640.webp 640w, assets/photos/p03-1024.webp 1024w, assets/photos/p03.webp 1920w" sizes="(max-width: 960px) 92vw, 46vw" /><img src="assets/photos/p03.jpg" width="1920" height="1277" loading="lazy" alt="Jasny gabinet z szarą sofą i żółtym fotelem dla terapeutów, Płaszowska 25, Kraków" /></picture></div>
       <div class="for-who-body">
         <div class="section-head">
           <span class="eyebrow">Dla kogo</span>

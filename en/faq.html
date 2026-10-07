@@ -77,9 +77,14 @@
 <meta name="theme-color" content="#DE7D7D" />
 <meta name="description" content="Answers to the most common questions about renting therapy rooms at Płaszowska 25 in Kraków: prices, rental options, furnishings, location and booking." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Czcionki z własnego serwera (bez Google Fonts); najważniejsze pobierane od razu -->
+<link rel="preload" href="../assets/fonts/instrument-serif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/instrument-serif-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/instrument-serif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/instrument-serif-italic-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/fonts.css?v=20261007d">
 
 
 <style>
@@ -227,9 +232,9 @@
 <link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/faq.html" />
 <link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/faq.html" />
 <link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/faq.html" />
-<link rel="stylesheet" href="../assets/css/shared.css?v=20261007b">
-<script defer src="../assets/js/i18n.js?v=20261007b"></script>
-<script defer src="../assets/js/consent.js?v=20261007b"></script>
+<link rel="stylesheet" href="../assets/css/shared.css?v=20261007d">
+<script defer src="../assets/js/i18n.js?v=20261007d"></script>
+<script defer src="../assets/js/consent.js?v=20261007d"></script>
 </head>
 <body>
 
@@ -237,7 +242,7 @@
 <header class="nav">
   <div class="wrap nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-mark"><img src="../assets/logo.png" alt="Płaszowska 25 Therapy Centre" /></span>
+      <span class="brand-mark"><img src="../assets/logo-nav.png" width="170" height="44" alt="Płaszowska 25 Therapy Centre" /></span>
     </a>
     <div class="nav-main">
       <nav class="nav-links">

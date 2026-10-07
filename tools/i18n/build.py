@@ -98,6 +98,8 @@ def localize(html, fname, lang, mod):
     # 3) atrybuty techniczne
     html = html.replace('<html lang="pl">', f'<html lang="{L["code"]}">', 1)
     html = re.sub(r'(href|src|srcset)="(assets/|favicon\.ico|site\.webmanifest)', r'\1="../\2', html)
+    # srcset z kilkoma wariantami: kolejne ścieżki po przecinku też poprawiamy
+    html = re.sub(r'srcset="[^"]*"', lambda m: re.sub(r', assets/', ', ../assets/', m.group(0)), html)
     html = html.replace(f'<link rel="canonical" href="{SITE}', f'<link rel="canonical" href="{SITE}{folder}/')
     html = html.replace(f'<meta property="og:url" content="{SITE}', f'<meta property="og:url" content="{SITE}{folder}/')
     html = html.replace('<meta property="og:locale" content="pl_PL" />',

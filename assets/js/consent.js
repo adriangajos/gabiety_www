@@ -170,7 +170,25 @@
 
   const saved = read();
   if (saved) apply(saved);
-  else setTimeout(showBanner, 800);
+  else showBanner();
+
+  // ---- konwersje: jedno wywołanie wysyła zdarzenie do GA4 i Meta. Każde narzędzie
+  // dostaje je tylko wtedy, gdy jest załadowane, czyli po odpowiedniej zgodzie.
+  window.P25_track = function(gaEvent, metaEvent, params) {
+    const p = Object.assign({ page_language: document.documentElement.lang }, params || {});
+    if (gaEvent && window.gtag) gtag('event', gaEvent, p);
+    if (metaEvent && window.fbq) fbq('track', metaEvent);
+  };
+  // Kliknięcia w telefon i e-mail centrum (na każdej stronie)
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+    if (!a) return;
+    const isTel = a.href.startsWith('tel:');
+    window.P25_track(isTel ? 'click_phone' : 'click_email', 'Contact', {
+      link_url: a.href.split('?')[0],
+      link_location: a.closest('footer') ? 'footer' : a.closest('.mbar') ? 'mobile_bar' : 'page'
+    });
+  });
 
   window.P25_openCookieSettings = openPanel;
 })();

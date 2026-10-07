@@ -467,14 +467,19 @@ section { padding: 100px 0; }
 .live-dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: #44c47d;
-  box-shadow: 0 0 0 0 rgba(68,196,125,0.6);
-  animation: pulse 1.8s ease-out infinite;
   display: inline-block; margin-right: 8px; vertical-align: middle;
+  position: relative;
 }
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(68,196,125,0.5); }
-  70% { box-shadow: 0 0 0 10px rgba(68,196,125,0); }
-  100% { box-shadow: 0 0 0 0 rgba(68,196,125,0); }
+/* pulsowanie przez transform/opacity (GPU), nie box-shadow: bez przerysowań co klatkę */
+.live-dot::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(68,196,125,0.5);
+  animation: ringPulse 1.8s ease-out infinite;
+}
+@keyframes ringPulse {
+  0%   { transform: scale(1);   opacity: 1; }
+  70%  { transform: scale(3.5); opacity: 0; }
+  100% { transform: scale(3.5); opacity: 0; }
 }
 
 @media (max-width: 1100px) {
@@ -615,13 +620,12 @@ section { padding: 100px 0; }
   width: 18px; height: 18px;
   border-radius: 50%;
   border: 3px solid var(--paper);
-  box-shadow: 0 0 0 0 rgba(232,154,148,0.7);
-  animation: pin-pulse 1.8s ease-out infinite;
 }
-@keyframes pin-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(232,154,148,0.7); }
-  70% { box-shadow: 0 0 0 16px rgba(232,154,148,0); }
-  100% { box-shadow: 0 0 0 0 rgba(232,154,148,0); }
+.pin-pulse::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 50%;
+  background: rgba(232,154,148,0.7);
+  animation: ringPulse 1.8s ease-out infinite;
+  pointer-events: none;
 }
 
 /* ---------- Footer ---------- */
@@ -1034,9 +1038,14 @@ footer :focus-visible { outline-color: var(--accent-soft); }
   .hero-visual img { animation: settle 1.8s var(--ease-out) .1s both; }
 
   /* Pulsująca kropka przy tickerze */
-  .hero-ticker .dot { animation: dotPulse 2.4s ease-in-out infinite; }
-  .hero-ticker span:nth-child(2) .dot { animation-delay: .8s; }
-  .hero-ticker span:nth-child(3) .dot { animation-delay: 1.6s; }
+  .hero-ticker .dot { position: relative; }
+  .hero-ticker .dot::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    background: color-mix(in oklab, var(--accent) 55%, transparent);
+    animation: dotPulse 2.4s ease-in-out infinite;
+  }
+  .hero-ticker span:nth-child(2) .dot::after { animation-delay: .8s; }
+  .hero-ticker span:nth-child(3) .dot::after { animation-delay: 1.6s; }
 
   /* Reveal przy scrollu (klasa js-motion dodawana przez motion.js) */
   .js-motion [data-reveal] {
@@ -1056,14 +1065,15 @@ footer :focus-visible { outline-color: var(--accent-soft); }
   to   { opacity: 1; transform: none; filter: none; }
 }
 @keyframes lineGrow { from { width: 0; } to { width: 26px; } }
+/* bez startu od opacity: 0, bo wtedy Google liczy LCP dopiero po animacji */
 @keyframes photoIn {
-  from { opacity: 0; clip-path: inset(10% 10% 10% 10% round 6px); }
-  to   { opacity: 1; clip-path: inset(0 0 0 0 round 6px); }
+  from { clip-path: inset(10% 10% 10% 10% round 6px); }
+  to   { clip-path: inset(0 0 0 0 round 6px); }
 }
 @keyframes settle { from { transform: scale(1.12); } to { transform: scale(1); } }
 @keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 55%, transparent); }
-  50%      { box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 0%, transparent); }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(3); opacity: 0; }
 }
 
 /* ---------- Terminarz: dziś + licznik wolnych bloków ---------- */

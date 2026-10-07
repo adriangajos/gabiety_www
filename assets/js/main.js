@@ -442,7 +442,7 @@ const LANG_NOTE = LANG === 'pl' ? '' : `\nJęzyk strony: ${LANG === 'en' ? 'angi
     bkForm.hidden = true;
     bkSuccess.hidden = false;
     if (bkScroll) bkScroll.scrollTop = 0;
-    if (window.fbq) fbq('track', 'Lead'); // konwersja: wysłane zapytanie rezerwacyjne
+    if (window.P25_track) P25_track('generate_lead', 'Lead', { form_name: 'rezerwacja' }); // konwersja: wysłane zapytanie rezerwacyjne
   }
 
   // ===== Formularz „Umów oglądanie gabinetu" (popup) =====
@@ -512,7 +512,7 @@ const LANG_NOTE = LANG === 'pl' ? '' : `\nJęzyk strony: ${LANG === 'en' ? 'angi
           name, email, phone, message
         });
         form.hidden = true; success.hidden = false;
-        if (window.fbq) fbq('track', 'Schedule'); // konwersja: prośba o oglądanie
+        if (window.P25_track) P25_track('schedule_viewing', 'Schedule', { form_name: 'ogladanie' }); // konwersja: prośba o oglądanie
       } catch (ex) {
         console.warn('Web3Forms error:', ex);
         err.textContent = T.sendError; err.hidden = false;
@@ -603,11 +603,40 @@ const LANG_NOTE = LANG === 'pl' ? '' : `\nJęzyk strony: ${LANG === 'en' ? 'angi
   initFirebase();
 })();
 
-// ---- OSM map (Leaflet)
-window.addEventListener('load', () => {
-  if (typeof L === 'undefined') return;
+// ---- OSM map (Leaflet): biblioteka ładowana dopiero, gdy mapa zbliża się do ekranu,
+// żeby nie blokowała pierwszego wyświetlenia strony (szczególnie na telefonie)
+(function(){
   const el = document.getElementById('osm-map');
   if (!el) return;
+  let started = false;
+  function loadLeaflet() {
+    if (started) return;
+    started = true;
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    css.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+    css.crossOrigin = '';
+    document.head.appendChild(css);
+    const js = document.createElement('script');
+    js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    js.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+    js.crossOrigin = '';
+    js.onload = () => initMap(el);
+    document.head.appendChild(js);
+  }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) { io.disconnect(); loadLeaflet(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(el);
+  } else {
+    window.addEventListener('load', loadLeaflet);
+  }
+})();
+
+function initMap(el) {
+  if (typeof L === 'undefined') return;
   const lat = 50.0395, lon = 19.9670;
   const map = L.map(el, { zoomControl: true, scrollWheelZoom: false }).setView([lat, lon], 16);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -615,10 +644,12 @@ window.addEventListener('load', () => {
     maxZoom: 19
   }).addTo(map);
   const icon = L.divIcon({ className: 'pin-pulse', iconSize: [18,18], iconAnchor: [9,9] });
-  L.marker([lat, lon], { icon }).addTo(map)
+  const marker = L.marker([lat, lon], { icon }).addTo(map)
     .bindPopup('<b>Płaszowska 25</b>' + T.mapPopup)
     .openPopup();
-});
+  const pin = marker.getElement();
+  if (pin) pin.setAttribute('aria-label', 'Płaszowska 25, Kraków');
+}
 
 // ---- Lightbox
 (function(){
