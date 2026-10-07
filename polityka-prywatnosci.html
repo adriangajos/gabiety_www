@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Polityka prywatności | Centrum Płaszowska 25, Kraków</title>
 
-<!-- Indeksacja: noindex na wersji staging (github.io), produkcja indeksowana -->
+<!-- Indeksacja: noindex wszędzie poza domeną produkcyjną (staging github.io, adres testowy OVH, localhost) -->
 <script>
-  if (/github\.io$/i.test(location.hostname)) {
+  if (location.hostname !== 'plaszowska25.pl') {
     var m = document.createElement('meta');
     m.name = 'robots';
     m.content = 'noindex, nofollow';
@@ -202,10 +202,10 @@
 <link rel="alternate" hreflang="en" href="https://plaszowska25.pl/en/polityka-prywatnosci.html" />
 <link rel="alternate" hreflang="uk" href="https://plaszowska25.pl/ua/polityka-prywatnosci.html" />
 <link rel="alternate" hreflang="x-default" href="https://plaszowska25.pl/polityka-prywatnosci.html" />
-<link rel="stylesheet" href="assets/css/shared.css?v=20261005h">
-<script defer src="assets/js/i18n.js?v=20261005h"></script>
-<script defer src="assets/js/consent.js?v=20261005h"></script>
-<script defer src="assets/js/nav.js?v=20261005h"></script>
+<link rel="stylesheet" href="assets/css/shared.css?v=20261007b">
+<script defer src="assets/js/i18n.js?v=20261007b"></script>
+<script defer src="assets/js/consent.js?v=20261007b"></script>
+<script defer src="assets/js/nav.js?v=20261007b"></script>
 </head>
 <body>
 

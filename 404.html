@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nie znaleziono strony | Płaszowska 25</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
+<meta name="theme-color" content="#DE7D7D" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f5ece6;
+    --paper-2: #ecdfd6;
+    --ink: #1f2a22;
+    --ink-2: #566159;
+    --line: #e3cdc3;
+    --accent: #e89a94;
+    --accent-deep: #d97a72;
+    --accent-soft: #f1bdb8;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", -apple-system, system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+  .serif { font-family: "Instrument Serif", "Cormorant Garamond", "Times New Roman", serif; font-weight: 400; letter-spacing: -0.01em; }
+  .wrap { width: min(1100px, 92vw); margin: 0 auto; }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 40;
+    backdrop-filter: saturate(1.2) blur(10px);
+    background: color-mix(in oklab, var(--paper) 85%, transparent);
+    border-bottom: 1px solid color-mix(in oklab, var(--line) 50%, transparent);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark img { height: 44px; width: auto; max-width: none; display: block; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 14px; color: var(--ink-2); transition: color .2s; }
+  .nav-links a:hover, .nav-links a.is-active { color: var(--ink); }
+  .nav-links a.is-active { color: var(--accent-deep); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 500;
+    transition: transform .2s, background .2s, color .2s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: var(--paper); }
+  .btn-primary:hover { background: var(--accent-deep); }
+  .btn-ghost { color: var(--ink); border: 1px solid var(--line); background: transparent; }
+  .nav-burger { display: none; }
+
+  /* PAGE HEAD */
+  .page-head {
+    padding: 80px 0 40px;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .eyebrow::before, .eyebrow::after {
+    content: ""; width: 26px; height: 1px; background: var(--ink-2);
+  }
+  .page-head h1 {
+    font-family: "Instrument Serif", "Cormorant Garamond", serif; font-weight: 400;
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 1.02; letter-spacing: -0.02em;
+    margin: 18px 0 18px;
+  }
+  .page-head h1 em { font-style: italic; color: var(--accent); }
+  .page-head p {
+    max-width: 60ch; margin: 0 auto;
+    color: var(--ink-2); font-size: 18px;
+    text-wrap: pretty;
+  }
+
+  /* FAQ */
+  .faq-wrap { padding: 10px 0 90px; }
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq-item { border-top: 1px solid var(--line); }
+  .faq-item:last-child { border-bottom: 1px solid var(--line); }
+  .faq-item summary {
+    list-style: none; cursor: pointer; position: relative;
+    padding: 24px 46px 24px 0;
+    font-family: "Instrument Serif", "Cormorant Garamond", serif; font-size: 23px; line-height: 1.3; color: var(--ink);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+"; position: absolute; right: 6px; top: 24px;
+    font-size: 26px; line-height: 1; color: var(--accent-deep);
+  }
+  .faq-item[open] summary::after { content: "−"; }
+  .faq-item summary:hover { color: var(--accent-deep); }
+  .faq-a { padding: 0 0 24px; color: var(--ink-2); font-size: 16px; line-height: 1.65; }
+  .faq-a p { margin: 0; }
+  .faq-cta { text-align: center; margin: 44px auto 0; max-width: 760px; color: var(--ink-2); }
+  .faq-cta a { color: var(--accent-deep); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+  .faq-cta a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: var(--paper);
+    padding: 50px 0 30px;
+    margin-top: 40px;
+  }
+  footer .foot {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px;
+    font-size: 13px; color: color-mix(in oklab, var(--paper) 75%, transparent);
+  }
+  footer .foot a { color: color-mix(in oklab, var(--paper) 75%, transparent); }
+  footer .foot a:hover { color: var(--paper); }
+
+
+  /* MOBILE */
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+    .nav-burger { display: inline-flex; }
+    .page-head { padding: 50px 0 24px; }
+    .faq-item summary { font-size: 20px; padding-right: 40px; }
+  }
+
+  .mobile-sheet {
+    position: fixed; inset: 0; background: var(--paper);
+    z-index: 50; display: none;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 22px; padding: 40px;
+  }
+  .mobile-sheet.on { display: flex; }
+  .mobile-sheet a { font-family: "Instrument Serif", "Cormorant Garamond", serif; font-size: 32px; color: var(--ink); }
+  .mobile-sheet .close {
+    position: absolute; top: 22px; right: 22px;
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+  }
+</style>
+<style>
+  .nf-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .nf-other { margin-top: 40px; color: var(--ink-2); font-size: 15px; }
+  .nf-other a { text-decoration: underline; text-underline-offset: 3px; }
+  .nf-gap { min-height: 30vh; }
+</style>
+<link rel="stylesheet" href="/assets/css/shared.css?v=20261007b">
+<script defer src="/assets/js/i18n.js?v=20261007b"></script>
+<script defer src="/assets/js/consent.js?v=20261007b"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="/index.html" class="brand">
+      <span class="brand-mark"><img src="/assets/logo.png" alt="Centrum Terapeutyczne Płaszowska 25" /></span>
+    </a>
+    <div class="nav-main">
+      <nav class="nav-links">
+        <a href="/index.html#o-nas">O centrum</a>
+        <a href="/index.html#oferta">Oferta</a>
+        <a href="/index.html#galeria">Gabinety</a>
+        <a href="/index.html#cennik">Cennik</a>
+        <a href="/index.html#dostepnosc">Dostępność</a>
+        <a href="/nasi-terapeuci.html">Nasi terapeuci</a>
+        <a href="/index.html#kontakt">Kontakt</a>
+      </nav>
+      <a href="/index.html#dostepnosc" class="btn btn-primary">Zarezerwuj gabinet</a>
+    </div>
+
+    <div class="nav-end">
+      <button class="btn btn-ghost nav-burger" id="burger" aria-label="Menu">≡</button>
+      <nav class="lang-switch" aria-label="Język / Language / Мова"><a href="/" hreflang="pl" lang="pl" aria-current="true">PL</a><a href="/en/" hreflang="en" lang="en">EN</a><a href="/ua/" hreflang="uk" lang="uk">UKR</a></nav>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-sheet" id="sheet">
+  <button class="close" id="closeSheet" aria-label="Zamknij">✕</button>
+  <a href="/index.html#o-nas">O centrum</a>
+  <a href="/index.html#oferta">Oferta</a>
+  <a href="/index.html#galeria">Gabinety</a>
+  <a href="/index.html#cennik">Cennik</a>
+  <a href="/index.html#dostepnosc">Dostępność</a>
+  <a href="/nasi-terapeuci.html">Nasi terapeuci</a>
+  <a href="/index.html#kontakt">Kontakt</a>
+</div>
+
+<!-- PAGE HEAD -->
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Błąd 404</span>
+    <h1>Nie ma takiej <em>strony</em></h1>
+    <p>Adres mógł się zmienić albo zawierać literówkę. Zacznij od strony głównej albo sprawdź dostępność gabinetów.</p>
+    <div class="nf-actions">
+      <a href="/" class="btn btn-primary">Strona główna</a>
+      <a href="/#dostepnosc" class="btn btn-ghost">Dostępność gabinetów</a>
+    </div>
+    <p class="nf-other" lang="en"><a href="/en/">Page not found. Go to the English version</a></p>
+    <p class="nf-other" lang="uk"><a href="/ua/">Сторінку не знайдено. Перейти до української версії</a></p>
+  </div>
+</section>
+<div class="nf-gap"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <span>© Centrum Terapeutyczne Płaszowska 25, Kraków</span>
+    <span><a href="/index.html">Strona główna</a> · <a href="/index.html#kontakt">Kontakt</a> · <button type="button" class="ck-footer-link" data-cookie-settings>Ustawienia cookies</button></span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav
+  const burger = document.getElementById('burger');
+  const sheet = document.getElementById('sheet');
+  const closeSheet = document.getElementById('closeSheet');
+  burger.addEventListener('click', () => sheet.classList.add('on'));
+  closeSheet.addEventListener('click', () => sheet.classList.remove('on'));
+  sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', () => sheet.classList.remove('on')));
+
+</script>
+
+</body>
+</html>

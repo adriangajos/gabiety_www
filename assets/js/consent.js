@@ -3,7 +3,7 @@
 // Każdy element z atrybutem [data-cookie-settings] otwiera panel ustawień.
 (function(){
   const KEY = 'p25_cookie_consent';
-  const GA_ID = 'G-XXXXXXXXXX';          // podmień po założeniu GA4
+  const GA_ID = 'G-K0J6DQPGLL';
   const PIXEL_ID = '887690594397355';
   const T = (window.P25_T || {}).ck;
   if (!T) return;
@@ -34,7 +34,7 @@
     gtag('config', GA_ID, { anonymize_ip: true });
   }
   function loadPixel() {
-    if (/github\.io$/i.test(location.hostname)) return; // nie śledzimy wersji staging
+    if (location.hostname !== 'plaszowska25.pl') return; // nie śledzimy stagingu ani adresu testowego OVH
     if (window.fbq) return;
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
