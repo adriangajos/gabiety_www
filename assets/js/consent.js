@@ -181,12 +181,14 @@
   if (saved) apply(saved);
   else showBanner();
 
-  // ---- konwersje: jedno wywołanie wysyła zdarzenie do GA4 i Meta. Każde narzędzie
+  // ---- konwersje: jedno wywołanie wysyła zdarzenie do GA4, Meta i dataLayer (GTM). Każde narzędzie
   // dostaje je tylko wtedy, gdy jest załadowane, czyli po odpowiedniej zgodzie.
   window.P25_track = function(gaEvent, metaEvent, params) {
     const p = Object.assign({ page_language: document.documentElement.lang }, params || {});
     if (gaEvent && window.gtag) gtag('event', gaEvent, p);
     if (metaEvent && window.fbq) fbq('track', metaEvent);
+    // dla Google Tag Managera (tagi Google Ads); GTM sam pilnuje zgody (Consent Mode)
+    if (gaEvent) { window.dataLayer = window.dataLayer || []; dataLayer.push(Object.assign({ event: 'p25_' + gaEvent }, p)); }
   };
   // Kliknięcia w telefon i e-mail centrum (na każdej stronie)
   document.addEventListener('click', e => {
