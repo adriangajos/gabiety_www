@@ -23,13 +23,14 @@
 
   // ---- ładowanie narzędzi (tylko po zgodzie)
   function loadGA() {
-    if (GA_ID === 'G-XXXXXXXXXX' || window.gtag) return;
+    if (GA_ID === 'G-XXXXXXXXXX' || window.P25_gaLoaded) return;
+    window.P25_gaLoaded = true;
     const s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(s);
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function(){ dataLayer.push(arguments); };
+    window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
     gtag('js', new Date());
     gtag('config', GA_ID, { anonymize_ip: true });
   }
@@ -47,7 +48,14 @@
     fbq('init', PIXEL_ID);
     fbq('track', 'PageView');
   }
+  // Consent Mode v2 dla Google Tag Managera (domyślne 'denied' ustawia skrypt w <head>)
+  function consentUpdate(c) {
+    if (!window.gtag) return;
+    const g = (x) => x ? 'granted' : 'denied';
+    gtag('consent', 'update', { analytics_storage: g(c.a), ad_storage: g(c.m), ad_user_data: g(c.m), ad_personalization: g(c.m) });
+  }
   function apply(c) {
+    consentUpdate(c);
     if (c.a) loadGA();
     if (c.m) loadPixel();
   }
@@ -70,6 +78,7 @@
     hideBanner(); closePanel();
     const revoked = (prev.a && !next.a) || (prev.m && !next.m);
     if (revoked) {
+      consentUpdate(next);
       if (prev.a && !next.a) { window['ga-disable-' + GA_ID] = true; clearCookies(['_ga', '_gid', '_gat']); }
       if (prev.m && !next.m) { if (window.fbq) fbq('consent', 'revoke'); clearCookies(['_fbp', '_fbc']); }
       // skrypty już załadowane da się w pełni wyłączyć tylko przeładowaniem strony
